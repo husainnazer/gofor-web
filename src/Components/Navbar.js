@@ -33,7 +33,6 @@ class Navbar extends Component {
                 this.setState({authenticated: false})
             }
         })
-        console.log(this.state.authenticated)
     }
 
     render() {

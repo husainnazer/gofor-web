@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import { Grid, Card, CardMedia, CardContent, Typography } from '@material-ui/core/'
+import { Grid, Card, CardMedia, CardContent, CardActionArea, Typography } from '@material-ui/core/'
 import fire from '../firebase'
 import 'firebase/firestore'
 import { withStyles } from '@material-ui/styles'
+import { Link } from 'react-router-dom'
+// import ProductDetails from './ProductDetails'
 
 const styles = {
     card: {
@@ -53,23 +55,31 @@ class Home extends Component {
         const { allProducts } = this.state
         return (
             <Grid container spacing={1} style={{ padding: 24 }} >
-                    {allProducts.map(product => (
-                        <Grid key={product.productId} item xs={12} sm={6} lg={4} xl={3} >
-                            {/* <Product key={product.productId} product={product} /> */}
+                {allProducts.map(product => (
+                    <Grid key={product.productId} item xs={12} sm={6} lg={4} xl={3} >
+                        <Link to={{
+                            pathname: `/product/${product.productId}`,
+                            state: {
+                                productId: product.productId
+                            }
+                        }} style={{textDecoration: 'none'}} >
                             <Card className={ classes.card } >
-                                <CardMedia 
-                                    image={product.imageUrl}
-                                    title="Profile Image"
-                                    className={classes.image}
-                                />
-                                <CardContent className={classes.content}>
-                                    <Typography gutterBottom variant='h5' >₹ {product.price}/-</Typography>
-                                    <Typography variant='body1' color='textSecondary' >{product.title}</Typography>
-                                    <Typography variant='body2' color='textSecondary' >{product.location}</Typography>
-                                </CardContent>
+                                <CardActionArea>
+                                    <CardMedia 
+                                        image={product.imageUrl}
+                                        title="Profile Image"
+                                        className={classes.image}
+                                    />
+                                    <CardContent className={classes.content}>
+                                        <Typography gutterBottom variant='h5' >₹ {product.price}/-</Typography>
+                                        <Typography variant='body1' color='textSecondary' >{product.title}</Typography>
+                                        <Typography variant='body2' color='textSecondary' >{product.location}</Typography>
+                                    </CardContent>
+                                </CardActionArea>
                             </Card>
-                        </Grid>
-                    ))}
+                        </Link>
+                    </Grid>
+                ))}
             </Grid>
         )
             // return <h1>Hello</h1>

@@ -12,6 +12,7 @@ import Login from './Pages/Login';
 import Signup from './Pages/Signup';
 import Post from './Pages/Post';
 import Profile from './Pages/Profile';
+import ProductDetails from './Pages/ProductDetails';
 
 const theme = createMuiTheme({
   palette: {
@@ -44,6 +45,7 @@ class App extends Component {
                 <Route exact path='/login' component={Login} />
                 <Route exact path='/signup' component={Signup} />
                 <Route exact path='/post' component={Post} />
+                <Route exact path='/product/:productId' component={ProductDetails} />
               </Switch>
             </div>
           </Router>

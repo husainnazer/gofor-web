@@ -74,10 +74,8 @@ class Login extends Component {
         fire.auth().onAuthStateChanged(user => {
             if(user) {
                 this.setState({authenticated: true})
-                console.log('logged in')
             } else {
                 this.setState({authenticated: false})
-                console.log('logged out')
             }
         })
     }
