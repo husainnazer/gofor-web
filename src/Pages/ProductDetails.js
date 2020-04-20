@@ -42,7 +42,7 @@ class ProductDetails extends Component {
     }
 
     componentDidMount() {
-        const {productId} = this.props.location.state
+        const productId = this.props.match.params.productId
         this.setState({productId: productId})
         fire.firestore()
             .collection('products')
