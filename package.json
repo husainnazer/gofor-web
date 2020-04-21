@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.9.10",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.50",
     "@material-ui/styles": "^4.9.10",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -11,6 +13,7 @@
     "firebase": "^7.14.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-onclickoutside": "^6.9.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1"
   },

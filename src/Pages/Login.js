@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import { Typography, TextField, Button, Grid, CircularProgress } from '@material-ui/core/'
+import { Typography, TextField, Button, Grid, CircularProgress, Snackbar } from '@material-ui/core/'
 import { Link, Redirect } from 'react-router-dom';
 import fire from '../firebase'
 import 'firebase/auth'
+import { Alert } from '@material-ui/lab';
 
 const styles = {
     form: {
@@ -44,6 +45,12 @@ class Login extends Component {
         }
     }
 
+    handlePasswordKeyDown = (event) => {
+        if (event.keyCode === 13) {
+            this.handleSubmit()
+        }
+    }
+
     handleSubmit = () => {
         this.setState({loading: true})
         const { email, password } = this.state
@@ -53,10 +60,10 @@ class Login extends Component {
             .catch(error => {
                 if(this.state.email === '') {
                     this.setState({emailErrorMessage: 'Email must not be empty'})
-                }  
+                }
                 if(this.state.password === '') {
                     this.setState({passwordErrorMessage: 'Password must not be empty'})
-                } 
+                }
                 if(this.state.email !== '' && this.state.password !== '') {
                     if(error.code === 'auth/invalid-email') {
                         this.setState({generalErrorMessage: 'Invalid email address'})
@@ -87,7 +94,14 @@ class Login extends Component {
     };
     render() {
         const { classes } = this.props;
-        const { authenticated, generalErrorMessage, emailErrorMessage, passwordErrorMessage, loading } = this.state
+        const { authenticatedToPost } = this.props.location.state
+        const { 
+            authenticated,
+            generalErrorMessage,
+            emailErrorMessage,
+            passwordErrorMessage,
+            loading
+        } = this.state
         if(!authenticated) {
             return (
                 <Grid container className={classes.form}>
@@ -120,6 +134,7 @@ class Login extends Component {
                             helperText={passwordErrorMessage}
                             value={this.state.password}
                             onChange={this.handleChange}
+                            onKeyDown={this.handlePasswordKeyDown}
                             fullWidth
                         />
                         {generalErrorMessage && (
@@ -127,11 +142,18 @@ class Login extends Component {
                                 {generalErrorMessage}
                             </Typography>
                         )}
+                        {!authenticatedToPost && (
+                            <Snackbar open autoHideDuration={6000}>
+                                <Alert variant='filled' severity='error'>
+                                    Login to Post!
+                                </Alert>
+                            </Snackbar>
+                        )}
                         <Button 
                             onClick={this.handleSubmit}
                             disabled={loading}
-                            variant='contained' 
-                            color='primary' 
+                            variant='contained'
+                            color='primary'
                             className={classes.button} 
                         >
                             Login
@@ -140,7 +162,17 @@ class Login extends Component {
                             )}
                         </Button>
                         <br />
-                        <small>Don't have an account? <Link to='/signup' >sign up</Link></small>
+                        <small>Don't have an account? 
+                            <Link 
+                                style={{
+                                    textDecoration: 'none',
+                                    color: '#33c9dc'
+                                }}
+                                to='/signup'
+                            >
+                                {` Sign up`}
+                            </Link>
+                        </small>
                     </Grid>
                     <Grid item sm />
                 </Grid>

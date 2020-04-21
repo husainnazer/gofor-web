@@ -4,7 +4,6 @@ import fire from '../firebase'
 import 'firebase/firestore'
 import { withStyles } from '@material-ui/styles'
 import { Link } from 'react-router-dom'
-// import ProductDetails from './ProductDetails'
 
 const styles = {
     card: {
@@ -58,12 +57,6 @@ class Home extends Component {
                 {allProducts.map(product => (
                     <Grid key={product.productId} item xs={12} sm={6} lg={4} xl={3} >
                         <Link to={`/product/${product.productId}`} style={{textDecoration: 'none'}}>
-                        {/* <Link to={{
-                            pathname: `/product/${product.productId}`,
-                            state: {
-                                productId: product.productId
-                            }
-                        }} style={{textDecoration: 'none'}} > */}
                             <Card className={ classes.card } >
                                 <CardActionArea>
                                     <CardMedia 

@@ -163,130 +163,140 @@ class PostProduct extends Component {
         const fileInput = document.getElementById('imageInput');
         fileInput.click();
     }
+    
 
     render() {
         const { classes } = this.props;
+        const { authenticated } = this.props.location.state
         const { 
-            posted, 
+            posted,
             categoryErrorMessage,
             titleErrorMessage,
             descriptionErrorMessage,
             priceErrorMessage,
             imageInputErrorMessage
         } = this.state
-        if(!posted) {
-            return (
-                <Grid container className={classes.form}>
-                    <Grid item sm />
-                    <Grid item sm >
-                        <div>
-                            <Typography className={classes.pageTitle} variant='h2'>Post</Typography>
-                            <FormControl 
-                                variant='outlined' 
-                                className={classes.categoryForm} 
-                                error={categoryErrorMessage ? true : false} 
-                            >
-                                <InputLabel id="product-category-label">Category</InputLabel>
-                                <Select
-                                    id="category"
-                                    name='category'
-                                    labelId="category"
-                                    value={this.state.category}
-                                    onChange={this.handleChange}
+
+        if(authenticated) {
+            if(!posted) {
+                return (
+                    <Grid container className={classes.form}>
+                        <Grid item sm />
+                        <Grid item sm >
+                            <div>
+                                <Typography className={classes.pageTitle} variant='h2'>Post</Typography>
+                                <FormControl 
+                                    variant='outlined' 
+                                    className={classes.categoryForm} 
+                                    error={categoryErrorMessage ? true : false} 
                                 >
-                                    <MenuItem value="">
-                                        <em>None</em>
-                                    </MenuItem>
-                                    <MenuItem value='mobiles'>Mobiles</MenuItem>
-                                    <MenuItem value='properties'>Properties</MenuItem>
-                                    <MenuItem value='cars'>Cars</MenuItem>
-                                </Select>
-                            </FormControl>
-                            {categoryErrorMessage && (
-                                <Typography variant='body2' className={classes.customError}>
-                                    {categoryErrorMessage}
-                                </Typography>
-                            )}
-                            <TextField
-                                id="title" 
-                                name='title'
-                                type='text'
-                                label="Title" 
-                                className={classes.textField} 
-                                noValidate 
-                                autoComplete="off"
-                                variant="outlined" 
-                                value={this.state.title}
-                                onChange={this.handleChange}
-                                error={titleErrorMessage ? true : false}
-                                helperText={titleErrorMessage}
-                                fullWidth
-                            />
-                            <TextField
-                                id="description" 
-                                name='description'
-                                type='text'
-                                label="Description" 
-                                className={classes.textField} 
-                                noValidate 
-                                autoComplete="off"
-                                variant="outlined"
-                                value={this.state.description}
-                                onChange={this.handleChange}
-                                error={descriptionErrorMessage ? true : false}
-                                helperText={descriptionErrorMessage}
-                                fullWidth
-                            />
-                            <TextField 
-                                id="price" 
-                                name='price'
-                                type='text'
-                                label="Price" 
-                                className={classes.textField} 
-                                noValidate 
-                                autoComplete="off"
-                                variant="outlined"
-                                value={this.state.price}
-                                onChange={this.handleChange}
-                                error={priceErrorMessage ? true : false}
-                                helperText={priceErrorMessage}
-                                fullWidth
-                            />
-                            <input 
-                                accept="image/*"
-                                onChange={this.handleImageChange}
-                                className={classes.input}
-                                id="imageInput"
-                                type="file"
-                            />
-                            <Button 
-                                onClick={this.handleEditPicture}
-                                color='primary' 
-                                variant='outlined'
-                                className={classes.photoButton}
+                                    <InputLabel id="product-category-label">Category</InputLabel>
+                                    <Select
+                                        id="category"
+                                        name='category'
+                                        labelId="category"
+                                        value={this.state.category}
+                                        onChange={this.handleChange}
+                                    >
+                                        <MenuItem value="">
+                                            <em>None</em>
+                                        </MenuItem>
+                                        <MenuItem value='mobiles'>Mobiles</MenuItem>
+                                        <MenuItem value='properties'>Properties</MenuItem>
+                                        <MenuItem value='cars'>Cars</MenuItem>
+                                    </Select>
+                                </FormControl>
+                                {categoryErrorMessage && (
+                                    <Typography variant='body2' className={classes.customError}>
+                                        {categoryErrorMessage}
+                                    </Typography>
+                                )}
+                                <TextField
+                                    id="title" 
+                                    name='title'
+                                    type='text'
+                                    label="Title" 
+                                    className={classes.textField} 
+                                    noValidate 
+                                    autoComplete="off"
+                                    variant="outlined" 
+                                    value={this.state.title}
+                                    onChange={this.handleChange}
+                                    error={titleErrorMessage ? true : false}
+                                    helperText={titleErrorMessage}
+                                    fullWidth
+                                />
+                                <TextField
+                                    id="description" 
+                                    name='description'
+                                    type='text'
+                                    label="Description" 
+                                    className={classes.textField} 
+                                    noValidate 
+                                    autoComplete="off"
+                                    variant="outlined"
+                                    value={this.state.description}
+                                    onChange={this.handleChange}
+                                    error={descriptionErrorMessage ? true : false}
+                                    helperText={descriptionErrorMessage}
+                                    fullWidth
+                                />
+                                <TextField 
+                                    id="price" 
+                                    name='price'
+                                    type='text'
+                                    label="Price" 
+                                    className={classes.textField} 
+                                    noValidate 
+                                    autoComplete="off"
+                                    variant="outlined"
+                                    value={this.state.price}
+                                    onChange={this.handleChange}
+                                    error={priceErrorMessage ? true : false}
+                                    helperText={priceErrorMessage}
+                                    fullWidth
+                                />
+                                <input 
+                                    accept="image/*"
+                                    onChange={this.handleImageChange}
+                                    className={classes.input}
+                                    id="imageInput"
+                                    type="file"
+                                />
+                                <Button 
+                                    onClick={this.handleEditPicture}
+                                    color='primary' 
+                                    variant='outlined'
+                                    className={classes.photoButton}
+                                >
+                                    Upload Photo
+                                </Button>
+                                {imageInputErrorMessage && (
+                                    <Typography variant='body2' className={classes.photoUploaded}>
+                                        {imageInputErrorMessage}
+                                    </Typography>
+                                )}
+                            </div>
+                            <Button
+                                onClick={this.handleSubmit} 
+                                variant='contained' 
+                                color='primary'
+                                className={classes.button} 
                             >
-                                Upload Photo
+                                Post
                             </Button>
-                            {imageInputErrorMessage && (
-                                <Typography variant='body2' className={classes.photoUploaded}>
-                                    {imageInputErrorMessage}
-                                </Typography>
-                            )}
-                        </div>
-                        <Button
-                            onClick={this.handleSubmit} 
-                            variant='contained' 
-                            color='primary'
-                            className={classes.button} 
-                        >
-                            Post
-                        </Button>
+                        </Grid>
+                        <Grid item sm />
                     </Grid>
-                    <Grid item sm />
-                </Grid>
-            )
+                )
+            } else {
+                return <Redirect to='/' />
+            }
         } else {
-            return <Redirect to='/' />
+            return <Redirect to={{
+                pathname: '/login',
+                state: { authenticatedToPost: false}
+            }} />
         }
     }
 }

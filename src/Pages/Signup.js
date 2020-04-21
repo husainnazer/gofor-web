@@ -132,11 +132,11 @@ class Signup extends Component {
         const { 
             authenticated, 
             loading, 
-            generalErrorMessage, 
-            emailErrorMessage, 
-            passwordErrorMessage, 
-            confirmPasswordErrorMessage, 
-            userNameErrorMessage 
+            generalErrorMessage,
+            emailErrorMessage,
+            passwordErrorMessage,
+            confirmPasswordErrorMessage,
+            userNameErrorMessage
         } = this.state
         if(!authenticated) {
             return (
@@ -216,7 +216,18 @@ class Signup extends Component {
                                 )}
                             </Button>
                             <br />
-                            <small >Have an account? <Link to='/login' color='primary' >login</Link></small>
+                            <small >
+                                Have an account?  
+                                <Link 
+                                    to={{
+                                        pathname: '/login',
+                                        state: {authenticatedToPost: true}
+                                    }} 
+                                    style={{textDecoration: 'none', color: '#33c9dc'}}
+                                >
+                                    {` Login`}
+                                </Link>
+                            </small>
                     </Grid>
                     <Grid item sm />
                 </Grid>
