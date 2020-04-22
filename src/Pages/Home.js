@@ -23,7 +23,8 @@ class Home extends Component {
     constructor() {
         super()
         this.state = {
-            allProducts: []
+            allProducts: [],
+            loading: true
         }
     }
 
@@ -46,36 +47,41 @@ class Home extends Component {
                     })
                 })
                 this.setState({allProducts: Products})
+                this.setState({loading: false})
             })
     }
 
     render() {
         const { classes } = this.props
-        const { allProducts } = this.state
-        return (
-            <Grid container spacing={1} style={{ padding: 24 }} >
-                {allProducts.map(product => (
-                    <Grid key={product.productId} item xs={12} sm={6} lg={4} xl={3} >
-                        <Link to={`/product/${product.productId}`} style={{textDecoration: 'none'}}>
-                            <Card className={ classes.card } >
-                                <CardActionArea>
-                                    <CardMedia 
-                                        image={product.imageUrl}
-                                        title="Profile Image"
-                                        className={classes.image}
-                                    />
-                                    <CardContent className={classes.content}>
-                                        <Typography gutterBottom variant='h5' >₹ {product.price}/-</Typography>
-                                        <Typography variant='body1' color='textSecondary' >{product.title}</Typography>
-                                        <Typography variant='body2' color='textSecondary' >{product.location}</Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                            </Card>
-                        </Link>
-                    </Grid>
-                ))}
-            </Grid>
-        )
+        const { allProducts, loading } = this.state
+        if(!loading) {
+            return (    
+                <Grid container spacing={1} style={{ padding: 24 }} >
+                    {allProducts.map(product => (
+                        <Grid key={product.productId} item xs={12} sm={6} lg={4} xl={3} >
+                            <Link to={`/product/${product.productId}`} style={{textDecoration: 'none'}}>
+                                <Card className={ classes.card } >
+                                    <CardActionArea>
+                                        <CardMedia 
+                                            image={product.imageUrl}
+                                            title="Profile Image"
+                                            className={classes.image}
+                                        />
+                                        <CardContent className={classes.content}>
+                                            <Typography gutterBottom variant='h5' >₹ {product.price}/-</Typography>
+                                            <Typography variant='body1' color='textSecondary' >{product.title}</Typography>
+                                            <Typography variant='body2' color='textSecondary' >{product.location}</Typography>
+                                        </CardContent>
+                                    </CardActionArea>
+                                </Card>
+                            </Link>
+                        </Grid>
+                    ))}
+                </Grid>
+            )
+        } else {
+            return <h1>Loading...</h1>
+        }
             // return <h1>Hello</h1>
     }
 }

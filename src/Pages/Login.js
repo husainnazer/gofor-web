@@ -59,9 +59,8 @@ class Login extends Component {
         fire.auth()
             .signInWithPopup(provider)
             .then(result => {
-                const token = result.credential.accessToken;
-                
-                const user = result.user;
+                const token = result.credential.accessToken
+                const user = result.user
             })
     }
 
@@ -137,11 +136,11 @@ class Login extends Component {
                             onChange={this.handleChange}
                             fullWidth
                         />
-                        <TextField 
-                            id='password' 
-                            name='password' 
-                            type='password' 
-                            label='Password' 
+                        <TextField
+                            id='password'
+                            name='password'
+                            type='password'
+                            label='Password'
                             variant='outlined'
                             className={classes.textField}
                             error={passwordErrorMessage ? true : false}
@@ -176,7 +175,6 @@ class Login extends Component {
                             )}
                         </Button>
 
-                        <Button onClick={this.handleGoogleSignIn}>Google</Button>
                         <br />
                         <small>Don't have an account? 
                             <Link 
@@ -189,6 +187,11 @@ class Login extends Component {
                                 {` Sign up`}
                             </Link>
                         </small>
+                        <div>
+                            <Button color='primary' variant='contained' style={{marginTop: 40}} onClick={this.handleGoogleSignIn}>
+                                Signin With Google
+                            </Button>
+                        </div>
                     </Grid>
                     <Grid item sm />
                 </Grid>

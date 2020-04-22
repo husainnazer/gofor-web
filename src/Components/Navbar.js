@@ -11,7 +11,7 @@ import {
     Menu,
     MenuItem
 } from '@material-ui/core/'
-import {Person} from '@material-ui/icons/';
+import { Person, ArrowDropDown } from '@material-ui/icons/';
 import fire from '../firebase';
 import 'firebase/auth'
 
@@ -97,6 +97,7 @@ class Navbar extends Component {
                             <div className='nav-container'>
                                 <Button onClick={this.handleMenuClick} color='inherit' >
                                     <Person />
+                                    <ArrowDropDown />
                                 </Button>
                                 <Menu
                                     id="simple-menu"
