@@ -64,7 +64,7 @@ class Navbar extends Component {
                                     component={Link} 
                                     to={{
                                         pathname: '/login',
-                                        state: {authenticatedToPost: true}
+                                        authenticatedToPost: true
                                     }} 
                                 >
                                     Login
@@ -76,7 +76,7 @@ class Navbar extends Component {
                                     component={Link} 
                                     to={{
                                         pathname: '/post',
-                                        state: {authenticatedToPost: false}
+                                        authenticatedToPost: false
                                     }}
                                 >
                                     Post
@@ -115,10 +115,8 @@ class Navbar extends Component {
                                     component={Link} 
                                     to= {{
                                         pathname: '/post',
-                                        state : {
                                             authenticatedToPost: true,
                                             authenticated: true
-                                        }
                                     }}
                                 >
                                     Post

@@ -167,7 +167,7 @@ class PostProduct extends Component {
 
     render() {
         const { classes } = this.props;
-        const { authenticated } = this.props.location.state
+        const { authenticated } = this.props.location
         const { 
             posted,
             categoryErrorMessage,

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { Typography, TextField, Button, Grid, CircularProgress, Snackbar } from '@material-ui/core/'
 import { Link, Redirect } from 'react-router-dom';
+import firebase from 'firebase/app'
 import fire from '../firebase'
 import 'firebase/auth'
 import { Alert } from '@material-ui/lab';
@@ -39,6 +40,7 @@ class Login extends Component {
             password: '',
             loading: false,
             authenticated: false,
+            authenticatedToPost: null,
             generalErrorMessage: null,
             emailErrorMessage: null,
             passwordErrorMessage: null
@@ -49,6 +51,18 @@ class Login extends Component {
         if (event.keyCode === 13) {
             this.handleSubmit()
         }
+    }
+
+    handleGoogleSignIn = () => {
+        const provider = new firebase.auth.GoogleAuthProvider();
+
+        fire.auth()
+            .signInWithPopup(provider)
+            .then(result => {
+                const token = result.credential.accessToken;
+                
+                const user = result.user;
+            })
     }
 
     handleSubmit = () => {
@@ -94,7 +108,7 @@ class Login extends Component {
     };
     render() {
         const { classes } = this.props;
-        const { authenticatedToPost } = this.props.location.state
+        const {authenticatedToPost} = this.props.location
         const { 
             authenticated,
             generalErrorMessage,
@@ -161,6 +175,8 @@ class Login extends Component {
                                 <CircularProgress size={30} className={classes.progress} />
                             )}
                         </Button>
+
+                        <Button onClick={this.handleGoogleSignIn}>Google</Button>
                         <br />
                         <small>Don't have an account? 
                             <Link 
