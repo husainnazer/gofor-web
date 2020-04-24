@@ -4,6 +4,7 @@ import fire from '../firebase'
 import 'firebase/firestore'
 import { withStyles } from '@material-ui/styles'
 import { Link } from 'react-router-dom'
+import { Skeleton } from '@material-ui/lab'
 
 const styles = {
     card: {
@@ -11,10 +12,11 @@ const styles = {
         marginBottom: 30
     },
     image: {
-        height: 140
+        height: 180
     },
     content: {
-        padding: 25,
+        padding: 5,
+        margin: 15,
         objectFit: 'cover'
     }
 }
@@ -70,7 +72,7 @@ class Home extends Component {
                                         <CardContent className={classes.content}>
                                             <Typography gutterBottom variant='h5' >₹ {product.price}/-</Typography>
                                             <Typography variant='body1' color='textSecondary' >{product.title}</Typography>
-                                            <Typography variant='body2' color='textSecondary' >{product.location}</Typography>
+                                            {/* <Typography variant='body2' color='textSecondary' >{product.location}</Typography> */}
                                         </CardContent>
                                     </CardActionArea>
                                 </Card>
@@ -80,7 +82,18 @@ class Home extends Component {
                 </Grid>
             )
         } else {
-            return <h1>Loading...</h1>
+            const length = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+            return (
+                <Grid container spacing={1} style={{ padding: 24 }} >
+                    {length.map(product => (
+                        <Grid item xs={12} sm={6} lg={4} xl={3} >
+                            <Skeleton animation="wave" variant="rect" width={345} height={180} />
+                            <Skeleton animation="wave" width={200} style={{marginTop: 15, padding: 8}} />
+                            <Skeleton animation="wave" width={170} style={{marginTop: 5, padding: 8}} />
+                        </Grid>
+                    ))}
+                </Grid>
+            )
         }
             // return <h1>Hello</h1>
     }
