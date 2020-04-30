@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import { Redirect } from 'react-router-dom';
+import React, { Component } from "react";
+import { withStyles } from "@material-ui/core/styles";
+import { Redirect } from "react-router-dom";
 
 //Material UI stuff
-import { 
+import {
     InputLabel,
     MenuItem,
     Select,
@@ -11,106 +11,109 @@ import {
     Grid,
     TextField,
     Typography,
-    Button
-} from '@material-ui/core/';
+    Button,
+} from "@material-ui/core/";
 
 //Firebase stuff
-import fire from '../firebase';
-import 'firebase/auth'
-import 'firebase/firestore'
-import 'firebase/storage'
+import fire from "../firebase";
+import "firebase/auth";
+import "firebase/firestore";
+import "firebase/storage";
 
 const styles = {
     form: {
-        textAlign: 'center'
+        textAlign: "center",
     },
     pageTitle: {
-        margin: '10px auto 10px auto',
-        marginBottom: 50
+        margin: "10px auto 10px auto",
+        marginBottom: 50,
     },
     textField: {
-        margin: '10px auto 10px auto'
+        margin: "10px auto 10px auto",
     },
     button: {
         marginTop: 20,
-        position: 'relative'
+        position: "relative",
     },
     photoButton: {
-        margin: '10px auto 10px auto',
-        padding: 10
+        margin: "10px auto 10px auto",
+        padding: 10,
     },
     categoryForm: {
-        minWidth: '100%',
+        minWidth: "100%",
     },
     customError: {
-        color: 'red',
-        fontSize: '0.8rem',
+        color: "red",
+        fontSize: "0.8rem",
         marginTop: 10,
-        textAlign: 'left'
+        textAlign: "left",
     },
     photoUploaded: {
-        color: 'red',
-        fontSize: '0.8rem',
+        color: "red",
+        fontSize: "0.8rem",
         marginTop: 10,
     },
     selectFormError: {
-        color: 'red',
-        fontSize: '0.8rem'
+        color: "red",
+        fontSize: "0.8rem",
     },
     progress: {
-        position: 'absolute'
+        position: "absolute",
     },
     input: {
-        display: 'none'
-    }
-}
+        display: "none",
+    },
+};
 
 class PostProduct extends Component {
-
     constructor() {
         super();
         this.state = {
-            category: '',
-            title: '',
-            description: '',
-            price: '',
-            userhandle: '',
-            imageUrl: '',
+            category: "",
+            title: "",
+            description: "",
+            price: "",
+            userhandle: "",
+            imageUrl: "",
             posted: false,
             categoryErrorMessage: null,
             titleErrorMessage: null,
             descriptionErrorMessage: null,
             priceErrorMessage: null,
-            imageInputErrorMessage: null
-        }
+            imageInputErrorMessage: null,
+        };
     }
 
     handleSubmit = () => {
-        const { displayName } = fire.auth().currentUser
-        const {
-            category,
-            title,
-            description,
-            price,
-            imageUrl
-        } = this.state
-        
-        if(category === '') {
-            this.setState({categoryErrorMessage: 'Must not be empty'})
+        const { displayName } = fire.auth().currentUser;
+        const { category, title, description, price, imageUrl } = this.state;
+
+        if (category === "") {
+            this.setState({ categoryErrorMessage: "Must not be empty" });
         }
-        if(title === '') {
-            this.setState({titleErrorMessage: 'Title must not be empty'})
+        if (title === "") {
+            this.setState({ titleErrorMessage: "Title must not be empty" });
         }
-        if(description === '') {
-            this.setState({descriptionErrorMessage: 'Description must not be empty'})
+        if (description === "") {
+            this.setState({
+                descriptionErrorMessage: "Description must not be empty",
+            });
         }
-        if(price === '') {
-            this.setState({priceErrorMessage: 'Price must not be empty'})
+        if (price === "") {
+            this.setState({ priceErrorMessage: "Price must not be empty" });
         }
-        if(imageUrl === '') {
-            this.setState({imageInputErrorMessage: 'Add photo of your product'})
+        if (imageUrl === "") {
+            this.setState({
+                imageInputErrorMessage: "Add photo of your product",
+            });
         }
-        if(category !== '' && title !== '' && description !== '' && price !== '' && imageUrl !== '') {
+        if (
+            category !== "" &&
+            title !== "" &&
+            description !== "" &&
+            price !== "" &&
+            imageUrl !== ""
+        ) {
             // const noImgUrl = 'https://firebasestorage.googleapis.com/v0/b/gofor-efc3a.appspot.com/o/no-image.png?alt=media'
             const newProduct = {
                 title: this.state.title,
@@ -120,80 +123,90 @@ class PostProduct extends Component {
                 price: this.state.price,
                 imageUrl: imageUrl,
                 //location: this.state.location,
-                createdAt: new Date().toISOString()
+                createdAt: new Date().toISOString(),
             };
             fire.firestore()
-                .collection('products')
+                .collection("products")
                 .add(newProduct)
-                .then(data => {
-                    if(data) {
-                        this.setState({posted: true})
+                .then((data) => {
+                    if (data) {
+                        this.setState({ posted: true });
                     } else {
-                        this.setState({posted: false})
+                        this.setState({ posted: false });
                     }
-                })
+                });
         }
-    }
+    };
 
     handleChange = (event) => {
         this.setState({
-            [event.target.name]: event.target.value
-        })
-    }
+            [event.target.name]: event.target.value,
+        });
+    };
 
     handleImageChange = (event) => {
-        const image = event.target.files[0]
-        const imageExtension = image.name.split('.')[image.name.split('.').length - 1];
-        const imageFileName = `${Math.round(Math.random()*100000000000)}.${imageExtension}`;
+        const image = event.target.files[0];
+        const imageExtension = image.name.split(".")[
+            image.name.split(".").length - 1
+        ];
+        const imageFileName = `${Math.round(
+            Math.random() * 100000000000
+        )}.${imageExtension}`;
         fire.storage()
             .ref(`images/${imageFileName}`)
             .put(image)
             .then(() => {
                 fire.storage()
-                    .ref('images')
+                    .ref("images")
                     .child(imageFileName)
                     .getDownloadURL()
-                    .then(url => {
-                        this.setState({imageUrl: url})
-                    })
-            })
-    }
+                    .then((url) => {
+                        this.setState({ imageUrl: url });
+                    });
+            });
+    };
 
     handleEditPicture = () => {
-        const fileInput = document.getElementById('imageInput');
+        const fileInput = document.getElementById("imageInput");
         fileInput.click();
-    }
-    
+    };
 
     render() {
         const { classes } = this.props;
-        const { authenticated } = this.props.location
-        const { 
+        const { authenticated } = this.props.location;
+        const {
             posted,
             categoryErrorMessage,
             titleErrorMessage,
             descriptionErrorMessage,
             priceErrorMessage,
-            imageInputErrorMessage
-        } = this.state
+            imageInputErrorMessage,
+        } = this.state;
 
-        if(authenticated) {
-            if(!posted) {
+        if (authenticated) {
+            if (!posted) {
                 return (
                     <Grid container className={classes.form}>
                         <Grid item sm />
-                        <Grid item sm >
+                        <Grid item sm>
                             <div>
-                                <Typography className={classes.pageTitle} variant='h2'>Post</Typography>
-                                <FormControl 
-                                    variant='outlined' 
-                                    className={classes.categoryForm} 
-                                    error={categoryErrorMessage ? true : false} 
+                                <Typography
+                                    className={classes.pageTitle}
+                                    variant="h2"
                                 >
-                                    <InputLabel id="product-category-label">Category</InputLabel>
+                                    Post
+                                </Typography>
+                                <FormControl
+                                    variant="outlined"
+                                    className={classes.categoryForm}
+                                    error={categoryErrorMessage ? true : false}
+                                >
+                                    <InputLabel id="product-category-label">
+                                        Category
+                                    </InputLabel>
                                     <Select
                                         id="category"
-                                        name='category'
+                                        name="category"
                                         labelId="category"
                                         value={this.state.category}
                                         onChange={this.handleChange}
@@ -201,25 +214,32 @@ class PostProduct extends Component {
                                         <MenuItem value="">
                                             <em>None</em>
                                         </MenuItem>
-                                        <MenuItem value='mobiles'>Mobiles</MenuItem>
-                                        <MenuItem value='properties'>Properties</MenuItem>
-                                        <MenuItem value='cars'>Cars</MenuItem>
+                                        <MenuItem value="mobiles">
+                                            Mobiles
+                                        </MenuItem>
+                                        <MenuItem value="properties">
+                                            Properties
+                                        </MenuItem>
+                                        <MenuItem value="cars">Cars</MenuItem>
                                     </Select>
                                 </FormControl>
                                 {categoryErrorMessage && (
-                                    <Typography variant='body2' className={classes.customError}>
+                                    <Typography
+                                        variant="body2"
+                                        className={classes.customError}
+                                    >
                                         {categoryErrorMessage}
                                     </Typography>
                                 )}
                                 <TextField
-                                    id="title" 
-                                    name='title'
-                                    type='text'
-                                    label="Title" 
-                                    className={classes.textField} 
-                                    noValidate 
+                                    id="title"
+                                    name="title"
+                                    type="text"
+                                    label="Title"
+                                    className={classes.textField}
+                                    noValidate
                                     autoComplete="off"
-                                    variant="outlined" 
+                                    variant="outlined"
                                     value={this.state.title}
                                     onChange={this.handleChange}
                                     error={titleErrorMessage ? true : false}
@@ -227,27 +247,29 @@ class PostProduct extends Component {
                                     fullWidth
                                 />
                                 <TextField
-                                    id="description" 
-                                    name='description'
-                                    type='text'
-                                    label="Description" 
-                                    className={classes.textField} 
-                                    noValidate 
+                                    id="description"
+                                    name="description"
+                                    type="text"
+                                    label="Description"
+                                    className={classes.textField}
+                                    noValidate
                                     autoComplete="off"
                                     variant="outlined"
                                     value={this.state.description}
                                     onChange={this.handleChange}
-                                    error={descriptionErrorMessage ? true : false}
+                                    error={
+                                        descriptionErrorMessage ? true : false
+                                    }
                                     helperText={descriptionErrorMessage}
                                     fullWidth
                                 />
-                                <TextField 
-                                    id="price" 
-                                    name='price'
-                                    type='text'
-                                    label="Price" 
-                                    className={classes.textField} 
-                                    noValidate 
+                                <TextField
+                                    id="price"
+                                    name="price"
+                                    type="text"
+                                    label="Price"
+                                    className={classes.textField}
+                                    noValidate
                                     autoComplete="off"
                                     variant="outlined"
                                     value={this.state.price}
@@ -256,49 +278,56 @@ class PostProduct extends Component {
                                     helperText={priceErrorMessage}
                                     fullWidth
                                 />
-                                <input 
+                                <input
                                     accept="image/*"
                                     onChange={this.handleImageChange}
                                     className={classes.input}
                                     id="imageInput"
                                     type="file"
                                 />
-                                <Button 
+                                <Button
                                     onClick={this.handleEditPicture}
-                                    color='primary' 
-                                    variant='outlined'
+                                    color="primary"
+                                    variant="outlined"
                                     className={classes.photoButton}
                                 >
                                     Upload Photo
                                 </Button>
                                 {imageInputErrorMessage && (
-                                    <Typography variant='body2' className={classes.photoUploaded}>
+                                    <Typography
+                                        variant="body2"
+                                        className={classes.photoUploaded}
+                                    >
                                         {imageInputErrorMessage}
                                     </Typography>
                                 )}
                             </div>
                             <Button
-                                onClick={this.handleSubmit} 
-                                variant='contained' 
-                                color='primary'
-                                className={classes.button} 
+                                onClick={this.handleSubmit}
+                                variant="contained"
+                                color="primary"
+                                className={classes.button}
                             >
                                 Post
                             </Button>
                         </Grid>
                         <Grid item sm />
                     </Grid>
-                )
+                );
             } else {
-                return <Redirect to='/' />
+                return <Redirect to="/" />;
             }
         } else {
-            return <Redirect to={{
-                pathname: '/login',
-                state: { authenticatedToPost: false}
-            }} />
+            return (
+                <Redirect
+                    to={{
+                        pathname: "/login",
+                        state: { authenticatedToPost: false },
+                    }}
+                />
+            );
         }
     }
 }
 
-export default (withStyles(styles)(PostProduct));
+export default withStyles(styles)(PostProduct);

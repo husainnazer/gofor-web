@@ -1,82 +1,91 @@
-import React, { Component } from 'react'
-import {Link} from 'react-router-dom';
-import onClickOutside from 'react-onclickoutside'
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import onClickOutside from "react-onclickoutside";
 
 //Material UI stuff
-import { 
-    AppBar, 
-    Toolbar, 
-    Button, 
+import {
+    AppBar,
+    Toolbar,
+    Button,
     Typography,
     Menu,
-    MenuItem
-} from '@material-ui/core/'
-import { Person, ArrowDropDown } from '@material-ui/icons/';
-import fire from '../firebase';
-import 'firebase/auth'
+    MenuItem,
+} from "@material-ui/core/";
+import { Person, ArrowDropDown } from "@material-ui/icons/";
+import fire from "../firebase";
+import "firebase/auth";
 
 class Navbar extends Component {
     constructor() {
-        super()
+        super();
         this.state = {
             authenticated: false,
             menuOpen: false,
-            menuPosition: null
-        }
+            menuPosition: null,
+        };
     }
 
     onLogout = () => {
-        fire.auth().signOut()
-    }
+        fire.auth().signOut();
+    };
 
     componentDidMount() {
-        fire.auth().onAuthStateChanged(user => {
-            if(user) {
-                this.setState({authenticated: true})
+        fire.auth().onAuthStateChanged((user) => {
+            if (user) {
+                this.setState({ authenticated: true });
             } else {
-                this.setState({authenticated: false})
+                this.setState({ authenticated: false });
             }
-        })
+        });
     }
 
     handleClickOutside = () => {
-        this.setState({menuOpen: false})
-    }
+        this.setState({ menuOpen: false });
+    };
 
     handleMenuClick = (event) => {
-        this.setState({menuOpen: true})
-        this.setState({menuPosition: event.currentTarget})
-    }
+        this.setState({ menuOpen: true });
+        this.setState({ menuPosition: event.currentTarget });
+    };
 
     render() {
-        const { menuOpen, menuPosition } = this.state
-        if(!this.state.authenticated) {
+        const { menuOpen, menuPosition } = this.state;
+        if (!this.state.authenticated) {
             return (
                 <div>
-                    <AppBar position='fixed'>
+                    <AppBar
+                        style={{ opacity: 0.95, boxShadow: "none" }}
+                        position="fixed"
+                    >
                         <Toolbar>
-                            <Typography component={Link} to='/' className='title' variant='h4' color='inherit' >
+                            <Typography
+                                component={Link}
+                                to="/"
+                                className="title"
+                                variant="h4"
+                                color="inherit"
+                            >
                                 GoFor
                             </Typography>
-                            <div className='nav-container'>
-                                <Button 
-                                    color='inherit' 
-                                    component={Link} 
+                            <div className="nav-container">
+                                <Button
+                                    color="inherit"
+                                    component={Link}
                                     to={{
-                                        pathname: '/login',
-                                        authenticatedToPost: true
-                                    }} 
+                                        pathname: "/login",
+                                        authenticatedToPost: true,
+                                    }}
                                 >
                                     Login
                                 </Button>
-                                <Button 
-                                    style={{marginLeft: 10}} 
-                                    variant='outlined' 
-                                    color='inherit' 
-                                    component={Link} 
+                                <Button
+                                    style={{ marginLeft: 10 }}
+                                    variant="outlined"
+                                    color="inherit"
+                                    component={Link}
                                     to={{
-                                        pathname: '/post',
-                                        authenticatedToPost: false
+                                        pathname: "/post",
+                                        authenticatedToPost: false,
                                     }}
                                 >
                                     Post
@@ -89,13 +98,22 @@ class Navbar extends Component {
         } else {
             return (
                 <div>
-                    <AppBar position='fixed'>
+                    <AppBar position="fixed">
                         <Toolbar>
-                            <Typography component={Link} to='/' className='title' variant='h4' color='inherit' >
+                            <Typography
+                                component={Link}
+                                to="/"
+                                className="title"
+                                variant="h4"
+                                color="inherit"
+                            >
                                 GoFor
                             </Typography>
-                            <div className='nav-container'>
-                                <Button onClick={this.handleMenuClick} color='inherit' >
+                            <div className="nav-container">
+                                <Button
+                                    onClick={this.handleMenuClick}
+                                    color="inherit"
+                                >
                                     <Person />
                                     <ArrowDropDown />
                                 </Button>
@@ -105,19 +123,25 @@ class Navbar extends Component {
                                     keepMounted
                                     open={menuOpen ? true : false}
                                 >
-                                    <MenuItem >Profile</MenuItem>
-                                    <MenuItem >My account</MenuItem>
-                                    <MenuItem onClick={this.onLogout} component={Link} to='/' >Logout</MenuItem>
+                                    <MenuItem>Profile</MenuItem>
+                                    <MenuItem>My account</MenuItem>
+                                    <MenuItem
+                                        onClick={this.onLogout}
+                                        component={Link}
+                                        to="/"
+                                    >
+                                        Logout
+                                    </MenuItem>
                                 </Menu>
-                                <Button 
-                                    style={{marginLeft: 10}} 
-                                    variant='outlined' 
-                                    color='inherit' 
-                                    component={Link} 
-                                    to= {{
-                                        pathname: '/post',
-                                            authenticatedToPost: true,
-                                            authenticated: true
+                                <Button
+                                    style={{ marginLeft: 10 }}
+                                    variant="outlined"
+                                    color="inherit"
+                                    component={Link}
+                                    to={{
+                                        pathname: "/post",
+                                        authenticatedToPost: true,
+                                        authenticated: true,
                                     }}
                                 >
                                     Post
@@ -130,6 +154,5 @@ class Navbar extends Component {
         }
     }
 }
-
 
 export default onClickOutside(Navbar);

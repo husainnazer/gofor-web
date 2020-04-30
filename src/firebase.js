@@ -1,4 +1,4 @@
-import firebase from 'firebase/app'
+import firebase from "firebase/app";
 
 const config = {
     apiKey: "AIzaSyBvS3ux1S8g6Tleei5BuM4gFGqf3bD9DTA",
@@ -8,9 +8,9 @@ const config = {
     storageBucket: "gofor-efc3a.appspot.com",
     messagingSenderId: "511800446738",
     appId: "1:511800446738:web:07143ef16eefaedae6adcb",
-    measurementId: "G-PEW6164FTH"
+    measurementId: "G-PEW6164FTH",
 };
 
-const fire = firebase.initializeApp(config)
+const fire = firebase.initializeApp(config);
 
-export default fire
+export default fire;

@@ -1,10 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
 class Profile extends Component {
     render() {
-        return(
-            <h1>Profile page</h1>
-        );
+        return <h1>Profile page</h1>;
     }
 }
 
