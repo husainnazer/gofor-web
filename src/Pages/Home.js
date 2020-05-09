@@ -8,11 +8,10 @@ import {
     CardContent,
     CardActionArea,
     Typography,
-    IconButton,
+    CircularProgress,
 } from "@material-ui/core/";
 import { withStyles } from "@material-ui/styles";
 import { Skeleton } from "@material-ui/lab";
-import { ExpandMoreRounded } from "@material-ui/icons";
 
 //React Router
 import { Link } from "react-router-dom";
@@ -21,10 +20,16 @@ import { Link } from "react-router-dom";
 import fire from "../firebase";
 import "firebase/firestore";
 
+import InfiniteScroll from "react-infinite-scroller";
+
 const styles = {
     card: {
+        boxShadow: "none",
         maxWidth: 345,
         marginBottom: 30,
+        borderColor: "#f2f2f2",
+        borderStyle: "solid",
+        borderWidth: "1px",
     },
     image: {
         height: 180,
@@ -97,66 +102,75 @@ class Home extends Component {
         const { allProducts, loading, visibleProducts, loadMore } = this.state;
         if (!loading) {
             return (
-                <div>
-                    <Grid container spacing={1} style={{ padding: 24 }}>
-                        {allProducts
-                            .slice(0, visibleProducts)
-                            .map((product) => (
-                                <Grid
-                                    key={product.productId}
-                                    item
-                                    xs={12}
-                                    sm={6}
-                                    lg={4}
-                                    xl={3}
-                                >
-                                    <Link
-                                        to={`/product/${product.productId}`}
-                                        style={{ textDecoration: "none" }}
+                <>
+                    <InfiniteScroll
+                        loadMore={this.loadMore}
+                        hasMore={loadMore ? true : false}
+                        loader={
+                            <div
+                                style={{
+                                    textAlign: "center",
+                                    marginBottom: 30,
+                                }}
+                            >
+                                <CircularProgress />
+                            </div>
+                        }
+                    >
+                        <Grid container spacing={1} style={{ padding: 24 }}>
+                            {allProducts
+                                .slice(0, visibleProducts)
+                                .map((product) => (
+                                    <Grid
+                                        key={product.productId}
+                                        item
+                                        xs={12}
+                                        sm={6}
+                                        lg={4}
+                                        xl={3}
                                     >
-                                        <Card className={classes.card}>
-                                            <CardActionArea>
-                                                <CardMedia
-                                                    image={product.imageUrl}
-                                                    title="Profile Image"
-                                                    className={classes.image}
-                                                />
-                                                <CardContent
-                                                    className={classes.content}
-                                                >
-                                                    <Typography
-                                                        gutterBottom
-                                                        variant="h5"
+                                        <Link
+                                            to={`/product/${product.productId}`}
+                                            style={{
+                                                textDecoration: "none",
+                                            }}
+                                        >
+                                            <Card className={classes.card}>
+                                                <CardActionArea>
+                                                    <CardMedia
+                                                        image={product.imageUrl}
+                                                        title="Profile Image"
+                                                        className={
+                                                            classes.image
+                                                        }
+                                                    />
+                                                    <CardContent
+                                                        className={
+                                                            classes.content
+                                                        }
                                                     >
-                                                        ₹ {product.price}/-
-                                                    </Typography>
-                                                    <Typography
-                                                        variant="body1"
-                                                        color="textSecondary"
-                                                    >
-                                                        {product.title}
-                                                    </Typography>
-                                                    {/* <Typography
-                                                        variant="body2"
-                                                        color="textSecondary"
-                                                    >
-                                                        {product.location}
-                                                    </Typography> */}
-                                                </CardContent>
-                                            </CardActionArea>
-                                        </Card>
-                                    </Link>
-                                </Grid>
-                            ))}
-                    </Grid>
-                    {loadMore && (
-                        <div style={{ textAlign: "center", marginBottom: 30 }}>
-                            <IconButton color="primary" onClick={this.loadMore}>
-                                <ExpandMoreRounded fontSize="large" />
-                            </IconButton>
-                        </div>
-                    )}
-                </div>
+                                                        <Typography
+                                                            gutterBottom
+                                                            variant="h5"
+                                                        >
+                                                            ₹ {product.price}
+                                                            /-
+                                                        </Typography>
+                                                        <Typography
+                                                            variant="body1"
+                                                            color="textSecondary"
+                                                        >
+                                                            {product.title}
+                                                        </Typography>
+                                                    </CardContent>
+                                                </CardActionArea>
+                                            </Card>
+                                        </Link>
+                                    </Grid>
+                                ))}
+                        </Grid>
+                    </InfiniteScroll>
+                </>
             );
         } else {
             const length = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];

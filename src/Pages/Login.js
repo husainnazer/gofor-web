@@ -54,7 +54,7 @@ class Login extends Component {
             password: "",
             loading: false,
             authenticated: false,
-            authenticatedToPost: null,
+            snackbar: true,
             generalErrorMessage: null,
             emailErrorMessage: null,
             passwordErrorMessage: null,
@@ -97,8 +97,6 @@ class Login extends Component {
                                 .catch((error) => {
                                     console.log(error);
                                 });
-                        } else {
-                            console.log("User already exists");
                         }
                     });
                 this.setState({ loading: false });
@@ -141,6 +139,10 @@ class Login extends Component {
             });
     };
 
+    snackClose = () => {
+        this.setState({ snackbar: false });
+    };
+
     componentDidMount() {
         fire.auth().onAuthStateChanged((user) => {
             if (user) {
@@ -165,6 +167,7 @@ class Login extends Component {
             emailErrorMessage,
             passwordErrorMessage,
             loading,
+            snackbar,
         } = this.state;
         if (!authenticated) {
             return (
@@ -209,8 +212,12 @@ class Login extends Component {
                                 {generalErrorMessage}
                             </Typography>
                         )}
-                        {!authenticatedToPost && (
-                            <Snackbar open autoHideDuration={6000}>
+                        {authenticatedToPost && (
+                            <Snackbar
+                                open={snackbar}
+                                autoHideDuration={3000}
+                                onClose={this.snackClose}
+                            >
                                 <Alert variant="filled" severity="error">
                                     Login to Post!
                                 </Alert>
@@ -242,14 +249,12 @@ class Login extends Component {
                         >
                             {`Don't have an account? Sign up`}
                         </Link>
-                        {/* <div style={{ marginLeft: "21%" }}> */}
                         <GoogleButton
                             type="light"
                             disabled={loading ? true : false}
                             onClick={this.handleGoogleSignIn}
                             className={classes.googleButton}
                         />
-                        {/* </div> */}
                     </Grid>
                     <Grid item sm />
                 </Grid>

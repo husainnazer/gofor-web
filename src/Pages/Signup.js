@@ -287,7 +287,6 @@ class Signup extends Component {
                         <Link
                             to={{
                                 pathname: "/login",
-                                state: { authenticatedToPost: true },
                             }}
                             style={{
                                 textDecoration: "none",

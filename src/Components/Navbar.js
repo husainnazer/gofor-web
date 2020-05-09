@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import onClickOutside from "react-onclickoutside";
 
+import Logo from "../logo.png";
+
 //Material UI stuff
 import {
     AppBar,
@@ -10,10 +12,17 @@ import {
     Typography,
     Menu,
     MenuItem,
+    InputBase,
+    TextField,
 } from "@material-ui/core/";
-import { Person, ArrowDropDown } from "@material-ui/icons/";
+import { Person, ArrowDropDown, Search } from "@material-ui/icons/";
 import fire from "../firebase";
 import "firebase/auth";
+import { withStyles } from "@material-ui/styles";
+
+const styles = {
+    search: {},
+};
 
 class Navbar extends Component {
     constructor() {
@@ -26,7 +35,11 @@ class Navbar extends Component {
     }
 
     onLogout = () => {
-        fire.auth().signOut();
+        fire.auth()
+            .signOut()
+            .then(() => {
+                window.location.reload();
+            });
     };
 
     componentDidMount() {
@@ -49,110 +62,139 @@ class Navbar extends Component {
     };
 
     render() {
-        const { menuOpen, menuPosition } = this.state;
-        if (!this.state.authenticated) {
-            return (
-                <div>
-                    <AppBar
-                        style={{ opacity: 0.95, boxShadow: "none" }}
-                        position="fixed"
-                    >
-                        <Toolbar>
-                            <Typography
-                                component={Link}
-                                to="/"
-                                className="title"
-                                variant="h4"
-                                color="inherit"
-                            >
-                                GoFor
-                            </Typography>
-                            <div className="nav-container">
+        const { menuOpen, menuPosition, authenticated } = this.state;
+        const { classes } = this.props;
+        return (
+            <div>
+                <AppBar
+                    style={{ opacity: 0.95, boxShadow: "none" }}
+                    position="fixed"
+                    color="inherit"
+                >
+                    <Toolbar>
+                        <Link to="/">
+                            <img src={Logo} style={{ height: 40 }} />
+                        </Link>
+                        <InputBase />
+                        <div className="nav-container">
+                            {!authenticated ? (
                                 <Button
                                     color="inherit"
                                     component={Link}
                                     to={{
                                         pathname: "/login",
-                                        authenticatedToPost: true,
                                     }}
                                 >
                                     Login
                                 </Button>
-                                <Button
-                                    style={{ marginLeft: 10 }}
-                                    variant="outlined"
-                                    color="inherit"
-                                    component={Link}
-                                    to={{
-                                        pathname: "/post",
-                                        authenticatedToPost: false,
-                                    }}
-                                >
-                                    Post
-                                </Button>
-                            </div>
-                        </Toolbar>
-                    </AppBar>
-                </div>
-            );
-        } else {
-            return (
-                <div>
-                    <AppBar position="fixed">
-                        <Toolbar>
-                            <Typography
-                                component={Link}
-                                to="/"
-                                className="title"
-                                variant="h4"
-                                color="inherit"
-                            >
-                                GoFor
-                            </Typography>
-                            <div className="nav-container">
-                                <Button
-                                    onClick={this.handleMenuClick}
-                                    color="inherit"
-                                >
-                                    <Person />
-                                    <ArrowDropDown />
-                                </Button>
-                                <Menu
-                                    id="simple-menu"
-                                    anchorEl={menuPosition}
-                                    keepMounted
-                                    open={menuOpen ? true : false}
-                                >
-                                    <MenuItem>Profile</MenuItem>
-                                    <MenuItem>My account</MenuItem>
-                                    <MenuItem
-                                        onClick={this.onLogout}
-                                        component={Link}
-                                        to="/"
+                            ) : (
+                                <>
+                                    <Button
+                                        onClick={this.handleMenuClick}
+                                        color="inherit"
                                     >
-                                        Logout
-                                    </MenuItem>
-                                </Menu>
-                                <Button
-                                    style={{ marginLeft: 10 }}
-                                    variant="outlined"
-                                    color="inherit"
-                                    component={Link}
-                                    to={{
-                                        pathname: "/post",
-                                        authenticatedToPost: true,
-                                        authenticated: true,
-                                    }}
-                                >
-                                    Post
-                                </Button>
-                            </div>
-                        </Toolbar>
-                    </AppBar>
-                </div>
-            );
-        }
+                                        <Person />
+                                        <ArrowDropDown />
+                                    </Button>
+                                    <Menu
+                                        id="simple-menu"
+                                        anchorEl={menuPosition}
+                                        keepMounted
+                                        open={menuOpen ? true : false}
+                                    >
+                                        <MenuItem
+                                            component={Link}
+                                            to="/profile"
+                                        >
+                                            Profile
+                                        </MenuItem>
+                                        <MenuItem>My account</MenuItem>
+                                        <MenuItem
+                                            onClick={this.onLogout}
+                                            component={Link}
+                                            to="/"
+                                        >
+                                            Logout
+                                        </MenuItem>
+                                    </Menu>
+                                </>
+                            )}
+                            <Button
+                                style={{ marginLeft: 10 }}
+                                variant="outlined"
+                                color="inherit"
+                                component={Link}
+                                to={{
+                                    pathname: !authenticated
+                                        ? "/login"
+                                        : "/post",
+                                    authenticated: true,
+                                }}
+                            >
+                                Post
+                            </Button>
+                        </div>
+                    </Toolbar>
+                </AppBar>
+            </div>
+        );
+        // } else {
+        //     return (
+        //         <div>
+        //             <AppBar
+        //                 style={{ opacity: 0.95, boxShadow: "none" }}
+        //                 position="fixed"
+        //                 color="inherit"
+        //             >
+        //                 <Toolbar>
+        //                     <Link to="/">
+        //                         <img src={Logo} style={{ height: 40 }} />
+        //                     </Link>
+        //                     <div className="nav-container">
+        //                         {/* <Button
+        //                             onClick={this.handleMenuClick}
+        //                             color="inherit"
+        //                         >
+        //                             <Person />
+        //                             <ArrowDropDown />
+        //                         </Button>
+        //                         <Menu
+        //                             id="simple-menu"
+        //                             anchorEl={menuPosition}
+        //                             keepMounted
+        //                             open={menuOpen ? true : false}
+        //                         >
+        //                             <MenuItem component={Link} to="/profile">
+        //                                 Profile
+        //                             </MenuItem>
+        //                             <MenuItem>My account</MenuItem>
+        //                             <MenuItem
+        //                                 onClick={this.onLogout}
+        //                                 component={Link}
+        //                                 to="/"
+        //                             >
+        //                                 Logout
+        //                             </MenuItem>
+        //                         </Menu> */}
+        //                         <Button
+        //                             style={{ marginLeft: 10 }}
+        //                             variant="outlined"
+        //                             color="inherit"
+        //                             component={Link}
+        //                             to={{
+        //                                 pathname: "/post",
+        //                                 authenticated: true,
+        //                             }}
+        //                         >
+        //                             Post
+        //                         </Button>
+        //                     </div>
+        //                 </Toolbar>
+        //             </AppBar>
+        //         </div>
+        //     );
+        // }
     }
 }
 
-export default onClickOutside(Navbar);
+export default withStyles(styles)(onClickOutside(Navbar));

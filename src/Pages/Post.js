@@ -12,7 +12,11 @@ import {
     TextField,
     Typography,
     Button,
+    Fab,
+    CircularProgress,
 } from "@material-ui/core/";
+
+import { Check, CloudUpload } from "@material-ui/icons";
 
 //Firebase stuff
 import fire from "../firebase";
@@ -36,8 +40,8 @@ const styles = {
         position: "relative",
     },
     photoButton: {
-        margin: "10px auto 10px auto",
         padding: 10,
+        width: "85%",
     },
     categoryForm: {
         minWidth: "100%",
@@ -73,9 +77,10 @@ class PostProduct extends Component {
             title: "",
             description: "",
             price: "",
-            userhandle: "",
             imageUrl: "",
             posted: false,
+            imageLoading: false,
+            imageUploaded: false,
             categoryErrorMessage: null,
             titleErrorMessage: null,
             descriptionErrorMessage: null,
@@ -85,7 +90,7 @@ class PostProduct extends Component {
     }
 
     handleSubmit = () => {
-        const { displayName } = fire.auth().currentUser;
+        const { uid, displayName } = fire.auth().currentUser;
         const { category, title, description, price, imageUrl } = this.state;
 
         if (category === "") {
@@ -119,6 +124,7 @@ class PostProduct extends Component {
                 title: this.state.title,
                 description: this.state.description,
                 category: this.state.category,
+                userId: uid,
                 userHandle: displayName,
                 price: this.state.price,
                 imageUrl: imageUrl,
@@ -145,6 +151,7 @@ class PostProduct extends Component {
     };
 
     handleImageChange = (event) => {
+        this.setState({ imageLoading: true });
         const image = event.target.files[0];
         const imageExtension = image.name.split(".")[
             image.name.split(".").length - 1
@@ -162,6 +169,8 @@ class PostProduct extends Component {
                     .getDownloadURL()
                     .then((url) => {
                         this.setState({ imageUrl: url });
+                        this.setState({ imageLoading: false });
+                        this.setState({ imageUploaded: true });
                     });
             });
     };
@@ -176,6 +185,8 @@ class PostProduct extends Component {
         const { authenticated } = this.props.location;
         const {
             posted,
+            imageLoading,
+            imageUploaded,
             categoryErrorMessage,
             titleErrorMessage,
             descriptionErrorMessage,
@@ -285,14 +296,39 @@ class PostProduct extends Component {
                                     id="imageInput"
                                     type="file"
                                 />
-                                <Button
-                                    onClick={this.handleEditPicture}
-                                    color="primary"
-                                    variant="outlined"
-                                    className={classes.photoButton}
-                                >
-                                    Upload Photo
-                                </Button>
+                                <div style={{ marginTop: "10px" }}>
+                                    <Button
+                                        onClick={this.handleEditPicture}
+                                        color="primary"
+                                        variant="contained"
+                                        className={classes.photoButton}
+                                        disabled={imageLoading ? true : false}
+                                    >
+                                        {imageUploaded
+                                            ? "Done"
+                                            : "Upload Photo"}
+                                        {imageLoading && (
+                                            <CircularProgress
+                                                style={{ position: "absolute" }}
+                                            />
+                                        )}
+                                    </Button>
+                                    <Fab
+                                        onClick={this.handleEditPicture}
+                                        color="primary"
+                                        style={{ marginLeft: 10 }}
+                                        size="medium"
+                                        disabled={imageLoading ? true : false}
+                                    >
+                                        {imageLoading ? (
+                                            <CircularProgress />
+                                        ) : imageUploaded ? (
+                                            <Check />
+                                        ) : (
+                                            <CloudUpload />
+                                        )}
+                                    </Fab>
+                                </div>
                                 {imageInputErrorMessage && (
                                     <Typography
                                         variant="body2"
@@ -322,7 +358,7 @@ class PostProduct extends Component {
                 <Redirect
                     to={{
                         pathname: "/login",
-                        state: { authenticatedToPost: false },
+                        authenticatedToPost: true,
                     }}
                 />
             );
