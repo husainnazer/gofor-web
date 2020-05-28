@@ -3,15 +3,13 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles/";
 
-//Components
-import Navbar from "./Components/Navbar";
-
 //Pages
 import Home from "./Pages/Home";
-import Login from "./Pages/Login";
-import Signup from "./Pages/Signup";
-import Post from "./Pages/Post";
+import Login from "./Pages/Login/Login";
+import Signup from "./Pages/Signup/Signup";
+import Post from "./Pages/Post/Post";
 import Profile from "./Pages/Profile";
+import MyAccount from "./Pages/MyAccount";
 import ProductDetails from "./Pages/ProductDetails";
 
 const theme = createMuiTheme({
@@ -37,13 +35,17 @@ class App extends Component {
             <MuiThemeProvider theme={theme}>
                 <Router>
                     <div className="container">
-                        <Navbar />
                         <Switch>
                             <Route exact path="/" component={Home} />
                             <Route exact path="/profile" component={Profile} />
                             <Route exact path="/login" component={Login} />
                             <Route exact path="/signup" component={Signup} />
                             <Route exact path="/post" component={Post} />
+                            <Route
+                                exact
+                                path="/account"
+                                component={MyAccount}
+                            />
                             <Route
                                 exact
                                 path="/product/:productId"

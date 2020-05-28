@@ -1,15 +1,11 @@
 import React, { Component } from "react";
 
+//Components
+import Card from "../Components/Card/Card";
+import Navbar from "../Components/Navbar";
+
 //Material-UI stuff
-import {
-    Grid,
-    Card,
-    CardMedia,
-    CardContent,
-    CardActionArea,
-    Typography,
-    CircularProgress,
-} from "@material-ui/core/";
+import { Grid, CircularProgress } from "@material-ui/core/";
 import { withStyles } from "@material-ui/styles";
 import { Skeleton } from "@material-ui/lab";
 
@@ -20,11 +16,11 @@ import { Link } from "react-router-dom";
 import fire from "../firebase";
 import "firebase/firestore";
 
+//Load by Scrolling
 import InfiniteScroll from "react-infinite-scroller";
 
 const styles = {
     card: {
-        boxShadow: "none",
         maxWidth: 345,
         marginBottom: 30,
         borderColor: "#f2f2f2",
@@ -98,11 +94,11 @@ class Home extends Component {
     };
 
     render() {
-        const { classes } = this.props;
         const { allProducts, loading, visibleProducts, loadMore } = this.state;
         if (!loading) {
             return (
                 <>
+                    <Navbar />
                     <InfiniteScroll
                         loadMore={this.loadMore}
                         hasMore={loadMore ? true : false}
@@ -135,36 +131,10 @@ class Home extends Component {
                                                 textDecoration: "none",
                                             }}
                                         >
-                                            <Card className={classes.card}>
-                                                <CardActionArea>
-                                                    <CardMedia
-                                                        image={product.imageUrl}
-                                                        title="Profile Image"
-                                                        className={
-                                                            classes.image
-                                                        }
-                                                    />
-                                                    <CardContent
-                                                        className={
-                                                            classes.content
-                                                        }
-                                                    >
-                                                        <Typography
-                                                            gutterBottom
-                                                            variant="h5"
-                                                        >
-                                                            ₹ {product.price}
-                                                            /-
-                                                        </Typography>
-                                                        <Typography
-                                                            variant="body1"
-                                                            color="textSecondary"
-                                                        >
-                                                            {product.title}
-                                                        </Typography>
-                                                    </CardContent>
-                                                </CardActionArea>
-                                            </Card>
+                                            <Card
+                                                imageUrl={product.imageUrl}
+                                                price={product.price}
+                                            />
                                         </Link>
                                     </Grid>
                                 ))}
@@ -176,27 +146,16 @@ class Home extends Component {
             const length = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
             return (
                 <Grid container spacing={1} style={{ padding: 24 }}>
-                    {length.map((product) => (
+                    {length.map(() => (
                         <Grid item xs={12} sm={6} lg={4} xl={3}>
                             <Skeleton
+                                style={{
+                                    padding: "2rem 1rem",
+                                }}
                                 animation="wave"
                                 variant="rect"
                                 width={345}
                                 height={180}
-                            />
-                            <Skeleton
-                                animation="wave"
-                                width={200}
-                                style={{ marginTop: 15, padding: 8 }}
-                            />
-                            <Skeleton
-                                animation="wave"
-                                width={170}
-                                style={{
-                                    marginTop: 5,
-                                    marginBottom: 44,
-                                    padding: 8,
-                                }}
                             />
                         </Grid>
                     ))}

@@ -1,50 +1,14 @@
 import React, { Component } from "react";
-import { withStyles } from "@material-ui/core/styles";
-import {
-    Typography,
-    TextField,
-    Button,
-    Grid,
-    CircularProgress,
-    Snackbar,
-} from "@material-ui/core/";
 import { Link, Redirect } from "react-router-dom";
 import firebase from "firebase/app";
-import fire from "../firebase";
+import fire from "../../firebase";
 import "firebase/auth";
 import "firebase/firestore";
-import { Alert } from "@material-ui/lab";
-import GoogleButton from "react-google-button";
-
-const styles = {
-    form: {
-        textAlign: "center",
-    },
-    pageTitle: {
-        margin: "10px auto 10px auto",
-        marginBottom: 50,
-    },
-    textField: {
-        margin: "10px auto 10px auto",
-    },
-    button: {
-        marginTop: 20,
-        position: "relative",
-        marginBottom: 20,
-    },
-    customError: {
-        color: "red",
-        fontSize: "0.8rem",
-        marginTop: 10,
-    },
-    progress: {
-        position: "absolute",
-    },
-    googleButton: {
-        margin: "10px auto 10px auto",
-        marginTop: 40,
-    },
-};
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGoogle } from "@fortawesome/free-brands-svg-icons";
+import "./Login.css";
+import Logo from "../../logo.png";
+import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 
 class Login extends Component {
     constructor() {
@@ -56,8 +20,7 @@ class Login extends Component {
             authenticated: false,
             snackbar: true,
             generalErrorMessage: null,
-            emailErrorMessage: null,
-            passwordErrorMessage: null,
+            emailPasswordErrorMessage: null,
         };
     }
 
@@ -74,9 +37,6 @@ class Login extends Component {
         fire.auth()
             .signInWithPopup(provider)
             .then((result) => {
-                console.log(result.user.uid);
-                // const token = result.credential.accessToken;
-
                 const userCredentials = {
                     userName: result.user.displayName,
                     email: result.user.email,
@@ -111,12 +71,18 @@ class Login extends Component {
             .catch((error) => {
                 if (this.state.email === "") {
                     this.setState({
-                        emailErrorMessage: "Email must not be empty",
+                        emailPasswordErrorMessage: "Email must not be empty",
                     });
                 }
                 if (this.state.password === "") {
                     this.setState({
-                        passwordErrorMessage: "Password must not be empty",
+                        emailPasswordErrorMessage: "Password must not be empty",
+                    });
+                }
+                if (this.state.email === "" && this.state.password === "") {
+                    this.setState({
+                        emailPasswordErrorMessage:
+                            "Email and Password must not be empty",
                     });
                 }
                 if (this.state.email !== "" && this.state.password !== "") {
@@ -159,25 +125,77 @@ class Login extends Component {
         });
     };
     render() {
-        const { classes } = this.props;
-        const { authenticatedToPost } = this.props.location;
         const {
             authenticated,
             generalErrorMessage,
-            emailErrorMessage,
-            passwordErrorMessage,
+            emailPasswordErrorMessage,
             loading,
-            snackbar,
         } = this.state;
         if (!authenticated) {
             return (
-                <Grid container className={classes.form}>
-                    <Grid item sm />
-                    <Grid item sm style={{ textAlign: "center" }}>
-                        <Typography variant="h2" className={classes.pageTitle}>
-                            Login
-                        </Typography>
-                        <TextField
+                <>
+                    <Link to="/">
+                        <img
+                            alt="Gofor"
+                            src={Logo}
+                            className="logo-universal"
+                        />
+                    </Link>
+                    <h1 className="login-header">Login to your account</h1>
+                    <div className="email-input-div">
+                        <input
+                            id="email"
+                            name="email"
+                            autoComplete="off"
+                            value={this.state.email}
+                            spellCheck="false"
+                            className={
+                                this.state.email !== ""
+                                    ? "email-input-hasValue"
+                                    : "email-input"
+                            }
+                            onChange={this.handleChange}
+                        />
+                        <label htmlFor="email">Enter email</label>
+                    </div>
+                    <div className="password-input-div">
+                        <input
+                            id="password"
+                            name="password"
+                            type="password"
+                            autoComplete="off"
+                            value={this.state.password}
+                            onKeyDown={this.handlePasswordKeyDown}
+                            spellCheck="false"
+                            className={
+                                this.state.password !== ""
+                                    ? "password-input-hasValue"
+                                    : "password-input"
+                            }
+                            onChange={this.handleChange}
+                        />
+                        <label htmlFor="password">Enter password</label>
+                    </div>
+                    {generalErrorMessage && (
+                        <div className="signin-error-popup">
+                            <FontAwesomeIcon
+                                style={{ marginRight: "10px" }}
+                                icon={faExclamationTriangle}
+                            />
+                            {generalErrorMessage}
+                        </div>
+                    )}
+                    {emailPasswordErrorMessage && (
+                        <div className="signin-error-popup">
+                            <FontAwesomeIcon
+                                style={{ marginRight: "10px" }}
+                                icon={faExclamationTriangle}
+                            />
+                            {emailPasswordErrorMessage}
+                        </div>
+                    )}
+
+                    {/* <TextField
                             id="email"
                             name="email"
                             type="email"
@@ -189,8 +207,9 @@ class Login extends Component {
                             value={this.state.email}
                             onChange={this.handleChange}
                             fullWidth
-                        />
-                        <TextField
+                        /> */}
+
+                    {/* <TextField
                             id="password"
                             name="password"
                             type="password"
@@ -203,8 +222,8 @@ class Login extends Component {
                             onChange={this.handleChange}
                             onKeyDown={this.handlePasswordKeyDown}
                             fullWidth
-                        />
-                        {generalErrorMessage && (
+                        /> */}
+                    {/* {generalErrorMessage && (
                             <Typography
                                 variant="body2"
                                 className={classes.customError}
@@ -221,9 +240,8 @@ class Login extends Component {
                                 <Alert variant="filled" severity="error">
                                     Login to Post!
                                 </Alert>
-                            </Snackbar>
-                        )}
-                        <Button
+                            </Snackbar> */}
+                    {/* <Button
                             onClick={this.handleSubmit}
                             disabled={loading}
                             variant="contained"
@@ -238,7 +256,6 @@ class Login extends Component {
                                 />
                             )}
                         </Button>
-
                         <br />
                         <Link
                             style={{
@@ -248,16 +265,43 @@ class Login extends Component {
                             to="/signup"
                         >
                             {`Don't have an account? Sign up`}
-                        </Link>
-                        <GoogleButton
-                            type="light"
-                            disabled={loading ? true : false}
-                            onClick={this.handleGoogleSignIn}
-                            className={classes.googleButton}
-                        />
-                    </Grid>
-                    <Grid item sm />
-                </Grid>
+                        </Link> */}
+                    <div
+                        onClick={this.handleSubmit}
+                        className="login-button-container"
+                    >
+                        <div className="login-button-text">Login</div>
+                    </div>
+                    <div
+                        style={loading ? { opacity: 0 } : { opacity: 1 }}
+                        className="or-seperation"
+                    >
+                        OR
+                    </div>
+                    <div
+                        style={
+                            loading ? { opacity: 0, zIndex: 0 } : { opacity: 1 }
+                        }
+                        onClick={this.handleGoogleSignIn}
+                        className="google-button-container"
+                    >
+                        <div className="google-icon">
+                            <FontAwesomeIcon icon={faGoogle} />
+                        </div>
+                        <div className="google-text">Signin with Google</div>
+                    </div>
+                    <div
+                        style={loading ? { opacity: 1 } : { opacity: 0 }}
+                        className="loading-animation"
+                    ></div>
+                    <Link
+                        style={loading ? { opacity: 0 } : { opacity: 1 }}
+                        className="signup-link"
+                        to="/signup"
+                    >
+                        {`Don't have an account? Sign up`}
+                    </Link>
+                </>
             );
         } else {
             return <Redirect to="/" />;
@@ -265,4 +309,4 @@ class Login extends Component {
     }
 }
 
-export default withStyles(styles)(Login);
+export default Login;

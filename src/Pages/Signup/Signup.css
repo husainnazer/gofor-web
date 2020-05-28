@@ -1,0 +1,337 @@
+/* Header */
+/*####################################################*/
+.signup-header {
+    text-align: center;
+    cursor: default;
+    position: relative;
+    top: 40px;
+}
+
+/* User Name - Input */
+/*####################################################*/
+.signup-userName-input-div {
+    position: relative;
+    width: 30%;
+    left: 50%;
+    top: 120px;
+    transform: translate(-50%, -100%);
+}
+
+.signup-userName-input {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 50px;
+    font-size: 30px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    background-color: transparent;
+}
+.signup-userName-input:focus {
+    outline: none;
+}
+
+.signup-userName-input + label {
+    position: absolute;
+    font-size: 30px;
+    top: 10px;
+    left: 3px;
+    color: rgba(0, 0, 0, 0.7);
+    transition: 0.5s ease-out;
+}
+
+.signup-userName-input-hasValue {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 50px;
+    font-size: 30px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    background-color: transparent;
+}
+.signup-userName-input-hasValue {
+    outline: none;
+}
+
+.signup-userName-input-hasValue + label {
+    position: absolute;
+    left: 3px;
+    top: 55px;
+    font-size: 30px;
+    color: rgba(0, 0, 0, 0.5);
+    transition: 0.5s ease-out;
+}
+
+/* Email - Input */
+/*####################################################*/
+.signup-email-input-div {
+    position: relative;
+    width: 30%;
+    left: 50%;
+    top: 170px;
+    transform: translate(-50%, -100%);
+}
+
+.signup-email-input {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 50px;
+    font-size: 30px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    background-color: transparent;
+}
+.signup-email-input:focus {
+    outline: none;
+}
+
+.signup-email-input + label {
+    position: absolute;
+    font-size: 30px;
+    top: 10px;
+    left: 3px;
+    color: rgba(0, 0, 0, 0.7);
+    transition: 0.5s ease-out;
+}
+
+.signup-email-input-hasValue {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 50px;
+    font-size: 30px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    background-color: transparent;
+}
+.signup-email-input-hasValue {
+    outline: none;
+}
+
+.signup-email-input-hasValue + label {
+    position: absolute;
+    left: 3px;
+    top: 55px;
+    font-size: 30px;
+    color: rgba(0, 0, 0, 0.5);
+    transition: 0.5s ease-out;
+}
+
+/* Password - Input */
+/*####################################################*/
+.signup-password-input-div {
+    position: relative;
+    left: 50%;
+    top: 220px;
+    width: 30%;
+    transform: translate(-50%, -100%);
+}
+
+.signup-password-input {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 50px;
+    font-size: 30px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    background-color: transparent;
+}
+.signup-password-input:focus {
+    outline: none;
+}
+.signup-password-input + label {
+    position: absolute;
+    font-size: 30px;
+    top: 10px;
+    left: 3px;
+    color: rgba(0, 0, 0, 0.7);
+    transition: 0.5s ease-out;
+}
+
+.signup-password-input-hasValue {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 50px;
+    font-size: 30px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    background-color: transparent;
+}
+.signup-password-input-hasValue:focus {
+    outline: none;
+}
+
+.signup-password-input-hasValue + label {
+    color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    left: 3px;
+    top: 55px;
+    font-size: 30px;
+    transition: 0.5s ease-out;
+}
+
+/* Signup - Button */
+/*####################################################*/
+.signup-button-container {
+    cursor: pointer;
+    position: absolute;
+    left: 50%;
+    top: 65%;
+    color: rgba(0, 0, 0, 0.7);
+    padding: 30px 0px 30px 0px;
+    font-size: 50px;
+    transform: translate(-50%, -50%);
+    transition: 0.5s;
+}
+.signup-button-container:hover {
+    color: rgba(0, 0, 0, 1);
+    transform: translate(-50%, -55%);
+}
+
+/* 'OR' - Seperator Line */
+/*####################################################*/
+.signup-or-seperation {
+    cursor: default;
+    position: absolute;
+    bottom: 22%;
+    left: 50%;
+    width: 40%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    transform: translate(-50%);
+    transition: 0.5s;
+}
+
+.signup-or-seperation::before,
+.signup-or-seperation::after {
+    position: absolute;
+    width: 260px;
+    height: 1px;
+    top: 24px;
+    background-color: #aaa;
+    content: "";
+}
+
+.signup-or-seperation::before {
+    left: 0;
+}
+
+.signup-or-seperation::after {
+    right: 0;
+}
+
+/* Google Signup - Button */
+/*####################################################*/
+.signup-google-button-container {
+    cursor: pointer;
+    position: absolute;
+    color: rgba(0, 0, 0, 0.7);
+    left: 50%;
+    bottom: 10%;
+    padding: 10px;
+    font-size: 30px;
+    transform: translate(-50%, -50%);
+    transition: 0.5s;
+}
+
+.signup-google-button-container:hover {
+    color: rgba(0, 0, 0, 1);
+}
+
+.signup-google-button-container:before {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: rgb(0, 0, 0);
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.signup-google-button-container:hover:before {
+    visibility: visible;
+    width: 100%;
+}
+
+.signup-google-icon {
+    font-size: 30px;
+    display: inline;
+    margin-right: 10px;
+}
+
+.signup-google-text {
+    display: inline;
+    margin-left: 10px;
+}
+
+/* Login - Link */
+/*####################################################*/
+.login-link {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    padding-bottom: 3px;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.7);
+    transform: translate(-50%);
+    transition: 0.5s;
+}
+.login-link:hover {
+    color: rgba(0, 0, 0, 1);
+}
+
+.login-link:before {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: rgb(0, 0, 0);
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+}
+.login-link:hover:before {
+    visibility: visible;
+    width: 100%;
+}
+
+/* Loading - Animation */
+/*####################################################*/
+.signup-loading-animation {
+    cursor: default;
+    position: absolute;
+    left: 50%;
+    bottom: 18%;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: black;
+    transform: translate(-50%, -50%);
+    animation: fadeInOut 1.4s infinite linear;
+    transition: 2s;
+}
+@keyframes fadeInOut {
+    50% {
+        opacity: 0;
+    }
+}
+
+.signup-error-popup {
+    color: rgb(255, 255, 255);
+    position: absolute;
+    left: 50%;
+    top: 0%;
+    transform: translate(-50%, 0%);
+    background-color: rgb(220, 0, 0);
+    padding: 15px 25px;
+    border-radius: 0px 0px 5px 5px;
+    font-size: 20px;
+}

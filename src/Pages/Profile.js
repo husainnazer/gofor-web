@@ -1,32 +1,11 @@
 import React, { Component } from "react";
-import {
-    Grid,
-    Typography,
-    Card,
-    CardActionArea,
-    CardMedia,
-    CardContent,
-} from "@material-ui/core";
-import { withStyles } from "@material-ui/styles";
+import { Grid, Typography } from "@material-ui/core";
 import fire from "../firebase";
 import "firebase/auth";
 import "firebase/firestore";
 import { Link } from "react-router-dom";
-
-const styles = {
-    card: {
-        maxWidth: 345,
-        marginBottom: 30,
-    },
-    image: {
-        height: 180,
-    },
-    content: {
-        padding: 5,
-        margin: 15,
-        objectFit: "cover",
-    },
-};
+import Card from "../Components/Card/Card";
+import Logo from "../logo.png";
 
 class Profile extends Component {
     constructor() {
@@ -62,10 +41,12 @@ class Profile extends Component {
     }
 
     render() {
-        const { classes } = this.props;
         const { myPosts } = this.state;
         return (
             <>
+                <Link to="/">
+                    <img alt="Gofor" src={Logo} className="logo-universal" />
+                </Link>
                 <Typography
                     style={{
                         textAlign: "center",
@@ -89,31 +70,11 @@ class Profile extends Component {
                                 to={`/product/${product.productId}`}
                                 style={{ textDecoration: "none" }}
                             >
-                                <Card className={classes.card}>
-                                    <CardActionArea>
-                                        <CardMedia
-                                            image={product.imageUrl}
-                                            title="Profile Image"
-                                            className={classes.image}
-                                        />
-                                        <CardContent
-                                            className={classes.content}
-                                        >
-                                            <Typography
-                                                gutterBottom
-                                                variant="h5"
-                                            >
-                                                ₹ {product.price}/-
-                                            </Typography>
-                                            <Typography
-                                                variant="body1"
-                                                color="textSecondary"
-                                            >
-                                                {product.title}
-                                            </Typography>
-                                        </CardContent>
-                                    </CardActionArea>
-                                </Card>
+                                <Card
+                                    imageUrl={product.imageUrl}
+                                    price={product.price}
+                                    title={product.title}
+                                />
                             </Link>
                         </Grid>
                     ))}
@@ -123,4 +84,4 @@ class Profile extends Component {
     }
 }
 
-export default withStyles(styles)(Profile);
+export default Profile;

@@ -86,7 +86,7 @@ class ProductDetails extends Component {
                             <CardMedia
                                 className={classes.photoImage}
                                 image={this.state.imageUrl}
-                                title="Contemplative Reptile"
+                                title="Product Image"
                             />
                         </Card>
                     </Grid>

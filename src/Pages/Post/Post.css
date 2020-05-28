@@ -1,0 +1,413 @@
+/* Logo - Universal */
+/*####################################################*/
+.logo-onPost {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    height: 40px;
+}
+
+/* Buttons - Universal */
+/*####################################################*/
+.Buttons-onAll-div {
+    padding: 0% 15px;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.nextButton-onAll {
+    position: absolute;
+    left: 15px;
+}
+.backButton-onAll {
+    position: absolute;
+    right: 15px;
+}
+
+/* Card */
+/*####################################################*/
+.category-card {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    height: 300px;
+    transition: 0.5s;
+}
+
+.category-card:hover {
+    cursor: pointer;
+}
+
+.category-cardselected {
+    /* background-color: rgba(0, 0, 0, 0.7); */
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 3px;
+    height: 300px;
+    transition: 0.5s;
+}
+
+.mobile-category-icon {
+    font-size: 150px;
+    color: rgba(0, 0, 0, 0.7);
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: 0.5s;
+}
+
+.mobile-category-icon-selected {
+    font-size: 150px;
+    color: rgb(0, 0, 0);
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: 0.5s;
+}
+
+/* Title Input - Title Section */
+/*####################################################*/
+.title-input-div {
+    position: absolute;
+    width: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    transition: all 0.5s ease-out;
+}
+
+.title-input {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100px;
+    font-size: 80px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    background-color: transparent;
+}
+
+.title-input + label {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    position: absolute;
+    top: 10px;
+    left: 3px;
+    font-size: 80px;
+    color: rgba(0, 0, 0, 0.5);
+    transition: all 0.5s ease-out;
+}
+
+.title-input:focus {
+    outline: none;
+}
+
+.title-input-hasValue {
+    width: 100%;
+    height: 100px;
+    font-size: 80px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    background-color: transparent;
+}
+
+.title-input-hasValue:focus {
+    outline: none;
+}
+
+.title-input-hasValue + label {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    position: absolute;
+    top: 100px;
+    left: 0px;
+    font-size: 100px;
+    color: rgba(0, 0, 0, 0.5);
+    transition: all 0.5s ease-out;
+}
+
+.title-length {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 600px) {
+    .title-input {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: 60px;
+        font-size: 50px;
+        border: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+        background-color: transparent;
+    }
+
+    .title-input + label {
+        font-size: 40px;
+    }
+
+    .title-input-hasValue {
+        height: 60px;
+        font-size: 40px;
+    }
+
+    .title-input-hasValue + label {
+        position: absolute;
+        top: -20px;
+        left: -2px;
+        font-size: 20px;
+        /* color: rgba(0, 0, 0, 0.5); */
+        /* transition: all 0.15s ease-out; */
+    }
+}
+
+/* Description input - Description Section */
+/*####################################################*/
+.description-input-div {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: transparent;
+    width: 90%;
+    height: 500px;
+}
+
+.description-input {
+    border: none;
+    resize: none;
+    width: 100%;
+    height: 100%;
+    font-size: 80px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.description-input + label {
+    cursor: text;
+    color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: -2px;
+    left: 0px;
+    font-size: 80px;
+    transition: all 1s ease-out;
+}
+
+.description-input:focus {
+    outline: none;
+}
+
+.description-input-hasValue {
+    border: none;
+    resize: none;
+    width: 100%;
+    height: 100%;
+    font-size: 80px;
+    border: none;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+}
+
+.description-input-hasValue + label {
+    position: absolute;
+    color: rgba(0, 0, 0, 0.5);
+    top: 500px; /*border bottom + 20px to bottom */
+    left: 0px;
+    font-size: 100px;
+    transition: all 1s ease-out;
+}
+
+.description-input-hasValue:focus {
+    outline: none;
+}
+
+.description-length {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+/* Price input - Price Section */
+/*####################################################*/
+.price-input-div {
+    position: absolute;
+    width: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    transition: all 0.5s ease-out;
+}
+
+.price-input {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100px;
+    font-size: 80px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    background-color: transparent;
+}
+
+.price-input + label {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    position: absolute;
+    top: 10px;
+    left: 3px;
+    font-size: 80px;
+    color: rgba(0, 0, 0, 0.5);
+    transition: all 0.5s ease-out;
+}
+
+.price-input:focus {
+    outline: none;
+}
+
+.price-input-hasValue {
+    width: 100%;
+    height: 100px;
+    font-size: 80px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    background-color: transparent;
+}
+
+.price-input-hasValue:focus {
+    outline: none;
+}
+
+.price-input-hasValue + label {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    position: absolute;
+    top: 100px;
+    left: 0px;
+    font-size: 100px;
+    color: rgba(0, 0, 0, 0.5);
+    transition: all 0.5s ease-out;
+}
+
+/* Image input - Image Section */
+/*####################################################*/
+
+.plus-card {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    height: 300px;
+    width: 100%;
+    transition: 0.5s;
+}
+
+.plus-card:hover {
+    cursor: pointer;
+}
+.plus-card:active {
+    border: 1px solid rgb(0, 0, 0);
+    transition: 0s;
+}
+
+.plus-button {
+    font-size: 50px;
+    color: rgba(0, 0, 0, 0.7);
+    padding: 125px 162px;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: 0.5s;
+}
+.plus-button:active {
+    color: rgba(0, 0, 0, 1);
+    transition: 0s;
+}
+
+.image-in-plus {
+    width: 100%;
+    height: 300px;
+    border-radius: 3px;
+    object-fit: cover;
+}
+
+.loading-animation-imageUpload {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgb(0, 0, 0);
+    transform: translate(-50%, -50%);
+    animation: fadeInOut 1.4s infinite linear;
+    transition: 2s;
+}
+
+/* Buttons - Universal - onPost */
+/*####################################################*/
+.new-next-button-icon {
+    background-color: transparent;
+    cursor: pointer;
+    padding: 30px 10px 30px 50px;
+    color: rgba(0, 0, 0, 0.1);
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    transform: translate(0%, -50%);
+    font-size: 100px;
+    transition: 0.3s;
+}
+
+.new-next-button-icon:hover {
+    color: rgba(0, 0, 0, 0.5);
+    top: 49.5%;
+}
+
+.new-back-button-icon {
+    background-color: transparent;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.1);
+    padding: 30px 50px 30px 10px;
+    position: absolute;
+    left: 0%;
+    top: 50%;
+    transform: translate(0%, -50%);
+    font-size: 100px;
+    transition: 0.3s;
+}
+
+.new-back-button-icon:hover {
+    color: rgba(0, 0, 0, 0.5);
+    top: 49.5%;
+}
+
+.confirm-post-button {
+    cursor: pointer;
+    position: absolute;
+    font-size: 100px;
+    color: rgba(0, 0, 0, 0.5);
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%);
+    transition: 0.3s;
+}
+.confirm-post-button:hover {
+    top: 69%;
+    color: rgba(0, 0, 0, 1);
+}
+
+.post-error-popup {
+    color: rgb(255, 255, 255);
+    position: absolute;
+    left: 50%;
+    top: 0%;
+    transform: translate(-50%, 0%);
+    background-color: rgb(220, 0, 0);
+    padding: 15px 25px;
+    border-radius: 0px 0px 5px 5px;
+    font-size: 20px;
+}
