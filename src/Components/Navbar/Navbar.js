@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Logo from "../logo.png";
-import fire from "../firebase";
+import Logo from "../../logo.png";
+import fire from "../../firebase";
 import "firebase/auth";
 import { faUser, faCaretDown } from "@fortawesome/free-solid-svg-icons";
-import CustomLink from "../CustomLink";
+import CustomLink from "../../CustomLink";
+import "./Navbar.css";
 
 class Navbar extends Component {
     constructor() {
@@ -162,7 +163,7 @@ class Navbar extends Component {
             //                         </Menu>
             //                     </>
             //                 )}
-            //                 <Button
+            //                 <Buttons
             //                     style={{ marginLeft: 10 }}
             //                     variant="outlined"
             //                     color="inherit"

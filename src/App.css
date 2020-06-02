@@ -22,145 +22,59 @@ body {
     height: 40px;
 }
 
-.navigation-bar {
-    z-index: 10;
-    padding-top: 5px;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.9);
+@media (max-width: 800px) {
+    .logo-universal {
+        height: 25px;
+    }
 }
 
-.logo-onBar {
-    cursor: pointer;
-    height: 40px;
-    margin-top: 5px;
+.loading-animation-scroll-home {
+    position: relative;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: black;
+    animation: fadeInOut 1.4s infinite linear;
+    transition: 2s;
+}
+@keyframes fadeInOut {
+    50% {
+        opacity: 0;
+    }
 }
 
-.post-button-onBar {
-    position: fixed;
-    right: 10px;
-    top: 0;
-    padding: 7px;
-    cursor: pointer;
-    font-size: 30px;
-    color: rgba(0, 0, 0, 0.7);
-
-    transition: 0.3s;
-}
-.post-button-onBar:hover {
-    color: rgb(0, 0, 0);
-    transform: translateY(-3px);
-}
-
-.login-button-onBar {
-    position: fixed;
-    right: 95px;
-    top: 7px;
-    padding: 0px 0px 3px 0px;
-    cursor: pointer;
-    font-size: 30px;
-    color: rgba(0, 0, 0, 0.7);
-    transition: 0.3s;
-}
-.login-button-onBar:hover {
-    color: rgb(0, 0, 0);
-}
-.login-button-onBar:before {
-    content: "";
+.image-onPage-div {
     position: absolute;
-    width: 0%;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: rgb(0, 0, 0);
-    visibility: hidden;
-    transition: all 0.3s ease-in-out;
-}
-.login-button-onBar:hover:before {
-    visibility: visible;
-    width: 100%;
-}
-
-.user-menu-button-onBar {
-    position: fixed;
-    right: 85px;
-    top: 7px;
-    padding: 5px 0px;
-    cursor: pointer;
-    font-size: 25px;
-}
-.user-icon-onBar {
-    color: rgba(0, 0, 0, 0.7);
-    transition: 0.3s;
-}
-
-.user-menu-button-onBar:hover .user-icon-onBar,
-.user-menu-button-onBar:hover .user-menu-dropDown {
-    transform: translateX(-10px);
-    color: rgb(0, 0, 0);
-}
-
-.user-menu-button-onBar:focus .user-icon-onBar,
-.user-menu-button-onBar:focus .user-menu-dropDown {
-    transform: translateX(-10px);
-    color: rgb(0, 0, 0);
-}
-
-.user-menu-dropDown {
-    color: rgba(0, 0, 0, 0);
-    margin-left: 5px;
-    transition: 0.3s;
-}
-
-.user-menu-button-onBar:focus {
-    outline: none;
-}
-
-p {
-    font-size: 60px;
-}
-
-.menu-list-div {
-    position: fixed;
-    top: 50px;
-    right: 45px;
-    font-size: 25px;
-    width: 140px;
-    height: 180px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: column;
-    border-radius: 5px;
-    background-color: rgb(100, 100, 100);
-    opacity: 0;
-    pointer-events: none;
-}
-
-.user-menu-button-onBar:focus + .menu-list-div,
-.menu-list-div:active {
-    opacity: 1;
-    pointer-events: all;
-}
-
-.menu-list-div div {
-    color: rgb(201, 201, 201);
-    cursor: pointer;
-    width: 100%;
+    left: 0px;
+    top: 0px;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.menu-list-div div:hover {
-    background-color: rgba(0, 0, 0, 0.4);
+    width: 50%;
+    background-color: transparent;
 }
 
-.menu-list-div .profile-button-inMenu {
-    border-radius: 5px 5px 0px 0px;
+.image-onPage {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    height: auto;
+    width: 100%;
+    border-radius: 3px;
+    transform: translate(-50%, -50%);
 }
-.menu-list-div .logout-button-inMenu {
-    border-radius: 0px 0px 5px 5px;
+
+.product-title-new {
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    height: 100%;
+    width: 50%;
+    transform: translate(-0%, -0%);
+}
+
+.product-title-new h1 {
+    text-align: center;
+    position: relative;
+    top: 10%;
+    font-size: 50px;
 }

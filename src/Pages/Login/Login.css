@@ -1,10 +1,21 @@
 /* Header */
 /*####################################################*/
 .login-header {
+    font-weight: 300;
     text-align: center;
     cursor: default;
     position: relative;
     top: 40px;
+}
+@media (max-width: 800px) {
+    .login-header {
+        font-weight: 100;
+        position: absolute;
+        top: 10%;
+        left: 50%;
+        width: 100%;
+        transform: translate(-50%, -50%);
+    }
 }
 
 /* Email - Input */
@@ -18,6 +29,8 @@
 }
 
 .email-input {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     position: relative;
     z-index: 1;
     width: 100%;
@@ -32,6 +45,8 @@
 }
 
 .email-input + label {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     position: absolute;
     font-size: 30px;
     top: 10px;
@@ -41,6 +56,8 @@
 }
 
 .email-input-hasValue {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     position: relative;
     z-index: 1;
     width: 100%;
@@ -55,12 +72,56 @@
 }
 
 .email-input-hasValue + label {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     position: absolute;
     left: 3px;
     top: 55px;
     font-size: 30px;
     color: rgba(0, 0, 0, 0.5);
     transition: 0.5s ease-out;
+}
+
+@media (max-width: 800px) {
+    .email-input-div {
+        position: absolute;
+        border: 1px solid rgba(0, 0, 0, 0.5);
+        border-radius: 5px;
+        left: 50%;
+        top: 33%;
+        width: 85%;
+    }
+    .email-input {
+        width: 94%;
+        left: 50%;
+        top: 1px;
+        transform: translateX(-50%);
+        border-bottom: none;
+        font-size: 25px;
+    }
+    .email-input + label {
+        top: 50%;
+        transform: translateY(-50%);
+        left: 10px;
+        font-size: 25px;
+        transition: 0.3s;
+    }
+    .email-input-hasValue {
+        width: 94%;
+        left: 50%;
+        top: 1px;
+        transform: translateX(-50%);
+        border-bottom: none;
+        font-size: 25px;
+    }
+    .email-input-hasValue + label {
+        opacity: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 10px;
+        font-size: 25px;
+        transition: 0.3s;
+    }
 }
 
 /* Password - Input */
@@ -74,6 +135,8 @@
 }
 
 .password-input {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     position: relative;
     z-index: 1;
     width: 100%;
@@ -87,6 +150,8 @@
     outline: none;
 }
 .password-input + label {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     position: absolute;
     font-size: 30px;
     top: 10px;
@@ -96,6 +161,8 @@
 }
 
 .password-input-hasValue {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     position: relative;
     z-index: 1;
     width: 100%;
@@ -110,12 +177,56 @@
 }
 
 .password-input-hasValue + label {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     color: rgba(0, 0, 0, 0.5);
     position: absolute;
     left: 3px;
     top: 55px;
     font-size: 30px;
     transition: 0.5s ease-out;
+}
+
+@media (max-width: 800px) {
+    .password-input-div {
+        position: absolute;
+        border: 1px solid rgba(0, 0, 0, 0.5);
+        border-radius: 5px;
+        left: 50%;
+        top: 48%;
+        width: 85%;
+    }
+    .password-input {
+        width: 94%;
+        left: 50%;
+        top: 1px;
+        transform: translateX(-50%);
+        border-bottom: none;
+        font-size: 25px;
+    }
+    .password-input + label {
+        top: 50%;
+        transform: translateY(-50%);
+        left: 10px;
+        font-size: 25px;
+        transition: 0.3s;
+    }
+    .password-input-hasValue {
+        width: 94%;
+        left: 50%;
+        top: 1px;
+        transform: translateX(-50%);
+        border-bottom: none;
+        font-size: 25px;
+    }
+    .password-input-hasValue + label {
+        opacity: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 10px;
+        font-size: 25px;
+        transition: 0.3s;
+    }
 }
 
 /* Login - Button */
@@ -135,6 +246,33 @@
 .login-button-container:hover {
     color: rgba(0, 0, 0, 1);
     transform: translate(-50%, -55%);
+}
+
+@media (max-width: 800px) {
+    .login-button-container {
+        transition: none;
+        cursor: default;
+        font-size: 20px;
+        top: 60%;
+        padding: 0;
+        padding: 5px 0px;
+        width: 85%;
+        text-align: center;
+        border-radius: 5px;
+        background-color: rgb(35, 35, 35);
+        color: rgb(185, 185, 185);
+    }
+    .login-button-container:hover {
+        color: rgb(185, 185, 185);
+        transform: translate(-50%, -50%);
+    }
+    .login-button-container:active {
+        background-color: black;
+        color: rgb(255, 255, 255);
+    }
+    .login-button-text {
+        padding: 7px 0px;
+    }
 }
 
 /* 'OR' - Seprator line */
@@ -163,13 +301,26 @@
 }
 
 .or-seperation::before {
-    left: 0;
+    left: 0%;
 }
 
 .or-seperation::after {
-    right: 0;
+    right: 0%;
 }
 
+@media (max-width: 800px) {
+    .or-seperation {
+        bottom: 20%;
+        width: 90%;
+    }
+    .or-seperation::before,
+    .or-seperation::after {
+        width: 45%;
+    }
+}
+
+/* Google Signin - Button */
+/*####################################################*/
 .google-button-container {
     z-index: 1;
     cursor: pointer;
@@ -183,27 +334,26 @@
     transition: 0.5s;
 }
 
-/* Google Signin - Button */
-/*####################################################*/
 .google-button-container:hover {
     color: rgba(0, 0, 0, 1);
 }
 
-.google-button-container:before {
-    content: "";
-    position: absolute;
-    width: 0%;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: rgb(0, 0, 0);
-    visibility: hidden;
-    transition: all 0.3s ease-in-out;
-}
-
-.google-button-container:hover:before {
-    visibility: visible;
-    width: 100%;
+@media (min-width: 800px) {
+    .google-button-container:before {
+        content: "";
+        position: absolute;
+        width: 0%;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: rgb(0, 0, 0);
+        visibility: hidden;
+        transition: all 0.3s ease-in-out;
+    }
+    .google-button-container:hover:before {
+        visibility: visible;
+        width: 100%;
+    }
 }
 
 .google-icon {
@@ -215,6 +365,32 @@
 .google-text {
     display: inline;
     margin-left: 10px;
+}
+
+@media (max-width: 800px) {
+    .google-button-container {
+        transition: none;
+        cursor: default;
+        font-size: 20px;
+        background-color: rgb(35, 35, 35);
+        text-align: center;
+        width: 80%;
+        border-radius: 5px;
+        bottom: 8%;
+        color: rgb(185, 185, 185);
+    }
+    .google-icon {
+        font-size: 20px;
+        color: rgb(185, 185, 185);
+    }
+    .google-button-container:hover {
+        color: rgb(185, 185, 185);
+    }
+    .google-button-container:active,
+    .google-button-container:active .google-icon {
+        color: rgb(255, 255, 255);
+        background-color: rgb(0, 0, 0);
+    }
 }
 
 /* Signup Link */
@@ -232,23 +408,42 @@
 .signup-link:hover {
     color: rgba(0, 0, 0, 1);
 }
+@media (min-width: 800px) {
+    .signup-link:before {
+        content: "";
+        position: absolute;
+        width: 0%;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: rgb(0, 0, 0);
+        visibility: hidden;
+        transition: all 0.3s ease-in-out;
+    }
 
-.signup-link:before {
-    content: "";
-    position: absolute;
-    width: 0%;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: rgb(0, 0, 0);
-    visibility: hidden;
-    transition: all 0.3s ease-in-out;
-}
-.signup-link:hover:before {
-    visibility: visible;
-    width: 100%;
+    .signup-link:hover:before {
+        visibility: visible;
+        width: 100%;
+    }
 }
 
+@media (max-width: 800px) {
+    .signup-link {
+        bottom: 4%;
+        cursor: default;
+        transition: none;
+        font-size: 15px;
+        text-align: center;
+        width: 100%;
+    }
+    .signup-link:hover {
+        color: rgba(0, 0, 0, 0.7);
+    }
+    .signup-link:active {
+        color: rgb(0, 0, 0);
+    }
+}
+/*####################################################*/
 .loading-animation {
     cursor: default;
     position: absolute;
@@ -269,6 +464,12 @@
     }
 }
 
+@media (max-width: 800px) {
+    .loading-animation {
+        bottom: 17%;
+    }
+}
+
 .signin-error-popup {
     color: rgb(255, 255, 255);
     position: absolute;
@@ -279,4 +480,20 @@
     padding: 15px 25px;
     border-radius: 0px 0px 5px 5px;
     font-size: 20px;
+}
+
+@media (max-width: 800px) {
+    .signin-error-popup {
+        color: rgb(220, 0, 0);
+        position: absolute;
+        left: 50%;
+        top: 68%;
+        width: 100%;
+        transform: translate(-50%, 0%);
+        background-color: transparent;
+        padding: 0px;
+        border-radius: 0px;
+        text-align: center;
+        font-size: 15px;
+    }
 }

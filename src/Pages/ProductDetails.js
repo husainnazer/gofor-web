@@ -235,13 +235,6 @@ class ProductDetails extends Component {
                     </Grid>
                 </Grid>
             );
-            // return(
-            //     <div>
-            //         <Skeleton variant="text" />
-            //         <Skeleton variant="circle" width={40} height={40} />
-            //         <Skeleton variant="rect" width={600} height={500} />
-            //     </div>
-            // )
         }
     }
 }

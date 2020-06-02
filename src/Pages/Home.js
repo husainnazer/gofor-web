@@ -2,10 +2,10 @@ import React, { Component } from "react";
 
 //Components
 import Card from "../Components/Card/Card";
-import Navbar from "../Components/Navbar";
+import Navbar from "../Components/Navbar/Navbar";
 
 //Material-UI stuff
-import { Grid, CircularProgress } from "@material-ui/core/";
+import { Grid } from "@material-ui/core/";
 import { withStyles } from "@material-ui/styles";
 import { Skeleton } from "@material-ui/lab";
 
@@ -109,7 +109,7 @@ class Home extends Component {
                                     marginBottom: 30,
                                 }}
                             >
-                                <CircularProgress />
+                                <div className="loading-animation-scroll-home"></div>
                             </div>
                         }
                     >

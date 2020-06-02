@@ -75,6 +75,7 @@ class PostProduct extends Component {
     constructor() {
         super();
         this.state = {
+            loading: false,
             step: 1, //used for step by step form submission
             category: "",
             categorySelected: false,
@@ -94,6 +95,7 @@ class PostProduct extends Component {
     }
 
     handleSubmit = () => {
+        this.setState({ loading: true });
         const { uid, displayName } = fire.auth().currentUser;
         const { category, title, description, price, imageUrl } = this.state;
         if (
@@ -121,6 +123,7 @@ class PostProduct extends Component {
                 .then((data) => {
                     if (data) {
                         this.setState({ posted: true });
+                        this.setState({ loading: false });
                     } else {
                         this.setState({ posted: false });
                     }
@@ -243,6 +246,7 @@ class PostProduct extends Component {
         const { classes } = this.props;
         const { authenticated } = this.props.location;
         const {
+            loading,
             step,
             posted,
             category,
@@ -272,72 +276,63 @@ class PostProduct extends Component {
                                         className="logo-onPost"
                                     />
                                 </Link>
-                                <Grid
-                                    container
-                                    spacing={3}
-                                    style={{ padding: 24 }}
+                                <div
+                                    id="phonecard"
+                                    className={
+                                        category !== "mobile"
+                                            ? "category-card"
+                                            : "category-cardselected"
+                                    }
+                                    onClick={this.handlePhoneClick}
                                 >
-                                    <Grid item xs={12} sm={6} lg={4} xl={3}>
-                                        <div
-                                            id="phonecard"
-                                            className={
-                                                category !== "mobile"
-                                                    ? "category-card"
-                                                    : "category-cardselected"
-                                            }
-                                            onClick={this.handlePhoneClick}
-                                        >
-                                            <FontAwesomeIcon
-                                                className={
-                                                    category !== "mobile"
-                                                        ? "mobile-category-icon"
-                                                        : "mobile-category-icon-selected"
-                                                }
-                                                icon={faMobile}
-                                            />
-                                        </div>
-                                    </Grid>
-                                    <Grid item xs={12} sm={6} lg={4} xl={3}>
-                                        <div
-                                            id="carcard"
-                                            className={
-                                                category !== "car"
-                                                    ? "category-card"
-                                                    : "category-cardselected"
-                                            }
-                                            onClick={this.handleCarClick}
-                                        >
-                                            <FontAwesomeIcon
-                                                className={
-                                                    category !== "car"
-                                                        ? "mobile-category-icon"
-                                                        : "mobile-category-icon-selected"
-                                                }
-                                                icon={faCar}
-                                            />
-                                        </div>
-                                    </Grid>
-                                    <Grid item xs={12} sm={6} lg={4} xl={3}>
-                                        <div
-                                            id="propertycard"
-                                            className={
-                                                category !== "property"
-                                                    ? "category-card"
-                                                    : "category-cardselected"
-                                            }
-                                            onClick={this.handlePropertyClick}
-                                        >
-                                            <FontAwesomeIcon
-                                                className={
-                                                    category !== "property"
-                                                        ? "mobile-category-icon"
-                                                        : "mobile-category-icon-selected"
-                                                }
-                                                icon={faBuilding}
-                                            />
-                                        </div>
-                                    </Grid>
-                                </Grid>
+                                    <FontAwesomeIcon
+                                        className={
+                                            category !== "mobile"
+                                                ? "mobile-category-icon"
+                                                : "mobile-category-icon-selected"
+                                        }
+                                        icon={faMobile}
+                                    />
+                                    <h1>Phone</h1>
+                                </div>
+                                <div
+                                    id="carcard"
+                                    className={
+                                        category !== "car"
+                                            ? "category-card"
+                                            : "category-cardselected"
+                                    }
+                                    onClick={this.handleCarClick}
+                                >
+                                    <FontAwesomeIcon
+                                        className={
+                                            category !== "car"
+                                                ? "mobile-category-icon"
+                                                : "mobile-category-icon-selected"
+                                        }
+                                        icon={faCar}
+                                    />
+                                    <h1>Car</h1>
+                                </div>
+                                <div
+                                    id="propertycard"
+                                    className={
+                                        category !== "property"
+                                            ? "category-card"
+                                            : "category-cardselected"
+                                    }
+                                    onClick={this.handlePropertyClick}
+                                >
+                                    <FontAwesomeIcon
+                                        className={
+                                            category !== "property"
+                                                ? "mobile-category-icon"
+                                                : "mobile-category-icon-selected"
+                                        }
+                                        icon={faBuilding}
+                                    />
+                                    <h1>Property</h1>
+                                </div>
                                 {categoryErrorMessage && (
                                     <div className="post-error-popup">
                                         <FontAwesomeIcon
@@ -349,30 +344,19 @@ class PostProduct extends Component {
                                 )}
                                 <FontAwesomeIcon
                                     onClick={this.handleNextStep}
-                                    className="new-next-button-icon"
+                                    className="new-single-next-button-icon"
                                     icon={faCaretRight}
                                 />
-                                {/* <div className="Buttons-onAll-div">
-                                    <Fab
-                                        onClick={this.handleNextStep}
-                                        color="primary"
-                                        className="nextButton-onAll"
-                                    >
-                                        <NavigateNextRounded fontSize="large" />
-                                    </Fab>
-                                </div> */}
                             </>
                         );
                     case 2:
                         return (
                             <>
-                                <Link to="/">
-                                    <img
-                                        alt="Gofor"
-                                        src={Logo}
-                                        className="logo-onPost"
-                                    />
-                                </Link>
+                                <img
+                                    alt="Gofor"
+                                    src={Logo}
+                                    className="logo-onPost"
+                                />
                                 <div className="title-input-div">
                                     <input
                                         id="title"
@@ -416,34 +400,16 @@ class PostProduct extends Component {
                                     className="new-back-button-icon"
                                     icon={faCaretLeft}
                                 />
-                                {/* <div className="Buttons-onAll-div">
-                                    <Fab
-                                        onClick={this.handlePreStep}
-                                        color="primary"
-                                        className="backButton-onAll"
-                                    >
-                                        <ArrowBackIosRounded fontSize="large" />
-                                    </Fab>
-                                    <Fab
-                                        onClick={this.handleNextStep}
-                                        color="primary"
-                                        className="nextButton-onAll"
-                                    >
-                                        <NavigateNextRounded fontSize="large" />
-                                    </Fab>
-                                </div> */}
                             </>
                         );
                     case 3:
                         return (
                             <>
-                                {/* <Link to="/">
-                                    <img
-                                        alt="Gofor"
-                                        src={Logo}
-                                        className="logo-onPost"
-                                    />
-                                </Link> */}
+                                <img
+                                    alt="Gofor"
+                                    src={Logo}
+                                    className="logo-onPost"
+                                />
                                 <div className="description-input-div">
                                     <textarea
                                         id="description"
@@ -485,27 +451,16 @@ class PostProduct extends Component {
                                     className="new-back-button-icon"
                                     icon={faCaretLeft}
                                 />
-                                {/* <div className="Buttons-onAll-div">
-                                    <Fab
-                                        onClick={this.handlePreStep}
-                                        color="primary"
-                                        className="backButton-onAll"
-                                    >
-                                        <ArrowBackIosRounded fontSize="large" />
-                                    </Fab>
-                                    <Fab
-                                        onClick={this.handleNextStep}
-                                        color="primary"
-                                        className="nextButton-onAll"
-                                    >
-                                        <NavigateNextRounded fontSize="large" />
-                                    </Fab>
-                                </div> */}
                             </>
                         );
                     case 4:
                         return (
                             <>
+                                <img
+                                    alt="Gofor"
+                                    src={Logo}
+                                    className="logo-onPost"
+                                />
                                 <div className="price-input-div">
                                     <input
                                         id="price"
@@ -545,58 +500,16 @@ class PostProduct extends Component {
                                     className="new-back-button-icon"
                                     icon={faCaretLeft}
                                 />
-                                {/* <div className="Buttons-onAll-div">
-                                    <Fab
-                                        onClick={this.handlePreStep}
-                                        color="primary"
-                                        className="backButton-onAll"
-                                    >
-                                        <ArrowBackIosRounded fontSize="large" />
-                                    </Fab>
-                                    <Fab
-                                        onClick={this.handleNextStep}
-                                        color="primary"
-                                        className="nextButton-onAll"
-                                    >
-                                        <NavigateNextRounded fontSize="large" />
-                                    </Fab>
-                                </div> */}
-                                {/* <TextField
-                                    id="price"
-                                    name="price"
-                                    type="text"
-                                    label="Price"
-                                    className={classes.textField}
-                                    noValidate
-                                    autoComplete="off"
-                                    variant="outlined"
-                                    value={this.state.price}
-                                    onChange={this.handleChange}
-                                    error={priceErrorMessage ? true : false}
-                                    helperText={priceErrorMessage}
-                                    fullWidth
-                                />
-                                <Button
-                                    onClick={this.handlePreStep}
-                                    variant="contained"
-                                    color="primary"
-                                    className={classes.button}
-                                >
-                                    Go back
-                                </Button>
-                                <Button
-                                    onClick={this.handleNextStep}
-                                    variant="contained"
-                                    color="primary"
-                                    className={classes.button}
-                                >
-                                    Continue
-                                </Button> */}
                             </>
                         );
                     case 5:
                         return (
                             <>
+                                <img
+                                    alt="Gofor"
+                                    src={Logo}
+                                    className="logo-onPost"
+                                />
                                 <input
                                     accept="image/*"
                                     onChange={this.handleImageChange}
@@ -631,47 +544,6 @@ class PostProduct extends Component {
                                         </div>
                                     </Grid>
                                 </Grid>
-                                {/* <div style={{ marginTop: "10px" }}>
-                                    <Button
-                                        onClick={this.handleEditPicture}
-                                        color="primary"
-                                        variant="contained"
-                                        className={classes.photoButton}
-                                        disabled={imageLoading ? true : false}
-                                    >
-                                        {imageUploaded
-                                            ? "Done"
-                                            : "Upload Photo"}
-                                        {imageLoading && (
-                                            <CircularProgress
-                                                style={{ position: "absolute" }}
-                                            />
-                                        )}
-                                    </Button>
-                                    <Fab
-                                        onClick={this.handleEditPicture}
-                                        color="primary"
-                                        style={{ marginLeft: 10 }}
-                                        size="medium"
-                                        disabled={imageLoading ? true : false}
-                                    >
-                                        {imageLoading ? (
-                                            <CircularProgress />
-                                        ) : imageUploaded ? (
-                                            <Check />
-                                        ) : (
-                                            <CloudUpload />
-                                        )}
-                                    </Fab>
-                                </div>
-                                {imageInputErrorMessage && (
-                                    <Typography
-                                        variant="body2"
-                                        className={classes.photoUploaded}
-                                    >
-                                        {imageInputErrorMessage}
-                                    </Typography>
-                                )}*/}
                                 {imageInputErrorMessage && (
                                     <div className="post-error-popup">
                                         <FontAwesomeIcon
@@ -696,13 +568,23 @@ class PostProduct extends Component {
                     case 6:
                         return (
                             <>
+                                <img
+                                    alt="Gofor"
+                                    src={Logo}
+                                    className="logo-onPost"
+                                />
                                 <Card imageUrl={imageUrl} price={price} />
                                 <div
                                     onClick={this.handleSubmit}
                                     className="confirm-post-button"
                                 >
-                                    Post
+                                    <div className="confirm-post-button-text">
+                                        Post
+                                    </div>
                                 </div>
+                                {loading && (
+                                    <div className="loading-animation-onPostSubmit"></div>
+                                )}
                                 <FontAwesomeIcon
                                     onClick={this.handlePreStep}
                                     className="new-back-button-icon"

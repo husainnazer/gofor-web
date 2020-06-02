@@ -1,0 +1,185 @@
+/* Bar */
+/*####################################################*/
+.navigation-bar {
+    z-index: 10;
+    padding-top: 5px;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Logo - onBar */
+/*####################################################*/
+.logo-onBar {
+    cursor: pointer;
+    height: 40px;
+    margin-top: 5px;
+}
+@media (max-width: 800px) {
+    .logo-onBar {
+        height: 30px;
+    }
+}
+
+/* Post Button - onBar */
+/*####################################################*/
+.post-button-onBar {
+    position: fixed;
+    right: 10px;
+    top: 0;
+    padding: 7px;
+    cursor: pointer;
+    font-size: 30px;
+    color: rgba(0, 0, 0, 0.7);
+    transition: 0.3s;
+}
+.post-button-onBar:hover {
+    color: rgb(0, 0, 0);
+    transform: translateY(-3px);
+}
+
+@media (max-width: 800px) {
+    .post-button-onBar {
+        background-color: rgb(35, 35, 35);
+        border: 1px solid rgb(35, 35, 35);
+        color: rgb(255, 255, 255);
+        border-radius: 3px;
+        padding: 0px 5px;
+        top: 7px;
+        font-size: 23px;
+    }
+}
+
+/* Login Button - onBar */
+/*####################################################*/
+.login-button-onBar {
+    position: fixed;
+    right: 95px;
+    top: 7px;
+    padding: 0px 0px 3px 0px;
+    cursor: pointer;
+    font-size: 30px;
+    color: rgba(0, 0, 0, 0.7);
+    transition: 0.3s;
+}
+.login-button-onBar:hover {
+    color: rgb(0, 0, 0);
+}
+.login-button-onBar:before {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: rgb(0, 0, 0);
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+}
+.login-button-onBar:hover:before {
+    visibility: visible;
+    width: 100%;
+}
+
+@media (max-width: 800px) {
+    .login-button-onBar {
+        border: 1px solid rgb(0, 0, 0);
+        border-radius: 3px;
+        font-size: 23px;
+        color: rgb(0, 0, 0);
+        padding: 0px 5px;
+        right: 75px;
+    }
+}
+
+/* Menu Button - onBar */
+/*####################################################*/
+.user-menu-button-onBar {
+    position: fixed;
+    right: 85px;
+    top: 7px;
+    padding: 5px 0px;
+    cursor: pointer;
+    font-size: 25px;
+}
+.user-icon-onBar {
+    color: rgba(0, 0, 0, 0.7);
+    transition: 0.3s;
+}
+
+.user-menu-button-onBar:hover .user-icon-onBar,
+.user-menu-button-onBar:hover .user-menu-dropDown {
+    transform: translateX(-10px);
+    color: rgb(0, 0, 0);
+}
+
+.user-menu-button-onBar:focus .user-icon-onBar,
+.user-menu-button-onBar:focus .user-menu-dropDown {
+    transform: translateX(-10px);
+    color: rgb(0, 0, 0);
+}
+
+.user-menu-dropDown {
+    color: rgba(0, 0, 0, 0);
+    margin-left: 5px;
+    transition: 0.3s;
+}
+
+.user-menu-button-onBar:focus {
+    outline: none;
+}
+
+.menu-list-div {
+    position: fixed;
+    top: 50px;
+    right: 45px;
+    font-size: 25px;
+    width: 140px;
+    height: 180px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 5px;
+    background-color: rgb(100, 100, 100);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.user-menu-button-onBar:focus + .menu-list-div,
+.menu-list-div:active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.menu-list-div div {
+    color: rgb(200, 200, 200);
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.menu-list-div div:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.menu-list-div .profile-button-inMenu {
+    border-radius: 5px 5px 0px 0px;
+}
+.menu-list-div .logout-button-inMenu {
+    border-radius: 0px 0px 5px 5px;
+}
+
+@media (max-width: 800px) {
+    .user-menu-button-onBar {
+        right: 70px;
+        top: 7px;
+        padding: 0px 0px;
+        cursor: default;
+        font-size: 23px;
+    }
+}

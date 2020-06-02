@@ -215,7 +215,7 @@ class Signup extends Component {
                         <div className="signup-button-text">Signup</div>
                     </div>
                     {generalErrorMessage && (
-                        <div className="signin-error-popup">
+                        <div className="signup-error-popup">
                             <FontAwesomeIcon
                                 style={{ marginRight: "10px" }}
                                 icon={faExclamationTriangle}
@@ -224,7 +224,7 @@ class Signup extends Component {
                         </div>
                     )}
                     {emptyErrorMessage && (
-                        <div className="signin-error-popup">
+                        <div className="signup-error-popup">
                             <FontAwesomeIcon
                                 style={{ marginRight: "10px" }}
                                 icon={faExclamationTriangle}
@@ -262,108 +262,6 @@ class Signup extends Component {
                         {`Have an account? Login`}
                     </Link>
                 </>
-                // <Grid container className={classes.form}>
-                //     <Grid item sm />
-                //     <Grid item sm>
-                //         <Typography variant="h2" className={classes.pageTitle}>
-                //             Signup
-                //         </Typography>
-                //         <TextField
-                //             id="userName"
-                //             name="userName"
-                //             type="text"
-                //             label="User Name"
-                //             variant="outlined"
-                //             className={classes.textField}
-                //             helperText={userNameErrorMessage}
-                //             error={userNameErrorMessage ? true : false}
-                //             value={this.state.userName}
-                //             onChange={this.handleChange}
-                //             fullWidth
-                //         />
-                //         <TextField
-                //             id="email"
-                //             name="email"
-                //             type="email"
-                //             label="Email"
-                //             variant="outlined"
-                //             className={classes.textField}
-                //             helperText={emailErrorMessage}
-                //             error={emailErrorMessage ? true : false}
-                //             value={this.state.email}
-                //             onChange={this.handleChange}
-                //             fullWidth
-                //         />
-                //         <TextField
-                //             id="password"
-                //             name="password"
-                //             type="password"
-                //             label="Password"
-                //             variant="outlined"
-                //             className={classes.textField}
-                //             helperText={passwordErrorMessage}
-                //             error={passwordErrorMessage ? true : false}
-                //             value={this.state.password}
-                //             onChange={this.handleChange}
-                //             fullWidth
-                //         />
-                //         <TextField
-                //             id="confirmPassword"
-                //             name="confirmPassword"
-                //             type="password"
-                //             label="Confirm Password"
-                //             variant="outlined"
-                //             className={classes.textField}
-                //             helperText={confirmPasswordErrorMessage}
-                //             error={confirmPasswordErrorMessage ? true : false}
-                //             value={this.state.confirmPassword}
-                //             onChange={this.handleChange}
-                //             fullWidth
-                //         />
-                //         {generalErrorMessage && (
-                //             <Typography
-                //                 variant="body2"
-                //                 className={classes.customError}
-                //             >
-                //                 {generalErrorMessage}
-                //             </Typography>
-                //         )}
-                //         <Button
-                //             onClick={this.handleSubmit}
-                //             disabled={loading}
-                //             variant="contained"
-                //             color="primary"
-                //             className={classes.button}
-                //         >
-                //             Signup
-                //             {loading && (
-                //                 <CircularProgress
-                //                     size={30}
-                //                     className={classes.progress}
-                //                 />
-                //             )}
-                //         </Button>
-                //         <br />
-                //         <Link
-                //             to={{
-                //                 pathname: "/login",
-                //             }}
-                //             style={{
-                //                 textDecoration: "none",
-                //                 color: "#33c9dc",
-                //             }}
-                //         >
-                //             {`Have an account? Login`}
-                //         </Link>
-                //         <GoogleButton
-                //             type="light"
-                //             disabled={loading ? true : false}
-                //             onClick={this.handleGoogleSignIn}
-                //             className={classes.googleButton}
-                //         />
-                //     </Grid>
-                //     <Grid item sm />
-                // </Grid>
             );
         } else {
             return <Redirect to="/" />;
