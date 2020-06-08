@@ -16,7 +16,6 @@
     left: 50%;
     transform: translate(-50%);
 }
-
 .nextButton-onAll {
     position: absolute;
     left: 15px;
@@ -28,97 +27,114 @@
 
 /* Card */
 /*####################################################*/
-.category-card {
-    cursor: pointer;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 3px;
-    height: 200px;
-    width: 80%;
-    margin-bottom: 7px;
-    margin-top: 7px;
-    transition: 0.5s;
-}
-
-.mobile-category-icon + h1,
-.mobile-category-icon-selected + h1 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    font-size: 70px;
-    text-align: center;
-    transform: translateY(-100%);
-    color: rgba(0, 0, 0, 0.7);
-}
-
-.category-cardselected {
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    border: 1px solid rgb(0, 0, 0);
-    border-radius: 3px;
-    height: 200px;
-    width: 85%;
-    margin-bottom: 7px;
-    margin-top: 7px;
-    transition: 0.5s;
-}
-
-.mobile-category-icon {
-    font-size: 150px;
-    color: rgba(0, 0, 0, 0.7);
-    position: relative;
-    left: 15%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    transition: 0.5s;
-}
-
-.mobile-category-icon-selected {
-    font-size: 150px;
-    color: rgb(0, 0, 0);
-    position: relative;
-    left: 15%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    transition: 0.5s;
-}
-
-@media (max-width: 800px) {
+@media (min-width: 800px) {
     .category-card {
-        cursor: default;
-        top: 20px;
+        cursor: pointer;
+        position: relative;
         left: 50%;
-        border-radius: 5px;
-        height: 100px;
-        width: 90%;
-        margin-bottom: 30px;
-        margin-top: 30px;
+        transform: translateX(-50%);
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 3px;
+        height: 200px;
+        width: 80%;
+        margin-bottom: 7px;
+        margin-top: 7px;
+        transition: 0.5s;
     }
     .mobile-category-icon + h1,
     .mobile-category-icon-selected + h1 {
-        font-size: 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        font-size: 70px;
+        text-align: center;
+        transform: translateY(-100%);
+        color: rgba(0, 0, 0, 0.7);
     }
-
     .category-cardselected {
-        cursor: default;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        border: 1px solid rgb(0, 0, 0);
+        border-radius: 3px;
+        height: 200px;
+        width: 85%;
+        margin-bottom: 7px;
+        margin-top: 7px;
+        transition: 0.5s;
+    }
+    .mobile-category-icon {
+        font-size: 150px;
+        color: rgba(0, 0, 0, 0.7);
+        position: relative;
+        left: 15%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        transition: 0.5s;
+    }
+    .mobile-category-icon-selected {
+        font-size: 150px;
+        color: rgb(0, 0, 0);
+        position: relative;
+        left: 15%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        transition: 0.5s;
+    }
+}
+@media (max-width: 800px) {
+    .category-card {
+        position: relative;
         top: 20px;
         left: 50%;
+        transform: translateX(-50%);
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+        height: 100px;
+        width: 90%;
+        margin: 30px 0px;
+        transition: 0.5s;
+    }
+    .mobile-category-icon + h1,
+    .mobile-category-icon-selected + h1 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        font-size: 20px;
+        text-align: center;
+        transform: translateY(-100%);
+        color: rgba(0, 0, 0, 0.7);
+    }
+    .category-cardselected {
+        position: relative;
+        left: 50%;
+        top: 20px;
+        transform: translateX(-50%);
+        border: 1px solid rgb(0, 0, 0);
         border-radius: 5px;
         height: 100px;
         width: 95%;
         margin-bottom: 30px;
         margin-top: 30px;
+        transition: 0.5s;
     }
-
     .mobile-category-icon {
         font-size: 50px;
+        color: rgba(0, 0, 0, 0.7);
+        position: relative;
+        left: 15%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        transition: 0.5s;
     }
-
     .mobile-category-icon-selected {
         font-size: 50px;
+        color: rgb(0, 0, 0);
+        position: relative;
+        left: 15%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        transition: 0.5s;
     }
 }
 
@@ -195,7 +211,6 @@
         color: rgba(0, 0, 0, 0.5);
     }
 }
-
 @media (max-width: 800px) {
     .title-input-div {
         position: absolute;
@@ -295,7 +310,6 @@
         border: none;
         border-bottom: 1px solid rgba(0, 0, 0, 0.5);
     }
-
     .description-input + label {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
             Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -307,11 +321,9 @@
         font-size: 80px;
         transition: all 1s ease-out;
     }
-
     .description-input:focus {
         outline: none;
     }
-
     .description-input-hasValue {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
             Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -323,7 +335,6 @@
         border: none;
         border-bottom: 2px solid rgba(0, 0, 0, 0.5);
     }
-
     .description-input-hasValue + label {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
             Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -334,11 +345,9 @@
         font-size: 100px;
         transition: all 1s ease-out;
     }
-
     .description-input-hasValue:focus {
         outline: none;
     }
-
     .description-length {
         position: absolute;
         right: 10px;
@@ -346,7 +355,6 @@
         color: rgba(0, 0, 0, 0.5);
     }
 }
-
 @media (max-width: 800px) {
     .description-input-div {
         position: absolute;
@@ -371,7 +379,6 @@
         padding: 10px;
         /* border-bottom: 1px solid rgba(0, 0, 0, 0.5); */
     }
-
     .description-input + label {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
             Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -383,11 +390,9 @@
         font-size: 25px;
         transition: all 1s ease-out;
     }
-
     .description-input:focus {
         outline: none;
     }
-
     .description-input-hasValue {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
             Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -404,7 +409,6 @@
         line-height: 150%;
         /* border-bottom: 2px solid rgba(0, 0, 0, 0.5); */
     }
-
     .description-input-hasValue + label {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
             Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -415,11 +419,9 @@
         font-size: 25px;
         transition: all 1s ease-out;
     }
-
     .description-input-hasValue:focus {
         outline: none;
     }
-
     .description-length {
         position: absolute;
         right: 0px;
@@ -439,7 +441,6 @@
         transform: translate(-50%, -100%);
         transition: all 0.5s ease-out;
     }
-
     .price-input {
         position: relative;
         z-index: 1;
@@ -450,7 +451,6 @@
         border-bottom: 1px solid rgba(0, 0, 0, 0.5);
         background-color: transparent;
     }
-
     .price-input + label {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
             Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -461,11 +461,9 @@
         color: rgba(0, 0, 0, 0.5);
         transition: all 0.5s ease-out;
     }
-
     .price-input:focus {
         outline: none;
     }
-
     .price-input-hasValue {
         width: 100%;
         height: 100px;
@@ -474,11 +472,9 @@
         border-bottom: 1px solid rgba(0, 0, 0, 0.5);
         background-color: transparent;
     }
-
     .price-input-hasValue:focus {
         outline: none;
     }
-
     .price-input-hasValue + label {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
             Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -501,7 +497,6 @@
         transform: translate(-50%, -100%);
         transition: all 0.5s ease-out;
     }
-
     .price-input {
         position: relative;
         left: 50%;
@@ -511,7 +506,6 @@
         font-size: 25px;
         border: none;
     }
-
     .price-input + label {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
             Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -523,11 +517,9 @@
         color: rgba(0, 0, 0, 0.5);
         transition: all 0.5s ease-out;
     }
-
     .price-input:focus {
         outline: none;
     }
-
     .price-input-hasValue {
         position: relative;
         left: 50%;
@@ -538,11 +530,9 @@
         border: none;
         background-color: transparent;
     }
-
     .price-input-hasValue:focus {
         outline: none;
     }
-
     .price-input-hasValue + label {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
             Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -565,7 +555,6 @@
         width: 100%;
         transition: 0.5s;
     }
-
     .plus-card:hover {
         cursor: pointer;
     }
@@ -573,7 +562,6 @@
         border: 1px solid rgb(0, 0, 0);
         transition: 0s;
     }
-
     .plus-button {
         font-size: 50px;
         color: rgba(0, 0, 0, 0.7);
@@ -588,14 +576,12 @@
         color: rgba(0, 0, 0, 1);
         transition: 0s;
     }
-
     .image-in-plus {
         width: 100%;
         height: 300px;
         border-radius: 3px;
         object-fit: cover;
     }
-
     .loading-animation-imageUpload {
         position: relative;
         left: 50%;
@@ -657,6 +643,7 @@
         transition: 2s;
     }
 }
+
 /* Buttons - Universal - onPost */
 /*####################################################*/
 @media (min-width: 800px) {
@@ -684,12 +671,10 @@
         font-size: 100px;
         transition: 0.3s;
     }
-
     .new-next-button-icon:hover {
         color: rgba(0, 0, 0, 0.5);
         top: 49.5%;
     }
-
     .new-back-button-icon {
         background-color: transparent;
         cursor: pointer;
@@ -702,7 +687,6 @@
         font-size: 100px;
         transition: 0.3s;
     }
-
     .new-back-button-icon:hover {
         color: rgba(0, 0, 0, 0.5);
         top: 49.5%;
@@ -734,7 +718,6 @@
         transition: 2s;
     }
 }
-
 @media (max-width: 800px) {
     .new-single-next-button-icon {
         background-color: transparent;

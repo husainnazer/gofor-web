@@ -6,8 +6,6 @@ import Navbar from "../Components/Navbar/Navbar";
 
 //Material-UI stuff
 import { Grid } from "@material-ui/core/";
-import { withStyles } from "@material-ui/styles";
-import { Skeleton } from "@material-ui/lab";
 
 //React Router
 import { Link } from "react-router-dom";
@@ -18,24 +16,6 @@ import "firebase/firestore";
 
 //Load by Scrolling
 import InfiniteScroll from "react-infinite-scroller";
-
-const styles = {
-    card: {
-        maxWidth: 345,
-        marginBottom: 30,
-        borderColor: "#f2f2f2",
-        borderStyle: "solid",
-        borderWidth: "1px",
-    },
-    image: {
-        height: 180,
-    },
-    content: {
-        padding: 5,
-        margin: 15,
-        objectFit: "cover",
-    },
-};
 
 class Home extends Component {
     constructor() {
@@ -143,26 +123,24 @@ class Home extends Component {
                 </>
             );
         } else {
-            const length = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
             return (
-                <Grid container spacing={1} style={{ padding: 24 }}>
-                    {length.map(() => (
-                        <Grid item xs={12} sm={6} lg={4} xl={3}>
-                            <Skeleton
-                                style={{
-                                    padding: "2rem 1rem",
-                                }}
-                                animation="wave"
-                                variant="rect"
-                                width={345}
-                                height={180}
-                            />
-                        </Grid>
-                    ))}
-                </Grid>
+                <>
+                    <Navbar />
+                    <div
+                        style={{
+                            position: "absolute",
+                            width: "50px",
+                            height: "50px",
+                            left: "50%",
+                            top: "50%",
+                            transform: `translate(${-50}%, ${-50}%)`,
+                        }}
+                        className="loading-animation-scroll-home"
+                    ></div>
+                </>
             );
         }
     }
 }
 
-export default withStyles(styles)(Home);
+export default Home;

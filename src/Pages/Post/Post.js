@@ -96,7 +96,7 @@ class PostProduct extends Component {
 
     handleSubmit = () => {
         this.setState({ loading: true });
-        const { uid, displayName } = fire.auth().currentUser;
+        const { uid } = fire.auth().currentUser;
         const { category, title, description, price, imageUrl } = this.state;
         if (
             category !== "" &&
@@ -110,12 +110,11 @@ class PostProduct extends Component {
                 title: title.trim(),
                 description: description.trim(),
                 category: category,
-                userId: uid,
-                userHandle: displayName,
+                uid: uid,
                 price: price,
                 imageUrl: imageUrl,
                 //location: this.state.location,
-                createdAt: new Date().toISOString(),
+                createdAt: new Date(),
             };
             fire.firestore()
                 .collection("products")

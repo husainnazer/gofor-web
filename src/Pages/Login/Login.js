@@ -9,6 +9,7 @@ import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import "./Login.css";
 import Logo from "../../logo.png";
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
+import CustomLink from "../../CustomLink";
 
 class Login extends Component {
     constructor() {
@@ -38,20 +39,20 @@ class Login extends Component {
             .signInWithPopup(provider)
             .then((result) => {
                 const userCredentials = {
-                    userName: result.user.displayName,
+                    name: result.user.displayName,
                     email: result.user.email,
-                    createdAt: new Date().toISOString(),
-                    userId: result.user.uid,
+                    createdAt: new Date(),
+                    uid: result.user.uid,
                 };
                 fire.firestore()
                     .collection("users")
-                    .doc(`${result.user.displayName}`)
+                    .doc(`${result.user.uid}`)
                     .get()
                     .then((doc) => {
                         if (!doc.exists) {
                             fire.firestore()
                                 .collection("users")
-                                .doc(`${result.user.displayName}`)
+                                .doc(`${result.user.uid}`)
                                 .set(userCredentials)
                                 .then(() => console.log("success"))
                                 .catch((error) => {
@@ -147,6 +148,7 @@ class Login extends Component {
                             id="email"
                             name="email"
                             autoComplete="off"
+                            autoCapitalize="off"
                             value={this.state.email}
                             spellCheck="false"
                             className={
@@ -176,6 +178,13 @@ class Login extends Component {
                         />
                         <label htmlFor="password">Enter password</label>
                     </div>
+                    <div
+                        onClick={this.handleSubmit}
+                        className="login-button-container"
+                    >
+                        <div className="login-button-text">Login</div>
+                    </div>
+                    {loading && <div className="loading-animation"></div>}
                     {generalErrorMessage && (
                         <div className="signin-error-popup">
                             <FontAwesomeIcon
@@ -195,12 +204,6 @@ class Login extends Component {
                         </div>
                     )}
                     <div
-                        onClick={this.handleSubmit}
-                        className="login-button-container"
-                    >
-                        <div className="login-button-text">Login</div>
-                    </div>
-                    <div
                         style={loading ? { opacity: 0 } : { opacity: 1 }}
                         className="or-seperation"
                     >
@@ -218,17 +221,14 @@ class Login extends Component {
                         </div>
                         <div className="google-text">Signin with Google</div>
                     </div>
-                    <div
-                        style={loading ? { opacity: 1 } : { opacity: 0 }}
-                        className="loading-animation"
-                    ></div>
-                    <Link
+                    <CustomLink
                         style={loading ? { opacity: 0 } : { opacity: 1 }}
-                        className="signup-link"
+                        tag="div"
                         to="/signup"
+                        className="signup-link"
                     >
-                        {`Don't have an account? Sign up`}
-                    </Link>
+                        Don't an account? Signup
+                    </CustomLink>
                 </>
             );
         } else {

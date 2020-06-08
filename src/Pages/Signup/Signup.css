@@ -1,356 +1,419 @@
 /* Header */
 /*####################################################*/
-.signup-header {
-    text-align: center;
-    cursor: default;
-    position: relative;
-    top: 40px;
-}
-@media (max-width: 767px) {
+@media (min-width: 800px) {
     .signup-header {
-        font-weight: 100;
-        position: absolute;
-        top: 10%;
-        left: 50%;
-        width: 100%;
-        transform: translate(-50%, -50%);
+        font-weight: 300;
+        text-align: center;
+        cursor: default;
+        position: relative;
+        top: 40px;
+    }
+}
+@media (max-width: 800px) {
+    .signup-header {
+        font-weight: 200;
+        position: relative;
+        text-align: center;
+        margin-bottom: 10%;
     }
 }
 
 /* User Name - Input */
 /*####################################################*/
-.signup-userName-input-div {
-    position: relative;
-    width: 30%;
-    left: 50%;
-    top: 120px;
-    transform: translate(-50%, -100%);
-}
-
-.signup-userName-input {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    height: 50px;
-    font-size: 30px;
-    border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-    background-color: transparent;
-}
-.signup-userName-input:focus {
-    outline: none;
-}
-
-.signup-userName-input + label {
-    position: absolute;
-    font-size: 30px;
-    top: 10px;
-    left: 3px;
-    color: rgba(0, 0, 0, 0.7);
-    transition: 0.5s ease-out;
-}
-
-.signup-userName-input-hasValue {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    height: 50px;
-    font-size: 30px;
-    border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-    background-color: transparent;
-}
-.signup-userName-input-hasValue {
-    outline: none;
-}
-
-.signup-userName-input-hasValue + label {
-    position: absolute;
-    left: 3px;
-    top: 55px;
-    font-size: 30px;
-    color: rgba(0, 0, 0, 0.5);
-    transition: 0.5s ease-out;
-}
-@media (max-width: 767px) {
-    .signup-userName-input-div {
+@media (min-width: 800px) {
+    .signup-name-input-div {
+        position: relative;
+        width: 30%;
+        left: 50%;
+        top: 120px;
+        transform: translate(-50%, -100%);
+    }
+    .signup-name-input {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+            Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: 50px;
+        font-size: 30px;
+        border: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+        background-color: transparent;
+    }
+    .signup-name-input:focus {
+        outline: none;
+    }
+    .signup-name-input + label {
         position: absolute;
+        font-size: 30px;
+        top: 10px;
+        left: 3px;
+        color: rgba(0, 0, 0, 0.7);
+        transition: 0.5s ease-out;
+    }
+    .signup-name-input-hasValue {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+            Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: 50px;
+        font-size: 30px;
+        border: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+        background-color: transparent;
+    }
+    .signup-name-input-hasValue {
+        outline: none;
+    }
+    .signup-name-input-hasValue + label {
+        position: absolute;
+        left: 3px;
+        top: 55px;
+        font-size: 30px;
+        color: rgba(0, 0, 0, 0.5);
+        transition: 0.5s ease-out;
+    }
+}
+@media (max-width: 800px) {
+    .signup-name-input-div {
+        position: relative;
+        left: 50%;
+        margin-bottom: 25px;
+        transform: translateX(-50%);
+        width: 90%;
+        height: 50px;
         border: 1px solid rgba(0, 0, 0, 0.5);
         border-radius: 5px;
-        left: 50%;
-        top: 31%;
-        width: 85%;
     }
-    .signup-userName-input {
-        width: 94%;
-        left: 50%;
-        top: 1px;
-        transform: translateX(-50%);
-        border-bottom: none;
-        font-size: 25px;
-    }
-    .signup-userName-input + label {
+    .signup-name-input {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+            Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        position: absolute;
         top: 50%;
-        transform: translateY(-50%);
-        left: 10px;
-        font-size: 25px;
-        transition: 0.3s;
-    }
-    .signup-userName-input-hasValue {
-        width: 94%;
         left: 50%;
-        top: 1px;
-        transform: translateX(-50%);
-        border-bottom: none;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        width: 94%;
+        height: 100%;
+        font-size: 25px;
+        border: none;
+        background-color: transparent;
+    }
+    .signup-name-input:focus {
+        outline: none;
+    }
+    .signup-name-input + label {
+        position: absolute;
+        top: 50%;
+        left: 3%;
+        font-size: 25px;
+        transform: translateY(-50%);
+        color: rgba(0, 0, 0, 0.7);
+    }
+    .signup-name-input-hasValue {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+            Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        width: 94%;
+        height: 100%;
+        background-color: transparent;
+        border: none;
         font-size: 25px;
     }
-    .signup-userName-input-hasValue + label {
-        opacity: 0;
+    .signup-name-input-hasValue:focus {
+        outline: none;
+    }
+    .signup-name-input-hasValue + label {
+        position: absolute;
         top: 50%;
+        left: 3%;
         transform: translateY(-50%);
-        left: 10px;
         font-size: 25px;
-        transition: 0.3s;
+        color: rgba(0, 0, 0, 0);
     }
 }
 
 /* Email - Input */
 /*####################################################*/
-.signup-email-input-div {
-    position: relative;
-    width: 30%;
-    left: 50%;
-    top: 170px;
-    transform: translate(-50%, -100%);
-}
-
-.signup-email-input {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    height: 50px;
-    font-size: 30px;
-    border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-    background-color: transparent;
-}
-.signup-email-input:focus {
-    outline: none;
-}
-
-.signup-email-input + label {
-    position: absolute;
-    font-size: 30px;
-    top: 10px;
-    left: 3px;
-    color: rgba(0, 0, 0, 0.7);
-    transition: 0.5s ease-out;
-}
-
-.signup-email-input-hasValue {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    height: 50px;
-    font-size: 30px;
-    border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-    background-color: transparent;
-}
-.signup-email-input-hasValue {
-    outline: none;
-}
-
-.signup-email-input-hasValue + label {
-    position: absolute;
-    left: 3px;
-    top: 55px;
-    font-size: 30px;
-    color: rgba(0, 0, 0, 0.5);
-    transition: 0.5s ease-out;
-}
-
-@media (max-width: 767px) {
+@media (min-width: 800px) {
     .signup-email-input-div {
-        position: absolute;
-        border: 1px solid rgba(0, 0, 0, 0.5);
-        border-radius: 5px;
+        position: relative;
+        width: 30%;
         left: 50%;
-        top: 44%;
-        width: 85%;
+        top: 170px;
+        transform: translate(-50%, -100%);
     }
+
     .signup-email-input {
-        left: 50%;
-        transform: translateX(-50%);
-        width: 94%;
-        border-bottom: none;
-        font-size: 25px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+            Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: 50px;
+        font-size: 30px;
+        border: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+        background-color: transparent;
     }
+    .signup-email-input:focus {
+        outline: none;
+    }
+
     .signup-email-input + label {
-        top: 50%;
-        left: 10px;
-        transform: translateY(-50%);
-        font-size: 25px;
-        transition: 0.3s;
+        position: absolute;
+        font-size: 30px;
+        top: 10px;
+        left: 3px;
+        color: rgba(0, 0, 0, 0.7);
+        transition: 0.5s ease-out;
+    }
+
+    .signup-email-input-hasValue {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+            Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: 50px;
+        font-size: 30px;
+        border: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+        background-color: transparent;
     }
     .signup-email-input-hasValue {
+        outline: none;
+    }
+
+    .signup-email-input-hasValue + label {
+        position: absolute;
+        left: 3px;
+        top: 55px;
+        font-size: 30px;
+        color: rgba(0, 0, 0, 0.5);
+        transition: 0.5s ease-out;
+    }
+}
+@media (max-width: 800px) {
+    .signup-email-input-div {
+        position: relative;
         left: 50%;
         transform: translateX(-50%);
+        width: 90%;
+        height: 50px;
+        margin-bottom: 25px;
+        border: 1px solid rgba(0, 0, 0, 0.5);
+        border-radius: 5px;
+    }
+    .signup-email-input {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+            Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
         width: 94%;
-        border-bottom: none;
+        height: 100%;
+        font-size: 25px;
+        border: none;
+        background-color: transparent;
+    }
+    .signup-email-input:focus {
+        outline: none;
+    }
+    .signup-email-input + label {
+        position: absolute;
+        top: 50%;
+        left: 3%;
+        font-size: 25px;
+        transform: translateY(-50%);
+        color: rgba(0, 0, 0, 0.7);
+    }
+    .signup-email-input-hasValue {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+            Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        width: 94%;
+        height: 100%;
+        background-color: transparent;
+        border: none;
         font-size: 25px;
     }
+    .signup-email-input-hasValue:focus {
+        outline: none;
+    }
     .signup-email-input-hasValue + label {
-        opacity: 0;
+        position: absolute;
         top: 50%;
+        left: 3%;
         transform: translateY(-50%);
-        left: 10px;
         font-size: 25px;
-        transition: 0.3s;
+        color: rgba(0, 0, 0, 0);
     }
 }
 
 /* Password - Input */
 /*####################################################*/
-.signup-password-input-div {
-    position: relative;
-    left: 50%;
-    top: 220px;
-    width: 30%;
-    transform: translate(-50%, -100%);
-}
-
-.signup-password-input {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    height: 50px;
-    font-size: 30px;
-    border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-    background-color: transparent;
-}
-.signup-password-input:focus {
-    outline: none;
-}
-.signup-password-input + label {
-    position: absolute;
-    font-size: 30px;
-    top: 10px;
-    left: 3px;
-    color: rgba(0, 0, 0, 0.7);
-    transition: 0.5s ease-out;
-}
-
-.signup-password-input-hasValue {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    height: 50px;
-    font-size: 30px;
-    border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-    background-color: transparent;
-}
-.signup-password-input-hasValue:focus {
-    outline: none;
-}
-
-.signup-password-input-hasValue + label {
-    color: rgba(0, 0, 0, 0.5);
-    position: absolute;
-    left: 3px;
-    top: 55px;
-    font-size: 30px;
-    transition: 0.5s ease-out;
-}
-@media (max-width: 767px) {
+@media (min-width: 800px) {
     .signup-password-input-div {
-        position: absolute;
-        border: 1px solid rgba(0, 0, 0, 0.5);
-        border-radius: 5px;
+        position: relative;
         left: 50%;
-        top: 57%;
-        width: 85%;
+        top: 220px;
+        width: 30%;
+        transform: translate(-50%, -100%);
     }
     .signup-password-input {
-        border-bottom: none;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 94%;
-        font-size: 25px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+            Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: 50px;
+        font-size: 30px;
+        border: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+        background-color: transparent;
+    }
+    .signup-password-input:focus {
+        outline: none;
     }
     .signup-password-input + label {
-        top: 50%;
-        transform: translateY(-50%);
-        left: 10px;
-        font-size: 25px;
-        transition: 0.3s;
+        position: absolute;
+        font-size: 30px;
+        top: 10px;
+        left: 3px;
+        color: rgba(0, 0, 0, 0.7);
+        transition: 0.5s ease-out;
     }
     .signup-password-input-hasValue {
-        border-bottom: none;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 94%;
-        font-size: 25px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+            Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: 50px;
+        font-size: 30px;
+        border: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+        background-color: transparent;
+    }
+    .signup-password-input-hasValue:focus {
+        outline: none;
     }
     .signup-password-input-hasValue + label {
-        opacity: 0;
+        color: rgba(0, 0, 0, 0.5);
+        position: absolute;
+        left: 3px;
+        top: 55px;
+        font-size: 30px;
+        transition: 0.5s ease-out;
+    }
+}
+@media (max-width: 800px) {
+    .signup-password-input-div {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        height: 50px;
+        margin-bottom: 35px;
+        border: 1px solid rgba(0, 0, 0, 0.5);
+        border-radius: 5px;
+    }
+    .signup-password-input {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+            Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        position: absolute;
         top: 50%;
-        transform: translateY(-50%);
-        left: 10px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        width: 94%;
+        height: 100%;
         font-size: 25px;
-        transition: 0.3s;
+        border: none;
+        background-color: transparent;
+    }
+    .signup-password-input:focus {
+        outline: none;
+    }
+    .signup-password-input + label {
+        position: absolute;
+        top: 50%;
+        left: 3%;
+        font-size: 25px;
+        transform: translateY(-50%);
+        color: rgba(0, 0, 0, 0.7);
+    }
+    .signup-password-input-hasValue {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+            Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        width: 94%;
+        height: 100%;
+        background-color: transparent;
+        border: none;
+        font-size: 25px;
+    }
+    .signup-password-input-hasValue:focus {
+        outline: none;
+    }
+    .signup-password-input-hasValue + label {
+        position: absolute;
+        top: 50%;
+        left: 3%;
+        transform: translateY(-50%);
+        font-size: 25px;
+        color: rgba(0, 0, 0, 0);
     }
 }
 
 /* Signup - Button */
 /*####################################################*/
-.signup-button-container {
-    cursor: pointer;
-    position: absolute;
-    left: 50%;
-    top: 65%;
-    color: rgba(0, 0, 0, 0.7);
-    padding: 30px 0px 30px 0px;
-    font-size: 50px;
-    transform: translate(-50%, -50%);
-    transition: 0.5s;
-}
-.signup-button-container:hover {
-    color: rgba(0, 0, 0, 1);
-    transform: translate(-50%, -55%);
-}
-
-@media (max-width: 767px) {
+@media (min-width: 800px) {
     .signup-button-container {
-        transition: none;
-        cursor: default;
-        font-size: 20px;
-        top: 64%;
-        padding: 0;
-        padding: 5px 0px;
-        width: 85%;
-        text-align: center;
-        border-radius: 5px;
-        background-color: rgb(35, 35, 35);
-        color: rgb(185, 185, 185);
+        cursor: pointer;
+        position: absolute;
+        left: 50%;
+        top: 65%;
+        color: rgba(0, 0, 0, 0.7);
+        padding: 30px 0px 30px 0px;
+        font-size: 50px;
+        transform: translate(-50%, -50%);
+        transition: 0.5s;
     }
     .signup-button-container:hover {
-        color: rgb(185, 185, 185);
-        transform: translate(-50%, -50%);
+        color: rgba(0, 0, 0, 1);
+        transform: translate(-50%, -55%);
+    }
+}
+@media (max-width: 800px) {
+    .signup-button-container {
+        position: relative;
+        left: 50%;
+        width: 90%;
+        padding: 5px 0px;
+        text-align: center;
+        font-size: 20px;
+        margin-bottom: 10px;
+        color: rgb(255, 255, 255);
+        background-color: rgb(35, 35, 35);
+        border-radius: 5px;
+        transform: translateX(-50%);
     }
     .signup-button-container:active {
         background-color: black;
@@ -363,66 +426,83 @@
 
 /* 'OR' - Seperator Line */
 /*####################################################*/
-.signup-or-seperation {
-    cursor: default;
-    position: absolute;
-    bottom: 22%;
-    left: 50%;
-    width: 40%;
-    height: 50px;
-    line-height: 50px;
-    text-align: center;
-    transform: translate(-50%);
-    transition: 0.5s;
-}
-
-.signup-or-seperation::before,
-.signup-or-seperation::after {
-    position: absolute;
-    width: 260px;
-    height: 1px;
-    top: 24px;
-    background-color: #aaa;
-    content: "";
-}
-
-.signup-or-seperation::before {
-    left: 0;
-}
-
-.signup-or-seperation::after {
-    right: 0;
-}
-
-@media (max-width: 767px) {
+@media (min-width: 800px) {
     .signup-or-seperation {
-        bottom: 20%;
+        cursor: default;
+        position: absolute;
+        bottom: 22%;
+        left: 50%;
+        width: 40%;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        transform: translate(-50%);
+        transition: 0.5s;
+    }
+
+    .signup-or-seperation::before,
+    .signup-or-seperation::after {
+        position: absolute;
+        width: 260px;
+        height: 1px;
+        top: 24px;
+        background-color: #aaa;
+        content: "";
+    }
+
+    .signup-or-seperation::before {
+        left: 0;
+    }
+
+    .signup-or-seperation::after {
+        right: 0;
+    }
+}
+@media (max-width: 800px) {
+    .signup-or-seperation {
+        position: relative;
+        left: 50%;
         width: 90%;
+        margin-bottom: 10px;
+        transform: translateX(-50%);
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
     }
     .signup-or-seperation::before,
     .signup-or-seperation::after {
+        position: absolute;
         width: 45%;
+        height: 1px;
+        top: 24px;
+        background-color: #aaa;
+        content: "";
+    }
+    .signup-or-seperation::before {
+        left: 0;
+    }
+    .signup-or-seperation::after {
+        right: 0;
     }
 }
 
 /* Google Signup - Button */
 /*####################################################*/
-.signup-google-button-container {
-    cursor: pointer;
-    position: absolute;
-    color: rgba(0, 0, 0, 0.7);
-    left: 50%;
-    bottom: 10%;
-    padding: 10px;
-    font-size: 30px;
-    transform: translate(-50%, -50%);
-    transition: 0.5s;
-}
-
-.signup-google-button-container:hover {
-    color: rgba(0, 0, 0, 1);
-}
 @media (min-width: 800px) {
+    .signup-google-button-container {
+        cursor: pointer;
+        position: absolute;
+        color: rgba(0, 0, 0, 0.7);
+        left: 50%;
+        bottom: 10%;
+        padding: 10px;
+        font-size: 30px;
+        transform: translate(-50%, -50%);
+        transition: 0.5s;
+    }
+    .signup-google-button-container:hover {
+        color: rgba(0, 0, 0, 1);
+    }
     .signup-google-button-container:before {
         content: "";
         position: absolute;
@@ -438,61 +518,68 @@
         visibility: visible;
         width: 100%;
     }
-}
+    .signup-google-icon {
+        font-size: 30px;
+        display: inline;
+        margin-right: 10px;
+    }
 
-.signup-google-icon {
-    font-size: 30px;
-    display: inline;
-    margin-right: 10px;
+    .signup-google-text {
+        display: inline;
+        margin-left: 10px;
+    }
 }
-
-.signup-google-text {
-    display: inline;
-    margin-left: 10px;
-}
-@media (max-width: 767px) {
+@media (max-width: 800px) {
     .signup-google-button-container {
-        transition: none;
-        cursor: default;
+        position: relative;
+        left: 50%;
         font-size: 20px;
         background-color: rgb(35, 35, 35);
         text-align: center;
-        width: 80%;
+        width: 90%;
         border-radius: 5px;
+        padding: 10px 0px;
+        margin-bottom: 20px;
         bottom: 8%;
         color: rgb(185, 185, 185);
-    }
-    .signup-google-icon {
-        font-size: 20px;
-        color: rgb(185, 185, 185);
-    }
-    .signup-google-button-container:hover {
-        color: rgb(185, 185, 185);
+        transform: translateX(-50%);
     }
     .signup-google-button-container:active,
     .signup-google-button-container:active .signup-google-icon {
         color: rgb(255, 255, 255);
         background-color: rgb(0, 0, 0);
     }
+    .signup-google-icon {
+        font-size: 20px;
+        color: rgb(255, 255, 255);
+        display: inline;
+        margin-right: 10px;
+    }
+
+    .signup-google-text {
+        color: rgb(255, 255, 255);
+        display: inline;
+        margin-left: 10px;
+    }
 }
 
 /* Login - Link */
 /*####################################################*/
-.login-link {
-    position: absolute;
-    bottom: 5%;
-    left: 50%;
-    padding-bottom: 3px;
-    text-decoration: none;
-    color: rgba(0, 0, 0, 0.7);
-    transform: translate(-50%);
-    transition: 0.5s;
-}
-.login-link:hover {
-    color: rgba(0, 0, 0, 1);
-}
-
 @media (min-width: 800px) {
+    .login-link {
+        position: absolute;
+        bottom: 5%;
+        left: 50%;
+        padding-bottom: 3px;
+        text-decoration: none;
+        color: rgba(0, 0, 0, 0.7);
+        transform: translate(-50%);
+        transition: 0.5s;
+        cursor: pointer;
+    }
+    .login-link:hover {
+        color: rgba(0, 0, 0, 1);
+    }
     .login-link:before {
         content: "";
         position: absolute;
@@ -509,18 +596,18 @@
         width: 100%;
     }
 }
-
-@media (max-width: 767px) {
+@media (max-width: 800px) {
     .login-link {
-        bottom: 4%;
+        position: relative;
         cursor: default;
-        transition: none;
+        text-decoration: none;
+        color: rgba(0, 0, 0, 0.7);
+        left: 50%;
+        transform: translateX(-50%);
         font-size: 15px;
         text-align: center;
-        width: 100%;
-    }
-    .login-link:hover {
-        color: rgba(0, 0, 0, 0.7);
+        text-decoration: underline;
+        margin: 30px 0px;
     }
     .login-link:active {
         color: rgb(0, 0, 0);
@@ -529,55 +616,70 @@
 
 /* Loading - Animation */
 /*####################################################*/
-.signup-loading-animation {
-    cursor: default;
-    position: absolute;
-    left: 50%;
-    bottom: 18%;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: black;
-    transform: translate(-50%, -50%);
-    animation: fadeInOut 1.4s infinite linear;
-    transition: 2s;
-}
-@keyframes fadeInOut {
-    50% {
-        opacity: 0;
-    }
-}
-
-@media (max-width: 767px) {
+@media (min-width: 800px) {
     .signup-loading-animation {
-        bottom: 14%;
-    }
-}
-
-.signup-error-popup {
-    color: rgb(255, 255, 255);
-    position: absolute;
-    left: 50%;
-    top: 0%;
-    transform: translate(-50%, 0%);
-    background-color: rgb(220, 0, 0);
-    padding: 15px 25px;
-    border-radius: 0px 0px 5px 5px;
-    font-size: 20px;
-}
-
-@media (max-width: 767px) {
-    .signup-error-popup {
-        color: rgb(220, 0, 0);
+        cursor: default;
         position: absolute;
         left: 50%;
-        top: 70%;
-        width: 100%;
+        bottom: 18%;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: black;
+        transform: translate(-50%, -50%);
+        animation: fadeInOut 1.4s infinite linear;
+        transition: 2s;
+    }
+    @keyframes fadeInOut {
+        50% {
+            opacity: 0;
+        }
+    }
+}
+@media (max-width: 800px) {
+    .signup-loading-animation {
+        cursor: default;
+        position: relative;
+        left: 50%;
+        /* position: absolute; */
+        /* left: 50%; */
+        /* bottom: 14%; */
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: black;
+        transform: translateX(-50%);
+        margin-top: 30px;
+        animation: fadeInOut 1.4s infinite linear;
+        transition: 2s;
+    }
+}
+
+/* Error - Popup */
+/*####################################################*/
+@media (min-width: 800px) {
+    .signup-error-popup {
+        color: rgb(255, 255, 255);
+        position: absolute;
+        left: 50%;
+        top: 0%;
         transform: translate(-50%, 0%);
+        background-color: rgb(220, 0, 0);
+        padding: 15px 25px;
+        border-radius: 0px 0px 5px 5px;
+        font-size: 20px;
+    }
+}
+@media (max-width: 800px) {
+    .signup-error-popup {
+        color: rgb(220, 0, 0);
+        position: relative;
+        left: 50%;
+        width: 100%;
+        transform: translateX(-50%);
         background-color: transparent;
-        padding: 0px;
-        border-radius: 0px;
         text-align: center;
+        margin-top: 20px;
         font-size: 15px;
     }
 }

@@ -10,7 +10,7 @@ import Signup from "./Pages/Signup/Signup";
 import Post from "./Pages/Post/Post";
 import Profile from "./Pages/Profile";
 import MyAccount from "./Pages/MyAccount";
-import ProductDetails from "./Pages/ProductDetails";
+import ProductDetails from "./Pages/ProductDetails/ProductDetails";
 
 const theme = createMuiTheme({
     palette: {

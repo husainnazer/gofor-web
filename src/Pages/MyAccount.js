@@ -6,7 +6,12 @@ class MyAccount extends Component {
         return (
             <>
                 <div className="image-onPage-div">
-                    <img alt="newone" className="image-onPage" src={Photo} />
+                    <img
+                        alt="newone"
+                        onClick={this.runthis}
+                        className="image-onPage"
+                        src={Photo}
+                    />
                 </div>
                 <div className="product-title-new">
                     <h1>iPhone SE</h1>

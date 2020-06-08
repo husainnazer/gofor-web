@@ -9,6 +9,7 @@ import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import "./Signup.css";
 import Logo from "../../logo.png";
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
+import CustomLink from "../../CustomLink";
 
 class Signup extends Component {
     constructor() {
@@ -16,7 +17,7 @@ class Signup extends Component {
         this.state = {
             email: "",
             password: "",
-            userName: "",
+            name: "",
             loading: false,
             authenticated: false,
             generalErrorMessage: null,
@@ -32,20 +33,19 @@ class Signup extends Component {
             .signInWithPopup(provider)
             .then((result) => {
                 const userCredentials = {
-                    userName: result.user.displayName,
+                    uid: result.user.uid,
+                    name: result.user.displayName,
                     email: result.user.email,
-                    createdAt: new Date().toISOString(),
-                    userId: result.user.uid,
+                    createdAt: new Date(),
                 };
                 fire.firestore()
                     .collection("users")
-                    .doc(`${result.user.displayName}`)
+                    .doc(`${result.user.uid}`)
                     .get()
                     .then((doc) => {
                         if (!doc.exists) {
                             fire.firestore()
-                                .collection("users")
-                                .doc(`${result.user.displayName}`)
+                                .doc(`users/${result.user.uid}`)
                                 .set(userCredentials)
                                 .then(() => console.log("success"))
                                 .catch((error) => {
@@ -62,29 +62,29 @@ class Signup extends Component {
     handleSubmit = () => {
         this.setState({ loading: true });
         const newUser = {
+            name: this.state.name,
             email: this.state.email,
             password: this.state.password,
-            userName: this.state.userName,
         };
         let userId;
         fire.auth()
             .createUserWithEmailAndPassword(newUser.email, newUser.password)
             .then((data) => {
                 return data.user.updateProfile({
-                    displayName: newUser.userName,
+                    displayName: newUser.name,
                 });
             })
             .then(() => {
                 userId = fire.auth().currentUser.uid;
                 const userCredentials = {
-                    userName: newUser.userName,
+                    uid: userId,
+                    name: newUser.name,
                     email: newUser.email,
-                    createdAt: new Date().toISOString(),
-                    userId: userId,
+                    createdAt: new Date(),
                 };
                 fire.firestore()
                     .collection("users")
-                    .doc(`${newUser.userName}`)
+                    .doc(`${userId}`)
                     .set(userCredentials);
             })
             .catch((error) => {
@@ -98,7 +98,7 @@ class Signup extends Component {
                         emptyErrorMessage: "Password must not be empty",
                     });
                 }
-                if (this.state.userName === "") {
+                if (this.state.name === "") {
                     this.setState({
                         emptyErrorMessage: "Name must not be empty",
                     });
@@ -106,7 +106,7 @@ class Signup extends Component {
                 if (
                     this.state.email !== "" &&
                     this.state.password !== "" &&
-                    this.state.userName !== ""
+                    this.state.name !== ""
                 ) {
                     if (error.code === "auth/invalid-email") {
                         this.setState({
@@ -158,27 +158,28 @@ class Signup extends Component {
                         />
                     </Link>
                     <h1 className="signup-header">Create an account</h1>
-                    <div className="signup-userName-input-div">
+                    <div className="signup-name-input-div">
                         <input
-                            id="userName"
-                            name="userName"
+                            id="name"
+                            name="name"
                             autoComplete="off"
-                            value={this.state.userName}
+                            value={this.state.name}
                             spellCheck="false"
                             className={
-                                this.state.userName !== ""
-                                    ? "signup-userName-input-hasValue"
-                                    : "signup-userName-input"
+                                this.state.name !== ""
+                                    ? "signup-name-input-hasValue"
+                                    : "signup-name-input"
                             }
                             onChange={this.handleChange}
                         />
-                        <label htmlFor="userName">Enter Name</label>
+                        <label htmlFor="name">Enter Name</label>
                     </div>
                     <div className="signup-email-input-div">
                         <input
                             id="email"
                             name="email"
                             autoComplete="off"
+                            autoCapitalize="off"
                             value={this.state.email}
                             spellCheck="false"
                             className={
@@ -214,6 +215,7 @@ class Signup extends Component {
                     >
                         <div className="signup-button-text">Signup</div>
                     </div>
+                    {loading && <div class="signup-loading-animation"></div>}
                     {generalErrorMessage && (
                         <div className="signup-error-popup">
                             <FontAwesomeIcon
@@ -250,17 +252,21 @@ class Signup extends Component {
                             Signup with Google
                         </div>
                     </div>
-                    <div
-                        style={loading ? { opacity: 1 } : { opacity: 0 }}
-                        class="signup-loading-animation"
-                    ></div>
-                    <Link
+                    <CustomLink
+                        style={loading ? { opacity: 0 } : { opacity: 1 }}
+                        tag="div"
+                        to="/login"
+                        className="login-link"
+                    >
+                        Have an account? Login
+                    </CustomLink>
+                    {/* <Link
                         style={loading ? { opacity: 0 } : { opacity: 1 }}
                         className="login-link"
                         to="/login"
                     >
-                        {`Have an account? Login`}
-                    </Link>
+                        Have an account? Login
+                    </Link> */}
                 </>
             );
         } else {
