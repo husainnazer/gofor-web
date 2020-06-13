@@ -38,11 +38,11 @@
         padding: 7px;
         cursor: pointer;
         font-size: 30px;
-        color: rgba(0, 0, 0, 0.7);
+        color: rgb(46, 46, 46);
         transition: 0.3s;
     }
     .post-button-onBar:hover {
-        color: rgb(0, 0, 0);
+        color: rgb(18, 18, 18);
         transform: translateY(-3px);
     }
 }
@@ -128,13 +128,13 @@
     font-size: 25px;
 }
 .user-icon-onBar {
-    color: rgba(0, 0, 0, 0.7);
+    color: rgb(46, 46, 46);
     transition: 0.3s;
 }
 .user-menu-button-onBar:hover .user-icon-onBar,
 .user-menu-button-onBar:hover .user-menu-dropDown {
     transform: translateX(-10px);
-    color: rgb(0, 0, 0);
+    color: rgb(18, 18, 18);
 }
 .user-menu-button-onBar:focus .user-icon-onBar,
 .user-menu-button-onBar:focus .user-menu-dropDown {
@@ -161,7 +161,8 @@
     align-items: center;
     flex-direction: column;
     border-radius: 5px;
-    background-color: rgb(100, 100, 100);
+    background-color: rgb(46, 46, 46);
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.2);
     opacity: 0;
     pointer-events: none;
 }
@@ -171,7 +172,7 @@
     pointer-events: all;
 }
 .menu-list-div div {
-    color: rgb(200, 200, 200);
+    color: rgb(233, 233, 233);
     cursor: pointer;
     width: 100%;
     height: 100%;
@@ -180,7 +181,7 @@
     align-items: center;
 }
 .menu-list-div div:hover {
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgb(18, 18, 18);
 }
 .menu-list-div .profile-button-inMenu {
     border-radius: 5px 5px 0px 0px;

@@ -114,6 +114,7 @@ class Home extends Component {
                                             <Card
                                                 imageUrl={product.imageUrl}
                                                 price={product.price}
+                                                title={product.title}
                                             />
                                         </Link>
                                     </Grid>

@@ -25,6 +25,12 @@ class Login extends Component {
         };
     }
 
+    handleInputKeyDown = (event) => {
+        if (event.keyCode === 13) {
+            this.refs.password.focus();
+        }
+    };
+
     handlePasswordKeyDown = (event) => {
         if (event.keyCode === 13) {
             this.handleSubmit();
@@ -147,9 +153,11 @@ class Login extends Component {
                         <input
                             id="email"
                             name="email"
+                            ref="email"
                             autoComplete="off"
                             autoCapitalize="off"
                             value={this.state.email}
+                            onKeyDown={this.handleInputKeyDown}
                             spellCheck="false"
                             className={
                                 this.state.email !== ""
@@ -164,6 +172,7 @@ class Login extends Component {
                         <input
                             id="password"
                             name="password"
+                            ref="password"
                             type="password"
                             autoComplete="off"
                             value={this.state.password}
@@ -210,9 +219,7 @@ class Login extends Component {
                         OR
                     </div>
                     <div
-                        style={
-                            loading ? { opacity: 0, zIndex: 0 } : { opacity: 1 }
-                        }
+                        style={loading ? { display: "none" } : { opacity: 1 }}
                         onClick={this.handleGoogleSignIn}
                         className="google-button-container"
                     >
@@ -222,7 +229,7 @@ class Login extends Component {
                         <div className="google-text">Signin with Google</div>
                     </div>
                     <CustomLink
-                        style={loading ? { opacity: 0 } : { opacity: 1 }}
+                        style={loading ? { display: "none" } : { opacity: 1 }}
                         tag="div"
                         to="/signup"
                         className="signup-link"

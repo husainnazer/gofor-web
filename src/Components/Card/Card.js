@@ -7,15 +7,18 @@ class Card extends Component {
     };
 
     render() {
-        const { imageUrl, price } = this.props;
+        const { imageUrl, price, title } = this.props;
         return (
             <>
                 <div className="wrapper">
                     <div className="card">
                         <img alt="productimage" src={imageUrl} />
-                        <div className="info">
-                            <p>₹ {this.formatNumber(price)}</p>
-                        </div>
+                        {/* <div className="info"> */}
+                        <p className="info-price">
+                            ₹ {this.formatNumber(price)}
+                        </p>
+                        <p className="info-title">{title}</p>
+                        {/* </div> */}
                     </div>
                 </div>
             </>

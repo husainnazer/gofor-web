@@ -4,10 +4,9 @@
     .login-header {
         font-weight: 300;
         cursor: default;
-        position: absolute;
-        left: 50%;
-        top: 10%;
-        transform: translateX(-50%);
+        position: relative;
+        text-align: center;
+        margin-top: 100px;
     }
 }
 @media (max-width: 800px) {
@@ -26,11 +25,11 @@
 /*####################################################*/
 @media (min-width: 800px) {
     .email-input-div {
-        position: absolute;
-        width: 25%;
+        position: relative;
+        margin-top: 65px;
+        width: 400px;
         left: 50%;
-        top: 35%;
-        transform: translate(-50%, -100%);
+        transform: translateX(-50%);
     }
     .email-input {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -150,11 +149,11 @@
 /*####################################################*/
 @media (min-width: 800px) {
     .password-input-div {
-        position: absolute;
+        position: relative;
+        margin-top: 70px;
+        width: 400px;
         left: 50%;
-        top: 50%;
-        width: 25%;
-        transform: translate(-50%, -100%);
+        transform: translateX(-50%);
     }
     .password-input {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -275,18 +274,20 @@
 @media (min-width: 800px) {
     .login-button-container {
         cursor: pointer;
-        position: absolute;
+        position: relative;
+        text-align: center;
+        width: 15%;
+        margin-top: 20px;
         left: 50%;
-        top: 60%;
         color: rgba(0, 0, 0, 0.7);
         padding: 30px 0px 30px 0px;
         font-size: 50px;
-        transform: translate(-50%, -50%);
+        transform: translateX(-50%);
         transition: 0.5s;
     }
     .login-button-container:hover {
         color: rgba(0, 0, 0, 1);
-        transform: translate(-50%, -55%);
+        transform: translate(-50%, -4%);
     }
 }
 @media (max-width: 800px) {
@@ -317,14 +318,14 @@
 @media (min-width: 800px) {
     .or-seperation {
         cursor: default;
-        position: absolute;
-        top: 68%;
+        position: relative;
         left: 50%;
         width: 40%;
         height: 50px;
         line-height: 50px;
         text-align: center;
-        transform: translate(-50%);
+        margin-top: 10px;
+        transform: translateX(-50%);
         transition: 0.5s;
     }
     .or-seperation::before,
@@ -337,10 +338,10 @@
         content: "";
     }
     .or-seperation::before {
-        left: 0%;
+        left: 55%;
     }
     .or-seperation::after {
-        right: 0%;
+        right: 55%;
     }
 }
 @media (max-width: 800px) {
@@ -378,13 +379,15 @@
     .google-button-container {
         z-index: 1;
         cursor: pointer;
-        position: absolute;
+        position: relative;
+        width: 300px;
+        text-align: center;
+        margin-top: 30px;
         color: rgba(0, 0, 0, 0.7);
         left: 50%;
-        top: 81%;
         padding: 10px;
         font-size: 30px;
-        transform: translate(-50%, -50%);
+        transform: translateX(-50%);
         transition: 0.5s;
     }
     .google-button-container:hover {
@@ -452,9 +455,11 @@
 /*####################################################*/
 @media (min-width: 800px) {
     .signup-link {
-        position: absolute;
-        bottom: 5%;
+        position: relative;
+        width: 190px;
         left: 50%;
+        margin: 50px 0px 30px 0px;
+        text-align: center;
         padding-bottom: 3px;
         text-decoration: none;
         color: rgba(0, 0, 0, 0.7);
@@ -504,14 +509,14 @@
 @media (min-width: 800px) {
     .loading-animation {
         cursor: default;
-        position: absolute;
+        position: relative;
         left: 50%;
-        bottom: 18%;
+        margin-top: 10px;
         width: 50px;
         height: 50px;
         border-radius: 50%;
         background-color: black;
-        transform: translate(-50%, -50%);
+        transform: translateX(-50%);
         animation: fadeInOut 1.4s infinite linear;
         transition: 2s;
     }
@@ -542,9 +547,9 @@
 @media (min-width: 800px) {
     .signin-error-popup {
         color: rgb(255, 255, 255);
-        position: absolute;
+        position: fixed;
         left: 50%;
-        top: 0%;
+        top: 0px;
         transform: translate(-50%, 0%);
         background-color: rgb(220, 0, 0);
         padding: 15px 25px;

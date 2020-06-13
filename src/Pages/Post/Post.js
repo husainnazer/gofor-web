@@ -105,7 +105,6 @@ class PostProduct extends Component {
             price !== "" &&
             imageUrl !== ""
         ) {
-            // const noImgUrl = 'https://firebasestorage.googleapis.com/v0/b/gofor-efc3a.appspot.com/o/no-image.png?alt=media'
             const newProduct = {
                 title: title.trim(),
                 description: description.trim(),
@@ -114,7 +113,7 @@ class PostProduct extends Component {
                 price: price,
                 imageUrl: imageUrl,
                 //location: this.state.location,
-                createdAt: new Date(),
+                createdAt: new Date().toISOString(),
             };
             fire.firestore()
                 .collection("products")

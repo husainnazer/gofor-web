@@ -241,7 +241,7 @@ class Signup extends Component {
                         OR
                     </div>
                     <div
-                        style={loading ? { opacity: 0 } : { opacity: 1 }}
+                        style={loading ? { display: "none" } : { opacity: 1 }}
                         onClick={this.handleGoogleSignIn}
                         className="signup-google-button-container"
                     >
@@ -253,20 +253,13 @@ class Signup extends Component {
                         </div>
                     </div>
                     <CustomLink
-                        style={loading ? { opacity: 0 } : { opacity: 1 }}
+                        style={loading ? { display: "none" } : { opacity: 1 }}
                         tag="div"
                         to="/login"
                         className="login-link"
                     >
                         Have an account? Login
                     </CustomLink>
-                    {/* <Link
-                        style={loading ? { opacity: 0 } : { opacity: 1 }}
-                        className="login-link"
-                        to="/login"
-                    >
-                        Have an account? Login
-                    </Link> */}
                 </>
             );
         } else {
