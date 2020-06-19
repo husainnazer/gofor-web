@@ -11,6 +11,7 @@ import Post from "./Pages/Post/Post";
 import Profile from "./Pages/Profile";
 import MyAccount from "./Pages/MyAccount";
 import ProductDetails from "./Pages/ProductDetails/ProductDetails";
+import Chat from "./Pages/Chat/Chat";
 
 const theme = createMuiTheme({
     palette: {
@@ -41,6 +42,11 @@ class App extends Component {
                             <Route exact path="/login" component={Login} />
                             <Route exact path="/signup" component={Signup} />
                             <Route exact path="/post" component={Post} />
+                            <Route
+                                exact
+                                path="/chat/:chatId"
+                                component={Chat}
+                            />
                             <Route
                                 exact
                                 path="/account"

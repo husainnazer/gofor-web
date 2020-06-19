@@ -13,12 +13,10 @@ class Card extends Component {
                 <div className="wrapper">
                     <div className="card">
                         <img alt="productimage" src={imageUrl} />
-                        {/* <div className="info"> */}
                         <p className="info-price">
                             ₹ {this.formatNumber(price)}
                         </p>
                         <p className="info-title">{title}</p>
-                        {/* </div> */}
                     </div>
                 </div>
             </>
