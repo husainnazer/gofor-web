@@ -64,11 +64,11 @@
 .product-details-buy-button {
     background-color: rgb(59, 59, 59);
     color: rgb(241, 243, 244);
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
     text-align: center;
     padding: 15px 0;
     border-radius: 5px;
     cursor: pointer;
+    transition: 0.2s;
 }
 .product-details-buy-button:hover {
     background-color: rgb(18, 18, 18);
@@ -90,6 +90,7 @@
     padding: 15px 0;
     border-radius: 5px;
     cursor: pointer;
+    transition: 0.2s;
 }
 .product-details-show-button:hover {
     background-color: rgb(18, 18, 18);
@@ -101,7 +102,11 @@
     padding: 15px 0;
     border-radius: 5px;
     cursor: pointer;
+    transition: 0.2s;
 }
 .product-details-contact-seller-button:hover {
     background-color: rgb(18, 18, 18);
+}
+.contact-seller {
+    transform: translateX(-50%);
 }

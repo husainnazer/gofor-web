@@ -1,9 +1,9 @@
 .chat-component-container {
     position: absolute;
     padding-top: 10px;
-    top: 50%;
+    top: 45%;
     left: 50%;
-    max-height: 90%;
+    height: 75%;
     width: 95%;
     border-radius: 5px;
     background-color: rgb(255, 255, 255);
@@ -22,8 +22,9 @@
 .chat-message-input-div {
     cursor: text;
     position: absolute;
-    bottom: 20px;
+    top: 50%;
     left: 20px;
+    transform: translateY(-50%);
     border-radius: 5px;
     width: 90%;
     height: 50px;
@@ -112,8 +113,9 @@
 .chat-message-send-button {
     cursor: pointer;
     position: absolute;
-    bottom: 20px;
+    top: 50%;
     right: 20px;
+    transform: translateY(-50%);
     border-radius: 5px;
     width: 70px;
     height: 50px;
@@ -197,9 +199,9 @@
     margin-left: 3px;
 }
 .msg-self .msg-box {
-    border-radius: 25px 25px 3p 25px;
+    border-radius: 25px 25px 3px 25px;
     /* background: #2671ff; */
-    background-color: rgb(60, 60, 60);
+    background-color: green;
     float: right;
 }
 .msg-self .user-img {
@@ -215,10 +217,13 @@
 }
 
 .chat-message-input-container {
-    position: sticky;
-    bottom: 0px;
-    background-color: white;
-    width: 100%;
+    position: fixed;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: transparent;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.05);
+    width: 95%;
     height: 80px;
-    border-radius: 0 0 5px 5px;
+    border-radius: 5px;
 }
