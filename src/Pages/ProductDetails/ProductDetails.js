@@ -7,6 +7,8 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import { useParams, useHistory } from "react-router-dom";
 
 import "./ProductDetails.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 
 const ProductDetails = () => {
     const [loading, setLoading] = useState(true);
@@ -25,6 +27,8 @@ const ProductDetails = () => {
     const [imageHeight, setImageHeight] = useState("");
     const [showEmail, setShowEmail] = useState(false);
     const [showName, setShowName] = useState(false);
+    const [authenticated, setAuthenticated] = useState(false);
+    const [error, setError] = useState("");
     // const [chatId, setChatId] = useState("");
 
     const { productId } = useParams();
@@ -52,6 +56,14 @@ const ProductDetails = () => {
                         setLoading(false);
                     });
             });
+        fire.auth().onAuthStateChanged((user) => {
+            if (user) {
+                setAuthenticated(true);
+            } else {
+                setAuthenticated(false);
+            }
+        });
+        console.log("hello");
     }, [productId]);
 
     dayjs.extend(relativeTime);
@@ -66,18 +78,27 @@ const ProductDetails = () => {
 
     const onContactSeller = () => {
         setChatLoading(true);
-        fire.firestore()
-            .collection("chats")
-            .add({
-                messages: [],
-                buyer: fire.auth().currentUser.uid,
-                seller: sellerUid,
-                createdAt: new Date().toISOString(),
-            })
-            .then((doc) => {
-                setChatLoading(false);
-                history.push(`/chat/${doc.id}`);
-            });
+        if (authenticated) {
+            fire.firestore()
+                .collection("chats")
+                .add({
+                    messages: [],
+                    buyer: fire.auth().currentUser.uid,
+                    seller: sellerUid,
+                    createdAt: new Date().toISOString(),
+                })
+                .then((doc) => {
+                    setChatLoading(false);
+                    history.push(`/chat/${doc.id}`);
+                })
+                .catch((err) => {
+                    console.log(err);
+                    setError(err);
+                });
+        } else {
+            setChatLoading(false);
+            setError("Login to your account to start a conversation");
+        }
     };
 
     if (!loading) {
@@ -142,6 +163,15 @@ const ProductDetails = () => {
                             style={{ transform: `translateX(${-50}%)` }}
                             className="loading-animation-scroll-home"
                         ></div>
+                    )}
+                    {error && (
+                        <div className="universal-error-popup">
+                            <FontAwesomeIcon
+                                style={{ marginRight: "10px" }}
+                                icon={faExclamationTriangle}
+                            />
+                            {error}
+                        </div>
                     )}
                 </div>
             </>

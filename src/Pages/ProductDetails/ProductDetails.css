@@ -107,6 +107,3 @@
 .product-details-contact-seller-button:hover {
     background-color: rgb(18, 18, 18);
 }
-.contact-seller {
-    transform: translateX(-50%);
-}

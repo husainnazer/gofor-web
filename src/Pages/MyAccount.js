@@ -1,23 +1,31 @@
-import React, { Component } from "react";
-import Photo from "../iphone.jpg";
+import React, { useState, useEffect } from "react";
+import fire from "../firebase";
+import "firebase/auth";
 
-class MyAccount extends Component {
-    render() {
-        return (
-            <>
-                <div className="image-onPage-div">
-                    <img
-                        alt="newone"
-                        onClick={this.runthis}
-                        className="image-onPage"
-                        src={Photo}
-                    />
-                </div>
-                <div className="product-title-new">
-                    <h1>iPhone SE</h1>
-                </div>
-            </>
-        );
-    }
-}
+const MyAccount = () => {
+    const [chats, setChats] = useState([]);
+
+    useEffect(() => {
+        const { uid } = fire.auth().currentUser;
+        let tempChats = [];
+        fire.firestore()
+            .collection("chats")
+            .where("seller", "==", uid)
+            .get()
+            .then((data) => {
+                data.forEach((doc) => {
+                    console.log(doc);
+                });
+            });
+    }, []);
+
+    return (
+        <>
+            {chats.map((chat) => (
+                <h1>{chat.chatId}</h1>
+            ))}
+        </>
+    );
+};
+
 export default MyAccount;

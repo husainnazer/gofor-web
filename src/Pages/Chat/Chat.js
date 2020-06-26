@@ -18,48 +18,62 @@ const Chat = () => {
         fire.firestore()
             .collection("chats")
             .doc(chatId)
-            .get()
-            .then((data) => {
+            .onSnapshot((data) => {
                 let messagesArr = [];
                 data.data().messages.forEach((doc) => {
                     messagesArr.push(doc);
                 });
                 setMessages(messagesArr);
             });
-    }, [messages, chatId]);
+    }, [chatId]);
 
     const onMessageInput = (event) => {
         setMessage(event.target.value);
-        console.log("temp", event.target.value);
+        // console.log("temp", event.target.value);
     };
 
     const onKeyPress = (event) => {
         if (event.keyCode === 13) {
             onMessageSubmit();
         }
+        console.log(event.keyCode);
     };
 
     const onMessageSubmit = () => {
-        setMessage("");
-        const newMessage = {
-            content: message,
-            createdAt: new Date().toISOString(),
-            uid: fire.auth().currentUser.uid,
-        };
-        fire.firestore()
-            .collection("chats")
-            .doc(chatId)
-            .update({
-                messages: firebase.firestore.FieldValue.arrayUnion(newMessage),
-            })
-            .then(() => console.log("success"))
-            .catch((err) => console.log(err));
+        if (message.trim() !== "") {
+            const newMessage = {
+                content: message,
+                createdAt: new Date().toISOString(),
+                uid: fire.auth().currentUser.uid,
+            };
+            fire.firestore()
+                .collection("chats")
+                .doc(chatId)
+                .update({
+                    messages: firebase.firestore.FieldValue.arrayUnion(
+                        newMessage
+                    ),
+                })
+                .then(() => {
+                    console.log("success");
+                    setMessage("");
+                })
+                .catch((err) => console.log(err));
+        }
     };
+
     return (
         <>
             <div className="chat-component-container">
                 {messages.map((data) => (
-                    <article className="msg-container msg-self" id="msg-0">
+                    <article
+                        className={
+                            data.uid === fire.auth().currentUser.uid
+                                ? "msg-container msg-self"
+                                : "msg-container msg-remote"
+                        }
+                        id="msg-0"
+                    >
                         <div className="msg-box">
                             <div className="flr">
                                 <div className="messages">
@@ -76,21 +90,6 @@ const Chat = () => {
                         </div>
                     </article>
                 ))}
-                {/* <article className="msg-container msg-self" id="msg-0">
-                    <div className="msg-box">
-                        <div className="flr">
-                            <div className="messages">
-                                <p className="msg" id="msg-1">
-                                    Lorem ipsum
-                                </p>
-                            </div>
-                            <span className="timestamp">
-                                <span className="username">Name</span>&bull;
-                                <span className="posttime">Now</span>
-                            </span>
-                        </div>
-                    </div>
-                </article> */}
                 {/* <article className="msg-container msg-remote" id="msg-0">
                     <div className="msg-box">
                         <div className="flr">
@@ -100,7 +99,7 @@ const Chat = () => {
                                 </p>
                             </div>
                             <span className="timestamp">
-                                <span className="username">Name</span>&bull;
+                                <span className="username"></span>&bull;
                                 <span className="posttime">Now</span>
                             </span>
                         </div>
