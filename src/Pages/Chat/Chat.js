@@ -11,6 +11,7 @@ import { useParams } from "react-router-dom";
 const Chat = () => {
     const [message, setMessage] = useState("");
     const [messages, setMessages] = useState([]);
+    const [sellerUid, setSellerUid] = useState("");
 
     const { chatId } = useParams();
 
@@ -24,6 +25,7 @@ const Chat = () => {
                     messagesArr.push(doc);
                 });
                 setMessages(messagesArr);
+                setSellerUid(data.data().seller);
             });
     }, [chatId]);
 

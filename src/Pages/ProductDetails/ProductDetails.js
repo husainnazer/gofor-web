@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import firebase from "firebase/app";
 import fire from "../../firebase";
 import "firebase/firestore";
 import dayjs from "dayjs";
@@ -20,6 +21,7 @@ const ProductDetails = () => {
     const [price, setPrice] = useState("");
     const [imageUrl, setImageUrl] = useState("");
     const [createdAt, setCreatedAt] = useState("");
+    const [currentUid, setCurrentUid] = useState("");
     const [sellerUid, setSellerUid] = useState("");
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
@@ -29,7 +31,7 @@ const ProductDetails = () => {
     const [showName, setShowName] = useState(false);
     const [authenticated, setAuthenticated] = useState(false);
     const [error, setError] = useState("");
-    // const [chatId, setChatId] = useState("");
+    const [userChats, setUserChats] = useState([]);
 
     const { productId } = useParams();
 
@@ -59,11 +61,18 @@ const ProductDetails = () => {
         fire.auth().onAuthStateChanged((user) => {
             if (user) {
                 setAuthenticated(true);
+                setCurrentUid(user.uid);
+                fire.firestore()
+                    .collection("users")
+                    .doc(user.uid)
+                    .get()
+                    .then((doc) => {
+                        setUserChats(doc.data().chats);
+                    });
             } else {
                 setAuthenticated(false);
             }
         });
-        console.log("hello");
     }, [productId]);
 
     dayjs.extend(relativeTime);
@@ -79,26 +88,71 @@ const ProductDetails = () => {
     const onContactSeller = () => {
         setChatLoading(true);
         if (authenticated) {
-            fire.firestore()
-                .collection("chats")
-                .add({
-                    messages: [],
-                    buyer: fire.auth().currentUser.uid,
-                    seller: sellerUid,
-                    createdAt: new Date().toISOString(),
-                })
-                .then((doc) => {
-                    setChatLoading(false);
-                    history.push(`/chat/${doc.id}`);
-                })
-                .catch((err) => {
-                    console.log(err);
-                    setError(err);
-                });
+            if (sellerUid !== currentUid) {
+                if (!userChats.some((list) => list.productId === productId)) {
+                    fire.firestore()
+                        .collection("chats")
+                        .add({
+                            messages: [],
+                            buyer: currentUid,
+                            seller: sellerUid,
+                            createdAt: new Date().toISOString(),
+                        })
+                        .then((doc) => {
+                            const newChatList = {
+                                productId: productId,
+                                chatId: doc.id,
+                            };
+                            fire.firestore()
+                                .collection("users")
+                                .doc(currentUid)
+                                .update({
+                                    chats: firebase.firestore.FieldValue.arrayUnion(
+                                        newChatList
+                                    ),
+                                })
+                                .then(() => {
+                                    fire.firestore()
+                                        .collection("users")
+                                        .doc(sellerUid)
+                                        .update({
+                                            chats: firebase.firestore.FieldValue.arrayUnion(
+                                                newChatList
+                                            ),
+                                        });
+                                })
+                                .catch((err) => {
+                                    console.log(err);
+                                });
+                            setChatLoading(false);
+                            history.push(`/chat/${doc.id}`);
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                            errorFunc(err);
+                        });
+                } else {
+                    userChats.filter((list) => {
+                        if (list.productId === productId) {
+                            history.push(`/chat/${list.chatId}`);
+                        }
+                    });
+                }
+            } else {
+                setChatLoading(false);
+                errorFunc("You cant talk to you, knucklehead");
+            }
         } else {
             setChatLoading(false);
-            setError("Login to your account to start a conversation");
+            errorFunc("Login to your account to start a conversation");
         }
+    };
+
+    const errorFunc = (err) => {
+        setError(err);
+        setTimeout(() => {
+            setError("");
+        }, 3000);
     };
 
     if (!loading) {

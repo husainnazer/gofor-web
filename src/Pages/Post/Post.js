@@ -91,6 +91,7 @@ class PostProduct extends Component {
             descriptionErrorMessage: null,
             priceErrorMessage: null,
             imageInputErrorMessage: null,
+            regexp: /^[0-9\b]+$/,
         };
     }
 
@@ -142,41 +143,45 @@ class PostProduct extends Component {
         switch (step) {
             case 1:
                 if (category === "") {
-                    this.setState({
-                        categoryErrorMessage: "Select any category",
-                    });
+                    this.errorFunc(
+                        "Select any category",
+                        "categoryErrorMessage"
+                    );
                 } else {
                     this.setState({ step: step + 1 });
                 }
                 break;
             case 2:
                 if (title === "") {
-                    this.setState({ titleErrorMessage: "Must not be empty" });
+                    this.errorFunc("Must not be empty", "titleErrorMessage");
                 } else {
                     this.setState({ step: step + 1 });
                 }
                 break;
             case 3:
                 if (description === "") {
-                    this.setState({
-                        descriptionErrorMessage: "Must not be empty",
-                    });
+                    this.errorFunc(
+                        "Must not be empty",
+                        "descriptionErrorMessage"
+                    );
                 } else {
                     this.setState({ step: step + 1 });
                 }
                 break;
             case 4:
                 if (price === "") {
-                    this.setState({ priceErrorMessage: "Must not be empty" });
+                    this.errorFunc("Must not be empty", "priceErrorMessage");
                 } else {
+                    // const priceInt = parseInt(this.state.price, 10)
                     this.setState({ step: step + 1 });
                 }
                 break;
             case 5:
                 if (imageUrl === "") {
-                    this.setState({
-                        imageInputErrorMessage: "Add Photo of your product",
-                    });
+                    this.errorFunc(
+                        "Add Photo of your product",
+                        "imageInputErrorMessage"
+                    );
                 } else {
                     this.setState({ step: step + 1 });
                 }
@@ -190,6 +195,25 @@ class PostProduct extends Component {
     handlePreStep = () => {
         const { step } = this.state;
         this.setState({ step: step - 1 });
+    };
+
+    errorFunc = (err, name) => {
+        this.setState({ [name]: err });
+        setTimeout(() => {
+            this.setState({ [name]: "" });
+        }, 3000);
+    };
+
+    handlePriceChange = (event) => {
+        if (
+            event.target.value === "" ||
+            this.state.regexp.test(event.target.value)
+        ) {
+            this.setState({ price: event.target.value });
+            console.log(this.state.price);
+        } else {
+            this.errorFunc("numbers only", "priceErrorMessage");
+        }
     };
 
     handleChange = (event) => {
@@ -371,7 +395,7 @@ class PostProduct extends Component {
                                     />
                                     <label htmlFor="title">
                                         {title !== ""
-                                            ? "Make it short"
+                                            ? "Some Hints"
                                             : "Enter title"}
                                     </label>
                                     <p className="title-length">
@@ -422,7 +446,7 @@ class PostProduct extends Component {
                                     ></textarea>
                                     <label htmlFor="description">
                                         {description !== ""
-                                            ? "Make it short"
+                                            ? "Some Hints"
                                             : "Enter description"}
                                     </label>
                                     <p className="description-length">
@@ -471,11 +495,11 @@ class PostProduct extends Component {
                                                 ? "price-input-hasValue"
                                                 : "price-input"
                                         }
-                                        onChange={this.handleChange}
+                                        onChange={this.handlePriceChange}
                                     />
                                     <label htmlFor="price">
                                         {price !== ""
-                                            ? "Put on a really nice tag"
+                                            ? "Some Hints"
                                             : "Enter price"}
                                     </label>
                                 </div>

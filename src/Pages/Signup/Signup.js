@@ -36,7 +36,8 @@ class Signup extends Component {
                     uid: result.user.uid,
                     name: result.user.displayName,
                     email: result.user.email,
-                    createdAt: new Date(),
+                    createdAt: new Date().toISOString(),
+                    chats: [],
                 };
                 fire.firestore()
                     .collection("users")
@@ -80,7 +81,8 @@ class Signup extends Component {
                     uid: userId,
                     name: newUser.name,
                     email: newUser.email,
-                    createdAt: new Date(),
+                    createdAt: new Date().toISOString(),
+                    chats: [],
                 };
                 fire.firestore()
                     .collection("users")

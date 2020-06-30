@@ -47,8 +47,9 @@ class Login extends Component {
                 const userCredentials = {
                     name: result.user.displayName,
                     email: result.user.email,
-                    createdAt: new Date(),
+                    createdAt: new Date().toISOString(),
                     uid: result.user.uid,
+                    chats: [],
                 };
                 fire.firestore()
                     .collection("users")

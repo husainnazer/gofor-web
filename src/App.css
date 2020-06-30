@@ -95,3 +95,16 @@ body {
     border-radius: 0px 0px 5px 5px;
     font-size: 20px;
 }
+
+.chat-list-container {
+    margin: 20px 50px;
+    cursor: pointer;
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid rgb(46, 46, 46);
+    transition: 0.3s;
+}
+.chat-list-container:hover {
+    color: rgb(200, 200, 200);
+    background-color: rgb(46, 46, 46);
+}

@@ -147,7 +147,6 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -100%);
-        transition: all 0.5s ease-out;
     }
 
     .title-input {
@@ -220,7 +219,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -100%);
-        transition: all 0.5s ease-out;
+        /* transition: all 0.5s ease-out; */
     }
     .title-input {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -244,7 +243,7 @@
         transform: translateY(-50%);
         font-size: 25px;
         color: rgba(0, 0, 0, 0.5);
-        transition: all 0.5s ease-out;
+        transition: 0.5s;
     }
 
     .title-input:focus {
@@ -276,7 +275,7 @@
         left: 10px;
         font-size: 25px;
         color: rgba(0, 0, 0, 0.5);
-        transition: all 0.5s ease-out;
+        transition: 0.5s;
     }
 
     .title-length {
@@ -439,7 +438,6 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -100%);
-        transition: all 0.5s ease-out;
     }
     .price-input {
         position: relative;
@@ -791,14 +789,16 @@
 @media (min-width: 800px) {
     .post-error-popup {
         color: rgb(255, 255, 255);
-        position: absolute;
+        position: fixed;
         left: 50%;
-        top: 0%;
-        transform: translate(-50%, 0%);
-        background-color: rgb(220, 0, 0);
+        top: 15px;
+        transform: translateX(-50%);
+        background: rgb(219, 19, 19);
+        box-shadow: 10px 10px 20px -5px rgba(0, 0, 0, 0.5);
         padding: 15px 25px;
-        border-radius: 0px 0px 5px 5px;
+        border-radius: 10px;
         font-size: 20px;
+        transition: 0.5s;
     }
 }
 @media (max-width: 800px) {
@@ -809,7 +809,7 @@
         padding: 5px 0px;
         left: 50%;
         top: 5px;
-        transform: translate(-50%, 0%);
+        transform: translateX(-50%);
         font-size: 15px;
     }
 }

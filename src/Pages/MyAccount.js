@@ -1,28 +1,34 @@
 import React, { useState, useEffect } from "react";
 import fire from "../firebase";
 import "firebase/auth";
+import { useHistory } from "react-router-dom";
 
 const MyAccount = () => {
-    const [chats, setChats] = useState([]);
+    const [arr, setArr] = useState([]);
 
     useEffect(() => {
-        const { uid } = fire.auth().currentUser;
-        let tempChats = [];
         fire.firestore()
-            .collection("chats")
-            .where("seller", "==", uid)
+            .collection("users")
+            .doc(fire.auth().currentUser.uid)
             .get()
-            .then((data) => {
-                data.forEach((doc) => {
-                    console.log(doc);
-                });
+            .then((doc) => {
+                setArr(doc.data().chats);
             });
     }, []);
 
+    let history = useHistory();
+
     return (
         <>
-            {chats.map((chat) => (
-                <h1>{chat.chatId}</h1>
+            {arr.map((list) => (
+                <div
+                    onClick={() => {
+                        history.push(`/chat/${list.chatId}`);
+                    }}
+                    className="chat-list-container"
+                >
+                    {list.chatId}
+                </div>
             ))}
         </>
     );
