@@ -110,9 +110,10 @@ class PostProduct extends Component {
                 title: title.trim(),
                 description: description.trim(),
                 category: category,
-                uid: uid,
                 price: price,
                 imageUrl: imageUrl,
+                uid: uid,
+                userName: uid,
                 //location: this.state.location,
                 createdAt: new Date().toISOString(),
             };

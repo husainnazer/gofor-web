@@ -12,75 +12,88 @@ class Profile extends Component {
         super();
         this.state = {
             myPosts: [],
+            authenticated: false,
         };
     }
 
     componentDidMount() {
-        const { displayName } = fire.auth().currentUser;
-        let Products = [];
-        fire.firestore()
-            .collection("products")
-            .get()
-            .then((data) => {
-                data.forEach((doc) => {
-                    if (doc.data().userHandle === displayName) {
-                        Products.push({
-                            productId: doc.id,
-                            title: doc.data().title,
-                            userHandle: doc.data().userHandle,
-                            price: doc.data().price,
-                            location: doc.data().location,
-                            imageUrl: doc.data().imageUrl,
-                            createdAt: doc.data().createdAt,
+        fire.auth().onAuthStateChanged((user) => {
+            if (user) {
+                this.setState({ authenticated: true });
+                let Products = [];
+                fire.firestore()
+                    .collection("products")
+                    .where("uid", "==", user.uid)
+                    .get()
+                    .then((data) => {
+                        data.forEach((doc) => {
+                            Products.push({
+                                productId: doc.id,
+                                title: doc.data().title,
+                                userHandle: doc.data().userHandle,
+                                price: doc.data().price,
+                                location: doc.data().location,
+                                imageUrl: doc.data().imageUrl,
+                                createdAt: doc.data().createdAt,
+                            });
                         });
-                    }
-                });
-                this.setState({ myPosts: Products });
-                console.log(this.state.myPosts[0].title);
-            });
+                        this.setState({ myPosts: Products });
+                    });
+            } else {
+                this.setState({ authenticated: false });
+            }
+        });
     }
 
     render() {
         const { myPosts } = this.state;
-        return (
-            <>
-                <Link to="/">
-                    <img alt="Gofor" src={Logo} className="logo-universal" />
-                </Link>
-                <Typography
-                    style={{
-                        textAlign: "center",
-                        marginBottom: 20,
-                    }}
-                    variant="h2"
-                >
-                    My Posts
-                </Typography>
-                <Grid container spacing={1} style={{ padding: 24 }}>
-                    {myPosts.map((product) => (
-                        <Grid
-                            key={product.productId}
-                            item
-                            xs={12}
-                            sm={6}
-                            lg={4}
-                            xl={3}
-                        >
-                            <Link
-                                to={`/product/${product.productId}`}
-                                style={{ textDecoration: "none" }}
+        if (!myPosts.length) {
+            return <h1>No data</h1>;
+        } else {
+            return (
+                <>
+                    <Link to="/">
+                        <img
+                            alt="Gofor"
+                            src={Logo}
+                            className="logo-universal"
+                        />
+                    </Link>
+                    <Typography
+                        style={{
+                            textAlign: "center",
+                            marginBottom: 20,
+                        }}
+                        variant="h2"
+                    >
+                        My Posts
+                    </Typography>
+                    <Grid container spacing={1} style={{ padding: 24 }}>
+                        {myPosts.map((product) => (
+                            <Grid
+                                key={product.productId}
+                                item
+                                xs={12}
+                                sm={6}
+                                lg={4}
+                                xl={3}
                             >
-                                <Card
-                                    imageUrl={product.imageUrl}
-                                    price={product.price}
-                                    title={product.title}
-                                />
-                            </Link>
-                        </Grid>
-                    ))}
-                </Grid>
-            </>
-        );
+                                <Link
+                                    to={`/product/${product.productId}`}
+                                    style={{ textDecoration: "none" }}
+                                >
+                                    <Card
+                                        imageUrl={product.imageUrl}
+                                        price={product.price}
+                                        title={product.title}
+                                    />
+                                </Link>
+                            </Grid>
+                        ))}
+                    </Grid>
+                </>
+            );
+        }
     }
 }
 

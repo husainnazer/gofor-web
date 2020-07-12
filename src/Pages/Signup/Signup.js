@@ -62,25 +62,23 @@ class Signup extends Component {
 
     handleSubmit = () => {
         this.setState({ loading: true });
-        const newUser = {
-            name: this.state.name,
-            email: this.state.email,
-            password: this.state.password,
-        };
         let userId;
         fire.auth()
-            .createUserWithEmailAndPassword(newUser.email, newUser.password)
+            .createUserWithEmailAndPassword(
+                this.state.email,
+                this.state.password
+            )
             .then((data) => {
                 return data.user.updateProfile({
-                    displayName: newUser.name,
+                    displayName: this.state.name,
                 });
             })
             .then(() => {
                 userId = fire.auth().currentUser.uid;
                 const userCredentials = {
                     uid: userId,
-                    name: newUser.name,
-                    email: newUser.email,
+                    name: this.state.name,
+                    email: this.state.email,
                     createdAt: new Date().toISOString(),
                     chats: [],
                 };

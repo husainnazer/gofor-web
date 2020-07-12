@@ -82,10 +82,10 @@ class Navbar extends Component {
                                 </CustomLink>
                                 <CustomLink
                                     tag="div"
-                                    to="/account"
+                                    to="/chat"
                                     className="account-button-inMenu"
                                 >
-                                    Account
+                                    Chats
                                 </CustomLink>
                                 <CustomLink
                                     onClick={this.onLogout}

@@ -9,7 +9,10 @@ import { useParams, useHistory } from "react-router-dom";
 
 import "./ProductDetails.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
+import {
+    faExclamationTriangle,
+    faCommentDots,
+} from "@fortawesome/free-solid-svg-icons";
 
 const ProductDetails = () => {
     const [loading, setLoading] = useState(true);
@@ -32,6 +35,8 @@ const ProductDetails = () => {
     const [authenticated, setAuthenticated] = useState(false);
     const [error, setError] = useState("");
     const [userChats, setUserChats] = useState([]);
+    const [buyClick, setBuyClick] = useState(false);
+    const [isMyPost, setIsMyPost] = useState(false);
 
     const { productId } = useParams();
 
@@ -41,6 +46,11 @@ const ProductDetails = () => {
             .doc(productId)
             .get()
             .then((data) => {
+                if (data.data().uid === fire.auth().currentUser.uid) {
+                    setIsMyPost(true);
+                } else {
+                    setIsMyPost(false);
+                }
                 setTitle(data.data().title);
                 setPrice(data.data().price);
                 setDescription(data.data().description);
@@ -102,6 +112,9 @@ const ProductDetails = () => {
                             const newChatList = {
                                 productId: productId,
                                 chatId: doc.id,
+                                productImage: imageUrl,
+                                productName: title,
+                                productPrice: price,
                             };
                             fire.firestore()
                                 .collection("users")
@@ -182,7 +195,25 @@ const ProductDetails = () => {
                     <p className="product-details-title">{title}</p>
                     <hr style={{ opacity: 0.25 }} />
                     <p className="product-details-price">{`₹ ${price}`}</p>
-                    <div className="product-details-buy-button">Buy Now</div>
+                    <div
+                        onClick={() => {
+                            setBuyClick(!buyClick);
+                        }}
+                        className="product-details-buy-button"
+                    >
+                        Buy Now
+                    </div>
+                    <div
+                        onClick={onContactSeller}
+                        style={
+                            !buyClick
+                                ? { display: "none" }
+                                : { display: "block" }
+                        }
+                        className="buy-now-chat-icon"
+                    >
+                        <FontAwesomeIcon icon={faCommentDots} />
+                    </div>
                     <p className="product-details-createdAt">
                         {`${dayjs(createdAt).fromNow()}`}
                     </p>
