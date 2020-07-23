@@ -13,6 +13,7 @@ class Profile extends Component {
         this.state = {
             myPosts: [],
             authenticated: false,
+            loading: true,
         };
     }
 
@@ -38,6 +39,7 @@ class Profile extends Component {
                             });
                         });
                         this.setState({ myPosts: Products });
+                        this.setState({ loading: false });
                     });
             } else {
                 this.setState({ authenticated: false });
@@ -46,53 +48,61 @@ class Profile extends Component {
     }
 
     render() {
-        const { myPosts } = this.state;
-        if (!myPosts.length) {
-            return <h1>No data</h1>;
-        } else {
-            return (
-                <>
-                    <Link to="/">
-                        <img
-                            alt="Gofor"
-                            src={Logo}
-                            className="logo-universal"
-                        />
-                    </Link>
-                    <Typography
-                        style={{
-                            textAlign: "center",
-                            marginBottom: 20,
-                        }}
-                        variant="h2"
-                    >
-                        My Posts
-                    </Typography>
-                    <Grid container spacing={1} style={{ padding: 24 }}>
-                        {myPosts.map((product) => (
-                            <Grid
-                                key={product.productId}
-                                item
-                                xs={12}
-                                sm={6}
-                                lg={4}
-                                xl={3}
+        const { myPosts, authenticated, loading } = this.state;
+        if (authenticated) {
+            if (!loading) {
+                if (!myPosts.length) {
+                    return <h1>No data</h1>;
+                } else {
+                    return (
+                        <>
+                            <Link to="/">
+                                <img
+                                    alt="Gofor"
+                                    src={Logo}
+                                    className="logo-universal"
+                                />
+                            </Link>
+                            <Typography
+                                style={{
+                                    textAlign: "center",
+                                    marginBottom: 20,
+                                }}
+                                variant="h2"
                             >
-                                <Link
-                                    to={`/product/${product.productId}`}
-                                    style={{ textDecoration: "none" }}
-                                >
-                                    <Card
-                                        imageUrl={product.imageUrl}
-                                        price={product.price}
-                                        title={product.title}
-                                    />
-                                </Link>
+                                My Posts
+                            </Typography>
+                            <Grid container spacing={1} style={{ padding: 24 }}>
+                                {myPosts.map((product) => (
+                                    <Grid
+                                        key={product.productId}
+                                        item
+                                        xs={12}
+                                        sm={6}
+                                        lg={4}
+                                        xl={3}
+                                    >
+                                        <Link
+                                            to={`/product/${product.productId}`}
+                                            style={{ textDecoration: "none" }}
+                                        >
+                                            <Card
+                                                imageUrl={product.imageUrl}
+                                                price={product.price}
+                                                title={product.title}
+                                            />
+                                        </Link>
+                                    </Grid>
+                                ))}
                             </Grid>
-                        ))}
-                    </Grid>
-                </>
-            );
+                        </>
+                    );
+                }
+            } else {
+                return <h1>Loading ...</h1>;
+            }
+        } else {
+            return <div>Please Login to continue ...</div>;
         }
     }
 }

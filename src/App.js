@@ -11,6 +11,7 @@ import Profile from "./Pages/Profile";
 import ProductDetails from "./Pages/ProductDetails/ProductDetails";
 import Chat from "./Pages/Chat/Chat";
 import ChatList from "./Pages/ChatList";
+import Test from "./Pages/Test";
 
 class App extends Component {
     render() {
@@ -30,6 +31,7 @@ class App extends Component {
                             path="/product/:productId"
                             component={ProductDetails}
                         />
+                        <Route exact path="/test" component={Test} />
                     </Switch>
                 </div>
             </Router>

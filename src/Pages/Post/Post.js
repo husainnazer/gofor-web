@@ -82,6 +82,7 @@ class PostProduct extends Component {
             title: "",
             description: "", //white spaces removed
             price: "",
+            // location: {},
             imageUrl: "",
             posted: false,
             imageLoading: false,
@@ -114,7 +115,7 @@ class PostProduct extends Component {
                 imageUrl: imageUrl,
                 uid: uid,
                 userName: uid,
-                //location: this.state.location,
+                // location: this.state.location,
                 createdAt: new Date().toISOString(),
             };
             fire.firestore()
@@ -212,8 +213,6 @@ class PostProduct extends Component {
         ) {
             this.setState({ price: event.target.value });
             console.log(this.state.price);
-        } else {
-            this.errorFunc("numbers only", "priceErrorMessage");
         }
     };
 
@@ -589,6 +588,53 @@ class PostProduct extends Component {
                             </>
                         );
                     case 6:
+                        return (
+                            <>
+                                <img
+                                    alt="Gofor"
+                                    src={Logo}
+                                    className="logo-onPost"
+                                />
+                                <div className="title-input-div">
+                                    <input
+                                        id="title"
+                                        name="title"
+                                        autoComplete="off"
+                                        value={title}
+                                        spellCheck="false"
+                                        className={
+                                            title !== ""
+                                                ? "title-input-hasValue"
+                                                : "title-input"
+                                        }
+                                        onChange={this.handleChange}
+                                    />
+                                    <label htmlFor="title">
+                                        {title !== ""
+                                            ? "Some Hints"
+                                            : "Enter title"}
+                                    </label>
+                                    <p className="title-length">
+                                        {title.replace(/ /g, "").length}
+                                        /50
+                                    </p>
+                                </div>
+                                {loading && (
+                                    <div className="loading-animation-onPostSubmit"></div>
+                                )}
+                                <FontAwesomeIcon
+                                    onClick={this.handleNextStep}
+                                    className="new-next-button-icon"
+                                    icon={faCaretRight}
+                                />
+                                <FontAwesomeIcon
+                                    onClick={this.handlePreStep}
+                                    className="new-back-button-icon"
+                                    icon={faCaretLeft}
+                                />
+                            </>
+                        );
+                    case 7:
                         return (
                             <>
                                 <img
