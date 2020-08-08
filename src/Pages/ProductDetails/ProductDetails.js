@@ -22,6 +22,7 @@ const ProductDetails = () => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
+    const [product_location, setProduct_location] = useState("");
     const [imageUrl, setImageUrl] = useState("");
     const [createdAt, setCreatedAt] = useState("");
     const [currentUid, setCurrentUid] = useState("");
@@ -54,6 +55,7 @@ const ProductDetails = () => {
                 setTitle(data.data().title);
                 setPrice(data.data().price);
                 setDescription(data.data().description);
+                setProduct_location(data.data().product_location);
                 setImageUrl(data.data().imageUrl);
                 setCreatedAt(data.data().createdAt);
                 setSellerUid(data.data().uid);
@@ -149,6 +151,7 @@ const ProductDetails = () => {
                         if (list.productId === productId) {
                             history.push(`/chat/${list.chatId}`);
                         }
+                        return 0;
                     });
                 }
             } else {
@@ -243,6 +246,8 @@ const ProductDetails = () => {
                     >
                         Contact Seller
                     </div>
+                    <h1>{description}</h1>
+                    <h1>{product_location}</h1>
                     {chatLoading && (
                         <div
                             style={{ transform: `translateX(${-50}%)` }}
@@ -256,6 +261,15 @@ const ProductDetails = () => {
                                 icon={faExclamationTriangle}
                             />
                             {error}
+                        </div>
+                    )}
+                    {isMyPost && (
+                        <div className="universal-error-popup">
+                            <FontAwesomeIcon
+                                style={{ marginRight: "10px" }}
+                                icon={faExclamationTriangle}
+                            />
+                            this is my post
                         </div>
                     )}
                 </div>

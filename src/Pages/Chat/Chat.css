@@ -11,13 +11,13 @@
     transform: translate(-50%, -50%);
     overflow: scroll;
 }
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
     width: 10px;
 }
 ::-webkit-scrollbar-thumb {
     background-color: rgb(200, 200, 200);
     border-radius: 2px;
-}
+} */
 
 .chat-message-input-div {
     cursor: text;

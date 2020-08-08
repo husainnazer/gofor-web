@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import fire from "../firebase";
 import "firebase/auth";
-import { useHistory, Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const ChatList = () => {
     const [authenticated, setAuthenticated] = useState(false);
@@ -51,6 +51,7 @@ const ChatList = () => {
                                 {list.chatId}
                             </div>
                         ))}
+                        <h1>{currentUid}</h1>
                     </>
                 );
             }

@@ -12,7 +12,7 @@ class Card extends Component {
             <>
                 <div className="wrapper">
                     <div className="card">
-                        <img alt="productimage" src={imageUrl} />
+                        <img alt="productimage" src={imageUrl} /> 
                         <p className="info-price">
                             ₹ {this.formatNumber(price)}
                         </p>

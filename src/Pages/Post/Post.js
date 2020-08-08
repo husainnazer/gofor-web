@@ -27,6 +27,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Card from "../../Components/Card/Card";
 
+import cities from "../../allCities";
+
 const styles = {
     form: {
         textAlign: "center",
@@ -82,7 +84,7 @@ class PostProduct extends Component {
             title: "",
             description: "", //white spaces removed
             price: "",
-            // location: {},
+            product_location: null,
             imageUrl: "",
             posted: false,
             imageLoading: false,
@@ -91,14 +93,18 @@ class PostProduct extends Component {
             titleErrorMessage: null,
             descriptionErrorMessage: null,
             priceErrorMessage: null,
+            product_locationInputErrorMessage: null,
             imageInputErrorMessage: null,
             regexp: /^[0-9\b]+$/,
+            searchValue: "",
+            distVal: "",
+            cityVal: "",
         };
     }
 
     handleSubmit = () => {
         this.setState({ loading: true });
-        const { uid } = fire.auth().currentUser;
+        const { uid, displayName } = fire.auth().currentUser;
         const { category, title, description, price, imageUrl } = this.state;
         if (
             category !== "" &&
@@ -114,8 +120,8 @@ class PostProduct extends Component {
                 price: price,
                 imageUrl: imageUrl,
                 uid: uid,
-                userName: uid,
-                // location: this.state.location,
+                userName: displayName,
+                product_location: this.state.product_location,
                 createdAt: new Date().toISOString(),
             };
             fire.firestore()
@@ -179,6 +185,16 @@ class PostProduct extends Component {
                 }
                 break;
             case 5:
+                if (this.state.product_location === null) {
+                    this.errorFunc(
+                        "Please add location",
+                        "product_locationInputErrorMessage"
+                    );
+                } else {
+                    this.setState({ step: step + 1 });
+                }
+                break;
+            case 6:
                 if (imageUrl === "") {
                     this.errorFunc(
                         "Add Photo of your product",
@@ -525,6 +541,381 @@ class PostProduct extends Component {
                             </>
                         );
                     case 5:
+                        let filteredCities;
+                        if (this.state.distVal !== "") {
+                            filteredCities = cities.kerala[
+                                this.state.distVal.toLowerCase()
+                            ].filter((city) => {
+                                return (
+                                    city
+                                        .toLowerCase()
+                                        .indexOf(
+                                            this.state.searchValue.toLowerCase()
+                                        ) !== -1
+                                );
+                            });
+                        }
+                        return (
+                            <>
+                                <img
+                                    alt="Gofor"
+                                    src={Logo}
+                                    className="logo-onPost"
+                                />
+                                <div className="main-container-test">
+                                    <div className="state-section-test">
+                                        <div className="state-select-container-test">
+                                            <div
+                                                style={
+                                                    this.state.distVal ===
+                                                    "Alappuzha"
+                                                        ? {
+                                                              backgroundColor:
+                                                                  "rgb(80, 80, 80)",
+                                                              color:
+                                                                  "rgb(200, 200, 200)",
+                                                          }
+                                                        : null
+                                                }
+                                                onClick={() =>
+                                                    this.setState({
+                                                        distVal: "Alappuzha",
+                                                    })
+                                                }
+                                            >
+                                                Alappuzha
+                                            </div>
+                                            <div
+                                                style={
+                                                    this.state.distVal ===
+                                                    "Ernakulam"
+                                                        ? {
+                                                              backgroundColor:
+                                                                  "rgb(80, 80, 80)",
+                                                              color:
+                                                                  "rgb(200, 200, 200)",
+                                                          }
+                                                        : null
+                                                }
+                                                onClick={() =>
+                                                    this.setState({
+                                                        distVal: "Ernakulam",
+                                                    })
+                                                }
+                                            >
+                                                Ernakulam
+                                            </div>
+                                            <div
+                                                style={
+                                                    this.state.distVal ===
+                                                    "Idukki"
+                                                        ? {
+                                                              backgroundColor:
+                                                                  "rgb(80, 80, 80)",
+                                                              color:
+                                                                  "rgb(200, 200, 200)",
+                                                          }
+                                                        : null
+                                                }
+                                                onClick={() =>
+                                                    this.setState({
+                                                        distVal: "Idukki",
+                                                    })
+                                                }
+                                            >
+                                                Idukki
+                                            </div>
+                                            <div
+                                                style={
+                                                    this.state.distVal ===
+                                                    "Kannur"
+                                                        ? {
+                                                              backgroundColor:
+                                                                  "rgb(80, 80, 80)",
+                                                              color:
+                                                                  "rgb(200, 200, 200)",
+                                                          }
+                                                        : null
+                                                }
+                                                onClick={() =>
+                                                    this.setState({
+                                                        distVal: "Kannur",
+                                                    })
+                                                }
+                                            >
+                                                Kannur
+                                            </div>
+                                            <div
+                                                style={
+                                                    this.state.distVal ===
+                                                    "Kasaragod"
+                                                        ? {
+                                                              backgroundColor:
+                                                                  "rgb(80, 80, 80)",
+                                                              color:
+                                                                  "rgb(200, 200, 200)",
+                                                          }
+                                                        : null
+                                                }
+                                                onClick={() =>
+                                                    this.setState({
+                                                        distVal: "Kasaragod",
+                                                    })
+                                                }
+                                            >
+                                                Kasaragod
+                                            </div>
+                                            <div
+                                                style={
+                                                    this.state.distVal ===
+                                                    "Kollam"
+                                                        ? {
+                                                              backgroundColor:
+                                                                  "rgb(80, 80, 80)",
+                                                              color:
+                                                                  "rgb(200, 200, 200)",
+                                                          }
+                                                        : null
+                                                }
+                                                onClick={() =>
+                                                    this.setState({
+                                                        distVal: "Kollam",
+                                                    })
+                                                }
+                                            >
+                                                Kollam
+                                            </div>
+                                            <div
+                                                style={
+                                                    this.state.distVal ===
+                                                    "Kottayam"
+                                                        ? {
+                                                              backgroundColor:
+                                                                  "rgb(80, 80, 80)",
+                                                              color:
+                                                                  "rgb(200, 200, 200)",
+                                                          }
+                                                        : null
+                                                }
+                                                onClick={() =>
+                                                    this.setState({
+                                                        distVal: "Kottayam",
+                                                    })
+                                                }
+                                            >
+                                                Kottayam
+                                            </div>
+                                            <div
+                                                style={
+                                                    this.state.distVal ===
+                                                    "Kozhikode"
+                                                        ? {
+                                                              backgroundColor:
+                                                                  "rgb(80, 80, 80)",
+                                                              color:
+                                                                  "rgb(200, 200, 200)",
+                                                          }
+                                                        : null
+                                                }
+                                                onClick={() =>
+                                                    this.setState({
+                                                        distVal: "Kozhikode",
+                                                    })
+                                                }
+                                            >
+                                                Kozhikode
+                                            </div>
+                                            <div
+                                                style={
+                                                    this.state.distVal ===
+                                                    "Malappuram"
+                                                        ? {
+                                                              backgroundColor:
+                                                                  "rgb(80, 80, 80)",
+                                                              color:
+                                                                  "rgb(200, 200, 200)",
+                                                          }
+                                                        : null
+                                                }
+                                                onClick={() =>
+                                                    this.setState({
+                                                        distVal: "Malappuram",
+                                                    })
+                                                }
+                                            >
+                                                Malappuram
+                                            </div>
+                                            <div
+                                                style={
+                                                    this.state.distVal ===
+                                                    "Palakkad"
+                                                        ? {
+                                                              backgroundColor:
+                                                                  "rgb(80, 80, 80)",
+                                                              color:
+                                                                  "rgb(200, 200, 200)",
+                                                          }
+                                                        : null
+                                                }
+                                                onClick={() =>
+                                                    this.setState({
+                                                        distVal: "Palakkad",
+                                                    })
+                                                }
+                                            >
+                                                Palakkad
+                                            </div>
+                                            <div
+                                                style={
+                                                    this.state.distVal ===
+                                                    "Pathanamthitta"
+                                                        ? {
+                                                              backgroundColor:
+                                                                  "rgb(80, 80, 80)",
+                                                              color:
+                                                                  "rgb(200, 200, 200)",
+                                                          }
+                                                        : null
+                                                }
+                                                onClick={() =>
+                                                    this.setState({
+                                                        distVal:
+                                                            "Pathanamthitta",
+                                                    })
+                                                }
+                                            >
+                                                Pathanamthitta
+                                            </div>
+                                            <div
+                                                style={
+                                                    this.state.distVal ===
+                                                    "Thiruvananthapuram"
+                                                        ? {
+                                                              backgroundColor:
+                                                                  "rgb(80, 80, 80)",
+                                                              color:
+                                                                  "rgb(200, 200, 200)",
+                                                          }
+                                                        : null
+                                                }
+                                                onClick={() =>
+                                                    this.setState({
+                                                        distVal:
+                                                            "Thiruvananthapuram",
+                                                    })
+                                                }
+                                            >
+                                                Thiruvananthapuram
+                                            </div>
+                                            <div
+                                                style={
+                                                    this.state.distVal ===
+                                                    "Thrissur"
+                                                        ? {
+                                                              backgroundColor:
+                                                                  "rgb(80, 80, 80)",
+                                                              color:
+                                                                  "rgb(200, 200, 200)",
+                                                          }
+                                                        : null
+                                                }
+                                                onClick={() =>
+                                                    this.setState({
+                                                        distVal: "Thrissur",
+                                                    })
+                                                }
+                                            >
+                                                Thrissur
+                                            </div>
+                                            <div
+                                                style={
+                                                    this.state.distVal ===
+                                                    "Wayanad"
+                                                        ? {
+                                                              backgroundColor:
+                                                                  "rgb(80, 80, 80)",
+                                                              color:
+                                                                  "rgb(200, 200, 200)",
+                                                          }
+                                                        : null
+                                                }
+                                                onClick={() =>
+                                                    this.setState({
+                                                        distVal: "Wayanad",
+                                                    })
+                                                }
+                                            >
+                                                Wayanad
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="city-section-test">
+                                        <div className="search-input-form-test">
+                                            <input
+                                                onClick={() =>
+                                                    console.log(
+                                                        this.state
+                                                            .product_location
+                                                    )
+                                                }
+                                                placeholder="Search location"
+                                                className="search-input-form-input-test"
+                                                onChange={(event) =>
+                                                    this.setState({
+                                                        searchValue:
+                                                            event.target.value,
+                                                    })
+                                                }
+                                                id="search-id-test"
+                                            />
+                                        </div>
+                                        <div className="search-results-div-test">
+                                            {this.state.distVal !== "" ? (
+                                                filteredCities.length !== 0 ? (
+                                                    filteredCities.map(
+                                                        (data) => (
+                                                            <p
+                                                                onClick={() =>
+                                                                    this.setState(
+                                                                        {
+                                                                            cityVal: data,
+                                                                            product_location: `${data}, ${this.state.distVal}`,
+                                                                        }
+                                                                    )
+                                                                }
+                                                                className="search-results-content-test"
+                                                            >
+                                                                {data}
+                                                            </p>
+                                                        )
+                                                    )
+                                                ) : (
+                                                    <p className="hint">
+                                                        No search results
+                                                    </p>
+                                                )
+                                            ) : (
+                                                <div className="hint">
+                                                    <p>Select any</p>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+                                <FontAwesomeIcon
+                                    onClick={this.handleNextStep}
+                                    className="new-next-button-icon"
+                                    icon={faCaretRight}
+                                />
+                                <FontAwesomeIcon
+                                    onClick={this.handlePreStep}
+                                    className="new-back-button-icon"
+                                    icon={faCaretLeft}
+                                />
+                            </>
+                        );
+                    case 6:
                         return (
                             <>
                                 <img
@@ -574,53 +965,6 @@ class PostProduct extends Component {
                                         />
                                         {imageInputErrorMessage}
                                     </div>
-                                )}
-                                <FontAwesomeIcon
-                                    onClick={this.handleNextStep}
-                                    className="new-next-button-icon"
-                                    icon={faCaretRight}
-                                />
-                                <FontAwesomeIcon
-                                    onClick={this.handlePreStep}
-                                    className="new-back-button-icon"
-                                    icon={faCaretLeft}
-                                />
-                            </>
-                        );
-                    case 6:
-                        return (
-                            <>
-                                <img
-                                    alt="Gofor"
-                                    src={Logo}
-                                    className="logo-onPost"
-                                />
-                                <div className="title-input-div">
-                                    <input
-                                        id="title"
-                                        name="title"
-                                        autoComplete="off"
-                                        value={title}
-                                        spellCheck="false"
-                                        className={
-                                            title !== ""
-                                                ? "title-input-hasValue"
-                                                : "title-input"
-                                        }
-                                        onChange={this.handleChange}
-                                    />
-                                    <label htmlFor="title">
-                                        {title !== ""
-                                            ? "Some Hints"
-                                            : "Enter title"}
-                                    </label>
-                                    <p className="title-length">
-                                        {title.replace(/ /g, "").length}
-                                        /50
-                                    </p>
-                                </div>
-                                {loading && (
-                                    <div className="loading-animation-onPostSubmit"></div>
                                 )}
                                 <FontAwesomeIcon
                                     onClick={this.handleNextStep}
