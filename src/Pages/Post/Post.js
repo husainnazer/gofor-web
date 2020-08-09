@@ -84,7 +84,7 @@ class PostProduct extends Component {
             title: "",
             description: "", //white spaces removed
             price: "",
-            product_location: null,
+            product_location: "",
             imageUrl: "",
             posted: false,
             imageLoading: false,
@@ -185,7 +185,7 @@ class PostProduct extends Component {
                 }
                 break;
             case 5:
-                if (this.state.product_location === null) {
+                if (this.state.product_location === "") {
                     this.errorFunc(
                         "Please add location",
                         "product_locationInputErrorMessage"
@@ -876,6 +876,18 @@ class PostProduct extends Component {
                                                     filteredCities.map(
                                                         (data) => (
                                                             <p
+                                                                style={
+                                                                    this.state
+                                                                        .cityVal ===
+                                                                    data
+                                                                        ? {
+                                                                              backgroundColor:
+                                                                                  "rgb(80, 80, 80)",
+                                                                              color:
+                                                                                  "rgb(200, 200, 200)",
+                                                                          }
+                                                                        : null
+                                                                }
                                                                 onClick={() =>
                                                                     this.setState(
                                                                         {
@@ -903,6 +915,19 @@ class PostProduct extends Component {
                                         </div>
                                     </div>
                                 </div>
+                                {this.state
+                                    .product_locationInputErrorMessage && (
+                                    <div className="post-error-popup">
+                                        <FontAwesomeIcon
+                                            style={{ marginRight: "10px" }}
+                                            icon={faExclamationTriangle}
+                                        />
+                                        {
+                                            this.state
+                                                .product_locationInputErrorMessage
+                                        }
+                                    </div>
+                                )}
                                 <FontAwesomeIcon
                                     onClick={this.handleNextStep}
                                     className="new-next-button-icon"
